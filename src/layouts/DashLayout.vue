@@ -25,8 +25,19 @@
             <!-- topbar -->
             <div class="my-container bg-gray-100 border-b flex">
                 <!-- others topbar content -->
-                <div class="w-full md:order-last">
-                    <slot name="topbarContent" />
+                <div class="w-full flex items-center md:order-last">
+                    <DropdownUi class="ml-auto" text="Ernandes Souza" naked right>
+                        <div class="flex justify-between px-3 py-3">
+                            <a class="px-4 py-1 hover:underline hover:text-blue-900 duration-300"
+                                href="">
+                                Perfil
+                            </a>
+                            <button
+                                class="border border-red-400 hover:bg-red-400 text-red-400 hover:text-gray-200 duration-300 px-4 py-1 rounded-sm">
+                                Logout
+                            </button>
+                        </div>
+                    </DropdownUi>
                 </div>
                 <!-- /others topbar content -->
 
@@ -75,6 +86,7 @@
 import BackdropUi from '@/components/Ui/BackdropUi.vue';
 import SidebarElemUi from '@/components/Layout/Sidebar/SidebarElemUi.vue';
 import SidebarHeaderUi from '@/components/Layout/Sidebar/SidebarHeaderUi.vue';
+import DropdownUi from '@/components/Ui/Dropdown/DropdownUi.vue';
 
 let sidebarMobileClass = "sidebar-mobile";
 let contentMobileClass = "content-mobile";
@@ -88,7 +100,7 @@ let MIN_WIDTH = 768;
 
 export default {
     name: 'DashLayout',
-    components: { BackdropUi, SidebarElemUi, SidebarHeaderUi },
+    components: { BackdropUi, SidebarElemUi, SidebarHeaderUi, DropdownUi },
 
     data() {
         return {
