@@ -4,9 +4,7 @@
             class="px-4 py-2 transition ease-in-out duration-150 z-50"
             :class="{ 'rounded-md': rounded, 'border border-gray-200': !naked }">
             <div class="flex items-center">
-                <span class="text-base font-medium">
-                    {{ text }}
-                </span>
+                <slot name="button" />
                 <span v-if="!noIcon" class="ml-2">
                     <svg class="w-3 h-3" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -26,7 +24,7 @@
             <div v-show="isOpen"
                 class="bg-white w-56 origin-top-left absolute mt-1 border border-gray-200 p-2 shadow-md rounded z-50"
                 :class="[position]">
-                <slot />
+                <slot name="content" />
             </div>
         </Transition>
     </div>
@@ -81,7 +79,6 @@ export default {
     mounted() {
         document.addEventListener('click', this.clickOutListener);
     },
-
     methods: {
         toggle() {
             this.isOpen = !this.isOpen;
