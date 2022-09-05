@@ -6,7 +6,15 @@
 
         <!-- sidebar -->
         <aside v-show="visible" class="my-container sidebar" :class="sidebarClass">
-            <SidebarHeaderUi />
+            <SidebarHeaderUi>
+                <template v-slot:header>
+                    <div class="py-3">
+                        <RouterLink :to="{ name: 'panel.index' }">
+                            <img src="./../assets/logo.svg" alt="logo">
+                        </RouterLink>
+                    </div>
+                </template>
+            </SidebarHeaderUi>
 
             <SidebarElemUi title="Dashboard" :nav-items="nav.dashboard" />
         </aside>
