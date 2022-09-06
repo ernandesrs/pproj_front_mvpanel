@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-wrap justify-center border p-4">
-        <slot name="cards" />
+        <slot />
     </div>
 </template>
 
