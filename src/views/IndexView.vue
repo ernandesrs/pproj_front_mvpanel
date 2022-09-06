@@ -26,8 +26,8 @@
 	</SectionUi>
 
 	<SectionUi icon-name="pieChart" title="Uma seção muito top">
-		<CardGroupUi basis="basis-full sm:basis-1/2">
-			<CardItemUi>
+		<RowUi basis="basis-full sm:basis-1/2">
+			<ColumnUi>
 				<p class="mb-4">
 					Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem saepe
 					sit, eos commodi voluptates animi tempore sequi placeat vitae facilis,
@@ -39,9 +39,9 @@
 				<ButtonUi button-style="dark" text="Large button #1" size="lg" rounded />
 				<span class="mx-1"></span>
 				<ButtonUi button-style="info" text="Large button #2" size="lg" rounded />
-			</CardItemUi>
+			</ColumnUi>
 
-			<CardItemUi>
+			<ColumnUi>
 				<p class="mb-4">
 					Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem saepe
 					sit, eos commodi voluptates animi tempore sequi placeat vitae facilis,
@@ -53,9 +53,10 @@
 				<ButtonUi button-style="warning" text="Large button #1" size="lg"
 					rounded />
 				<span class="mx-1"></span>
-				<ButtonUi button-style="default" text="Large button #2" size="lg" rounded outlined />
-			</CardItemUi>
-		</CardGroupUi>
+				<ButtonUi button-style="default" text="Large button #2" size="lg" rounded
+					outlined />
+			</ColumnUi>
+		</RowUi>
 	</SectionUi>
 
 </template>
@@ -66,10 +67,12 @@ import SectionUi from '@/components/Layout/SectionUi.vue';
 import CardGroupUi from '@/components/Ui/Card/CardGroupUi.vue';
 import CardItemUi from '@/components/Ui/Card/CardItemUi.vue';
 import ButtonUi from '@/components/Ui/ButtonUi.vue';
+import RowUi from '@/components/Ui/Grid/RowUi.vue';
+import ColumnUi from '@/components/Ui/Grid/ColumnUi.vue';
 
 export default {
 	name: "IndexView",
-	components: { SectionUi, CardGroupUi, CardItemUi, ButtonUi }
+	components: { SectionUi, CardGroupUi, CardItemUi, ButtonUi, RowUi, ColumnUi }
 }
 
 </script>
