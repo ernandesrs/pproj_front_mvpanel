@@ -13,7 +13,9 @@
             </div>
             <!-- /card header -->
 
-            <slot />
+            <div class="pt-3">
+                <slot />
+            </div>
         </div>
     </div>
 </template>
