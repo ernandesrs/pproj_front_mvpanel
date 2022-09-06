@@ -136,32 +136,25 @@ export default {
                     },
                     {
                         id: 3,
-                        text: 'Com submenu',
-                        title: 'Abrir submenu',
+                        text: 'Componentes',
+                        title: 'Mais componentes',
                         href: '#',
-                        icon: 'app',
+                        icon: 'layoutWtf',
                         subnav: [
                             {
                                 id: 1,
-                                text: 'Sub item #1',
+                                text: 'Cards',
                                 title: '',
-                                href: '#',
-                                target: '_blank',
+                                to: { name: 'panel.components.cards' },
+                                target: '_self',
                             },
                             {
                                 id: 2,
-                                text: 'Sub item #2',
-                                title: 'Sub item #2',
-                                href: '#',
-                                target: '_blank',
-                            },
-                            {
-                                id: 3,
-                                text: 'Sub item #3',
-                                title: 'Sub item #3',
-                                href: '#',
-                                target: '_blank',
-                            },
+                                text: 'Botões',
+                                title: '',
+                                to: { name: 'panel.components.buttons' },
+                                target: '_self',
+                            }
                         ]
                     }
                 ],

@@ -1,6 +1,8 @@
 const icons = {
     app: 'bi bi-app',
 
+    layoutWtf: 'bi bi-layout-wtf',
+
     pieChart: 'bi bi-pie-chart',
 };
 
