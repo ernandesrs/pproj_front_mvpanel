@@ -1,5 +1,5 @@
 <template>
-    <span class="text-gray-200" :class="iconClass"></span>
+    <span class="text-gray-200" :class="iconClass" :style="[`font-size: ${size}rem`]"></span>
 </template>
 
 <script>
@@ -13,6 +13,10 @@ export default {
         iconName: {
             type: String,
             default: 'app',
+        },
+        size: {
+            type: Number,
+            default: 1.1
         },
     },
 
