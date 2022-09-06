@@ -51,6 +51,10 @@ export default {
         outlined: {
             type: Boolean,
             default: false
+        },
+        size: {
+            type: String,
+            default: null
         }
     },
     methods: {
@@ -61,10 +65,11 @@ export default {
     computed: {
         styleClass() {
             let block = this.block ? 'block w-full' : '';
+            let size = this.size ? 'button-' + this.size : 'button';
             let style = this.outlined ? this.buttonStyle + '-outline' : ((this.border ? this.buttonStyle + '-border ' : '') + this.buttonStyle);
             let round = this.rounded ? 'rounded-lg' : '';
 
-            return `${block} px-4 py-2 ${style} ${round} opacity-100 hover:opacity-70 transition duration-400`;
+            return `${block} ${size} ${style} ${round} opacity-100 hover:opacity-70 transition duration-400`;
         }
     },
 };

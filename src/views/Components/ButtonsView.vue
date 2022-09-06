@@ -22,6 +22,12 @@
                 <div class="text-center py-2">
                     <ButtonUi type="button" text="Display block" block />
                 </div>
+                <div class="text-center py-2">
+                    <ButtonUi type="button" text="Large button" size="lg" />
+                </div>
+                <div class="text-center py-2">
+                    <ButtonUi type="button" text="Small button" size="sm" />
+                </div>
             </CardItemUi>
 
             <CardItemUi>
@@ -48,6 +54,12 @@
                 <div class="text-center py-2">
                     <ButtonUi type="button" text="Display block" button-style="success"
                         block />
+                </div>
+                <div class="text-center py-2">
+                    <ButtonUi type="button" text="Large button" button-style="success" size="lg" />
+                </div>
+                <div class="text-center py-2">
+                    <ButtonUi type="button" text="Small button" button-style="success" size="sm" />
                 </div>
             </CardItemUi>
 
@@ -76,6 +88,12 @@
                     <ButtonUi type="button" text="Display block" button-style="danger"
                         block />
                 </div>
+                <div class="text-center py-2">
+                    <ButtonUi type="button" text="Large button" button-style="danger" size="lg" />
+                </div>
+                <div class="text-center py-2">
+                    <ButtonUi type="button" text="Small button" button-style="danger" size="sm" />
+                </div>
             </CardItemUi>
 
             <CardItemUi>
@@ -103,6 +121,12 @@
                     <ButtonUi type="button" text="Display block" button-style="warning"
                         block />
                 </div>
+                <div class="text-center py-2">
+                    <ButtonUi type="button" text="Large button" button-style="warning" size="lg" />
+                </div>
+                <div class="text-center py-2">
+                    <ButtonUi type="button" text="Small button" button-style="warning" size="sm" />
+                </div>
             </CardItemUi>
 
             <CardItemUi>
@@ -129,6 +153,12 @@
                     <ButtonUi type="button" text="Display block" button-style="info"
                         block />
                 </div>
+                <div class="text-center py-2">
+                    <ButtonUi type="button" text="Large button" button-style="info" size="lg" />
+                </div>
+                <div class="text-center py-2">
+                    <ButtonUi type="button" text="Small button" button-style="info" size="sm" />
+                </div>
             </CardItemUi>
 
             <CardItemUi>
@@ -154,6 +184,12 @@
                 <div class="text-center py-2">
                     <ButtonUi type="button" text="Display block" button-style="dark"
                         block />
+                </div>
+                <div class="text-center py-2">
+                    <ButtonUi type="button" text="Large button" button-style="dark" size="lg" />
+                </div>
+                <div class="text-center py-2">
+                    <ButtonUi type="button" text="Small button" button-style="dark" size="sm" />
                 </div>
             </CardItemUi>
 

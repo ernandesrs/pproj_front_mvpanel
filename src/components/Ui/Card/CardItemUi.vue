@@ -4,8 +4,8 @@
             <!-- card header -->
             <div v-if="iconName && title" class="flex items-center -mt-7">
                 <div
-                    class=" w-16 h-16 bg-gradient-to-r from-gray-600 to-gray-700 text-gray-200 flex justify-center items-center rounded-sm">
-                    <IconElementUi :icon-name="iconName" size="1.6" />
+                    class=" w-16 h-16 bg-gradient-to-r from-gray-600 to-gray-700 text-gray-200 flex justify-center items-center rounded-sm text-2xl">
+                    <IconElementUi :icon-name="iconName" />
                 </div>
                 <div class="ml-4 text-2xl font-semibold text-gray-500">
                     {{ title }}

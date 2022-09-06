@@ -65,6 +65,18 @@ a:hover {
     @apply overflow-y-auto col-span-12;
 }
 
+.button-sm {
+    @apply py-1 px-4 text-sm;
+}
+
+.button {
+    @apply py-2 px-4 text-base;
+}
+
+.button-lg {
+    @apply py-2 px-5 text-lg;
+}
+
 /* default */
 
 .default {
@@ -76,7 +88,7 @@ a:hover {
 }
 
 .default-outline {
-    @apply text-gray-500 border border-gray-500;
+    @apply hover:bg-gray-700 text-gray-500 hover:text-gray-200 border border-gray-500;
 }
 
 /* success */
@@ -90,7 +102,7 @@ a:hover {
 }
 
 .success-outline {
-    @apply text-green-500 border border-green-500;
+    @apply hover:bg-green-700 text-green-500 hover:text-gray-200 border border-green-500;
 }
 
 /* danger */
@@ -104,7 +116,7 @@ a:hover {
 }
 
 .danger-outline {
-    @apply text-red-500 border border-red-500;
+    @apply hover:bg-red-700 text-red-500 hover:text-gray-200 border border-red-500;
 }
 
 /* warning */
@@ -118,7 +130,7 @@ a:hover {
 }
 
 .warning-outline {
-    @apply text-yellow-500 border border-yellow-500;
+    @apply hover:bg-yellow-700 text-yellow-500 hover:text-gray-200 border border-yellow-500;
 }
 
 /* info */
@@ -132,7 +144,7 @@ a:hover {
 }
 
 .info-outline {
-    @apply text-blue-500 border border-blue-500;
+    @apply hover:bg-blue-700 text-blue-500 hover:text-gray-200 border border-blue-500;
 }
 
 /* dark */
@@ -146,5 +158,5 @@ a:hover {
 }
 
 .dark-outline {
-    @apply text-gray-500 border border-gray-500;
+    @apply hover:bg-gray-700 text-gray-500 hover:text-gray-200 border border-gray-500;
 }
