@@ -1,13 +1,16 @@
 <template>
-    <div>
-        LOGIN
-    </div>
+    <div>LOGIN</div>
 </template>
 
 <script>
 
 export default {
-    name: 'LoginView'
+    name: "LoginView",
+
+    data() {
+        return {
+        };
+    },
 };
 
 </script>

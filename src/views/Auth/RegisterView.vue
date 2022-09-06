@@ -1,13 +1,11 @@
 <template>
-    <div>
-        REGISTER
-    </div>
+    <div>REGISTER</div>
 </template>
 
 <script>
 
 export default {
-    name: 'RegisterView'
+    name: "RegisterView",
 };
 
 </script>

@@ -2,6 +2,7 @@ const icons = {
     app: 'bi bi-app',
 
     layoutWtf: 'bi bi-layout-wtf',
+    login: 'bi bi-box-arrow-in-right',
 
     pieChart: 'bi bi-pie-chart',
 };
