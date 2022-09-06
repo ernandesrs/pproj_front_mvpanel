@@ -1,5 +1,5 @@
 <template>
-    <div :class="basisClass">
+    <div class="column" :class="basisClass">
         <div class="px-4 py-2 m-2">
             <slot />
         </div>
@@ -13,6 +13,7 @@ export default {
 
     computed: {
         basisClass() {
+            console.log(this.$parent.$props.basis);
             return this.$parent.$props.basis;
         },
     },

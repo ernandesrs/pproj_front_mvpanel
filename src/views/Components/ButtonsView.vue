@@ -1,8 +1,8 @@
 <template>
     <h1 class="pb-2 font-bold text-2xl">BOTÕES</h1>
     <div class="py-4">
-        <CardGroupUi basis="basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
-            <CardItemUi>
+        <RowUi basis="basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+            <ColumnUi>
                 <h2 class="mb-2 pb-2 border-b">Padrão</h2>
                 <div class="text-center py-2">
                     <ButtonUi type="button" text="With icon" icon-name="pieChart" />
@@ -28,9 +28,9 @@
                 <div class="text-center py-2">
                     <ButtonUi type="button" text="Small button" size="sm" />
                 </div>
-            </CardItemUi>
+            </ColumnUi>
 
-            <CardItemUi>
+            <ColumnUi>
                 <h2 class="mb-2 pb-2 border-b">Sucesso</h2>
                 <div class="text-center py-2">
                     <ButtonUi type="button" text="With icon" button-style="success"
@@ -61,9 +61,9 @@
                 <div class="text-center py-2">
                     <ButtonUi type="button" text="Small button" button-style="success" size="sm" />
                 </div>
-            </CardItemUi>
+            </ColumnUi>
 
-            <CardItemUi>
+            <ColumnUi>
                 <h2 class="mb-2 pb-2 border-b">Perigo</h2>
                 <div class="text-center py-2">
                     <ButtonUi type="button" text="With icon" button-style="danger"
@@ -94,9 +94,9 @@
                 <div class="text-center py-2">
                     <ButtonUi type="button" text="Small button" button-style="danger" size="sm" />
                 </div>
-            </CardItemUi>
+            </ColumnUi>
 
-            <CardItemUi>
+            <ColumnUi>
                 <h2 class="mb-2 pb-2 border-b">Alerta</h2>
                 <div class="text-center py-2">
                     <ButtonUi type="button" text="With icon" button-style="warning"
@@ -127,9 +127,9 @@
                 <div class="text-center py-2">
                     <ButtonUi type="button" text="Small button" button-style="warning" size="sm" />
                 </div>
-            </CardItemUi>
+            </ColumnUi>
 
-            <CardItemUi>
+            <ColumnUi>
                 <h2 class="mb-2 pb-2 border-b">Informação</h2>
                 <div class="text-center py-2">
                     <ButtonUi type="button" text="With icon" button-style="info"
@@ -159,9 +159,9 @@
                 <div class="text-center py-2">
                     <ButtonUi type="button" text="Small button" button-style="info" size="sm" />
                 </div>
-            </CardItemUi>
+            </ColumnUi>
 
-            <CardItemUi>
+            <ColumnUi>
                 <h2 class="mb-2 pb-2 border-b">Escuro</h2>
                 <div class="text-center py-2">
                     <ButtonUi type="button" text="With icon" button-style="dark"
@@ -191,29 +191,29 @@
                 <div class="text-center py-2">
                     <ButtonUi type="button" text="Small button" button-style="dark" size="sm" />
                 </div>
-            </CardItemUi>
+            </ColumnUi>
 
-            <CardItemUi>
+            <ColumnUi>
                 <h2 class="mb-2 pb-2 border-b">Evento</h2>
                 <div class="text-center py-2">
                     <ButtonUi @buttonClicked="method" type="button" text="Click event"
                         button-style="dark" icon-name="app" />
                 </div>
-            </CardItemUi>
-        </CardGroupUi>
+            </ColumnUi>
+        </RowUi>
     </div>
 
 </template>
 
 <script>
 
-import CardGroupUi from '@/components/Ui/Card/CardGroupUi.vue';
-import CardItemUi from '@/components/Ui/Card/CardItemUi.vue';
+import RowUi from '@/components/Ui/Grid/RowUi.vue';
+import ColumnUi from '@/components/Ui/Grid/ColumnUi.vue';
 import ButtonUi from '@/components/Ui/ButtonUi.vue';
 
 export default {
     name: "ButtonsView",
-    components: { CardGroupUi, CardItemUi, ButtonUi },
+    components: { RowUi, ColumnUi, ButtonUi },
 
     methods: {
         method() {

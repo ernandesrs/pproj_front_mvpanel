@@ -2,58 +2,74 @@
     <h1 class="pb-2 font-bold text-2xl">CARDS</h1>
     <div class="py-4">
         <h2 class="pb-2 font-semibold">Cards simples</h2>
-        <CardGroupUi basis="basis-full sm:basis-1/2 lg:basis-1/3">
-            <CardItemUi>
-                <p>OPA 1</p>
-            </CardItemUi>
+        <RowUi basis="basis-full sm:basis-1/2 lg:basis-1/3">
+            <ColumnUi>
+                <CardUi>
+                    <p>OPA 1</p>
+                </CardUi>
+            </ColumnUi>
 
-            <CardItemUi>
-                <p>OPA <span class="text-red-500">2</span></p>
-            </CardItemUi>
+            <ColumnUi>
+                <CardUi>
+                    <p>OPA <span class="text-red-500">2</span></p>
+                </CardUi>
+            </ColumnUi>
 
-            <CardItemUi>
-                <p>OPA <span class="text-green-500 font-bold">3</span></p>
-            </CardItemUi>
-        </CardGroupUi>
+            <ColumnUi>
+                <CardUi>
+                    <p>OPA <span class="text-green-500 font-bold">3</span></p>
+                </CardUi>
+            </ColumnUi>
+        </RowUi>
     </div>
 
     <div class="py-4">
         <h2 class="pb-2 font-semibold">Cards com ícone e título</h2>
-        <CardGroupUi basis="basis-full sm:basis-1/2 lg:basis-1/3">
-            <CardItemUi iconName="pieChart" title="Título #1">
-                <div class="flex flex-wrap pt-3">
-                    <ButtonUi button-style="dark" text="Botão #1" icon-name="app" size="sm" rounded />
-                    <span class="mx-2"></span>
-                    <ButtonUi button-style="danger" text="Botão #2" icon-name="app" size="sm" outlined rounded />
-                </div>
-            </CardItemUi>
+        <RowUi basis="basis-full sm:basis-1/2 lg:basis-1/3">
+            <ColumnUi>
+                <CardUi icon-name="pieChart" title="Título #1">
+                    <div class="flex flex-wrap pt-3">
+                        <ButtonUi button-style="dark" text="Botão #1" icon-name="app"
+                            size="sm" rounded />
+                        <span class="mx-2"></span>
+                        <ButtonUi button-style="danger" text="Botão #2" icon-name="app"
+                            size="sm" outlined rounded />
+                    </div>
+                </CardUi>
+            </ColumnUi>
 
-            <CardItemUi iconName="layoutWtf" title="Título #2">
-                <div class="flex flex-wrap pt-3">
-                    <a class="mr-2" href="#">Lorem ipsum</a>
-                    <a class="mr-2" href="#">Dolor lorem</a>
-                </div>
-            </CardItemUi>
+            <ColumnUi>
+                <CardUi icon-name="layoutWtf" title="Título #2">
+                    <div class="flex flex-wrap pt-3">
+                        <a class="mr-2" href="#">Lorem ipsum</a>
+                        <a class="mr-2" href="#">Dolor lorem</a>
+                    </div>
+                </CardUi>
+            </ColumnUi>
 
-            <CardItemUi iconName="app" title="Título #3">
-                <div class="flex flex-wrap pt-3">
-                    <a class="mr-2" href="#">Lorem ipsum</a>
-                    <a class="mr-2" href="#">Dolor lorem</a>
-                </div>
-            </CardItemUi>
+            <ColumnUi>
+                <CardUi icon-name="app" title="Título #3">
+                    <div class="flex flex-wrap pt-3">
+                        <a class="mr-2" href="#">Lorem ipsum</a>
+                        <a class="mr-2" href="#">Dolor lorem</a>
+                    </div>
+                </CardUi>
+            </ColumnUi>
 
-        </CardGroupUi>
+        </RowUi>
     </div>
 </template>
 
 <script>
-import CardGroupUi from '@/components/Ui/Card/CardGroupUi.vue';
-import CardItemUi from '@/components/Ui/Card/CardItemUi.vue';
+
+import RowUi from '@/components/Ui/Grid/RowUi.vue';
+import ColumnUi from '@/components/Ui/Grid/ColumnUi.vue';
 import ButtonUi from '@/components/Ui/ButtonUi.vue';
+import CardUi from '@/components/Ui/CardUi.vue';
 
 export default {
     name: "CardsView",
-    components: { CardGroupUi, CardItemUi, ButtonUi }
+    components: { RowUi, ColumnUi, ButtonUi, CardUi }
 };
 
 </script>

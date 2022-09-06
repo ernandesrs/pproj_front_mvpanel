@@ -1,28 +1,13 @@
 <template>
 
 	<SectionUi>
-		<CardGroupUi basis="basis-full sm:basis-1/2 lg:basis-1/3">
-			<CardItemUi title="Card item #1" icon-name="app">
-				<ButtonUi button-style="success" text="Button #1" size="sm" rounded />
-				<span class="mx-1"></span>
-				<ButtonUi button-style="success" text="Button #2" size="sm" outlined
-					rounded />
-			</CardItemUi>
-
-			<CardItemUi title="Card item #2" icon-name="app">
-				<ButtonUi button-style="danger" text="Button #1" size="sm" rounded />
-				<span class="mx-1"></span>
-				<ButtonUi button-style="danger" text="Button #2" size="sm" outlined
-					rounded />
-			</CardItemUi>
-
-			<CardItemUi title="Card item #3" icon-name="app">
-				<ButtonUi button-style="dark" text="Button #1" size="sm" rounded />
-				<span class="mx-1"></span>
-				<ButtonUi button-style="dark" text="Button #2" size="sm" outlined
-					rounded />
-			</CardItemUi>
-		</CardGroupUi>
+		<RowUi basis="basis-full sm:basis-1/2 lg:basis-1/3">
+			<ColumnUi>
+				<CardUi>
+					OPA
+				</CardUi>
+			</ColumnUi>
+		</RowUi>
 	</SectionUi>
 
 	<SectionUi icon-name="pieChart" title="Uma seção muito top">
@@ -64,15 +49,14 @@
 <script>
 
 import SectionUi from '@/components/Layout/SectionUi.vue';
-import CardGroupUi from '@/components/Ui/Card/CardGroupUi.vue';
-import CardItemUi from '@/components/Ui/Card/CardItemUi.vue';
 import ButtonUi from '@/components/Ui/ButtonUi.vue';
 import RowUi from '@/components/Ui/Grid/RowUi.vue';
 import ColumnUi from '@/components/Ui/Grid/ColumnUi.vue';
+import CardUi from '@/components/Ui/CardUi.vue';
 
 export default {
 	name: "IndexView",
-	components: { SectionUi, CardGroupUi, CardItemUi, ButtonUi, RowUi, ColumnUi }
+	components: { SectionUi, ButtonUi, RowUi, ColumnUi, CardUi },
 }
 
 </script>
