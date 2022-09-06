@@ -31,7 +31,7 @@ a {
     @apply text-blue-800 duration-300;
 }
 
-a:hover{
+a:hover {
     @apply text-gray-900 duration-300;
 }
 
@@ -63,4 +63,88 @@ a:hover{
 
 .content-desktop-wosidebar {
     @apply overflow-y-auto col-span-12;
+}
+
+/* default */
+
+.default {
+    @apply bg-gray-100 text-gray-500;
+}
+
+.default-border {
+    @apply border border-gray-600;
+}
+
+.default-outline {
+    @apply text-gray-500 border border-gray-500;
+}
+
+/* success */
+
+.success {
+    @apply bg-green-700 text-gray-200;
+}
+
+.success-border {
+    @apply border border-green-800;
+}
+
+.success-outline {
+    @apply text-green-500 border border-green-500;
+}
+
+/* danger */
+
+.danger {
+    @apply bg-red-700 text-gray-200;
+}
+
+.danger-border {
+    @apply border border-red-800;
+}
+
+.danger-outline {
+    @apply text-red-500 border border-red-500;
+}
+
+/* warning */
+
+.warning {
+    @apply bg-yellow-700 text-gray-200; 
+}
+
+.warning-border {
+    @apply border border-yellow-800;
+}
+
+.warning-outline {
+    @apply text-yellow-500 border border-yellow-500;
+}
+
+/* info */
+
+.info {
+    @apply bg-blue-700 text-gray-200; 
+}
+
+.info-border {
+    @apply border border-blue-800;
+}
+
+.info-outline {
+    @apply text-blue-500 border border-blue-500;
+}
+
+/* dark */
+
+.dark {
+    @apply bg-gray-700 text-gray-200; 
+}
+
+.dark-border {
+    @apply border border-gray-800;
+}
+
+.dark-outline {
+    @apply text-gray-500 border border-gray-500;
 }

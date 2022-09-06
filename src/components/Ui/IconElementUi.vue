@@ -1,5 +1,5 @@
 <template>
-    <span class="text-gray-200" :class="iconClass" :style="[`font-size: ${size}rem`]"></span>
+    <span :class="iconClass" :style="[`font-size: ${size}rem`]"></span>
 </template>
 
 <script>
