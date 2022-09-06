@@ -74,7 +74,7 @@ export default {
     data() {
         return {
             visible: false,
-            navItemClass: 'w-full hover:bg-gray-800 text-gray-400 px-2 py-2 hover:pl-4 duration-300 mb-1 cursor-pointer',
+            navItemClass: 'w-full hover:bg-gray-800 text-gray-400 hover:text-gray-200 px-2 py-2 hover:pl-4 duration-300 mb-1 cursor-pointer',
             navItemActive: 'bg-gray-800 pl-4',
         };
     },
