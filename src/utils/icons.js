@@ -1,9 +1,11 @@
 const icons = {
-    pieChart: 'bi bi-pie-chart'
+    app: 'bi bi-app',
+
+    pieChart: 'bi bi-pie-chart',
 };
 
 const getClass = (name) => {
-    return icons[name] ?? '';
+    return icons[name] ?? null;
 };
 
 const getElem = (name) => {

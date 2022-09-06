@@ -97,7 +97,6 @@
 </template>
 
 <script>
-import icon from './../utils/icons';
 
 import BackdropUi from '@/components/Ui/BackdropUi.vue';
 import SidebarElemUi from '@/components/Layout/Sidebar/SidebarElemUi.vue';
@@ -124,7 +123,6 @@ export default {
             inMobile: true,
             sidebarClass: sidebarMobileClass,
             contentClass: contentMobileClass,
-            icon: icon,
 
             nav: {
                 dashboard: [
