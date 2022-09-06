@@ -15,8 +15,8 @@ export default {
             default: 'app',
         },
         size: {
-            type: Number,
-            default: 1.1
+            type: String,
+            default: '1.1'
         },
     },
 
