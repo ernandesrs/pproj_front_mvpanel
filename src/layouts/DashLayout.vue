@@ -132,12 +132,14 @@ export default {
                         title: 'Visão geral do dashboard',
                         to: { name: 'panel.index' },
                         target: '_self',
+                        icon: 'pieChart',
                     },
                     {
                         id: 3,
                         text: 'Com submenu',
                         title: 'Abrir submenu',
                         href: '#',
+                        icon: 'app',
                         subnav: [
                             {
                                 id: 1,

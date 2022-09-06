@@ -4,11 +4,17 @@
         <Component :is="tag" :to="item.to" :href="item.href" :title="item.title"
             :target="item.target" :class="navItemClass">
             <div class="flex items-center">
-                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor">
+                <!-- default icon -->
+                <svg v-if="!item.icon" class="w-3 h-3" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                 </svg>
+                <!-- /default icon -->
+
+                <!-- custom icon -->
+                <IconElementUi v-else :iconName="item.icon" />
+                <!-- /custom icon -->
 
                 <span class="pl-2">{{ item.text }}</span>
             </div>
@@ -19,17 +25,25 @@
         <Component @click.stop.prevent="toggler" :is="tag" :title="item.title"
             :class="[navItemClass, visible ? navItemActive : null]">
             <div class="flex items-center">
-                <svg v-if="!visible" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                </svg>
+                <!-- default icon -->
+                <template v-if="!item.icon">
+                    <svg v-if="!visible" class="w-3 h-3" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
 
-                <svg v-else class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                </svg>
+                    <svg v-else class="w-3 h-3" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                    </svg>
+                </template>
+                <!-- /default icon -->
+
+                <!-- custom icon -->
+                <IconElementUi v-else :iconName="item.icon" />
+                <!-- /custom icon -->
 
                 <span class="pl-2">{{ item.text }}</span>
             </div>
@@ -44,10 +58,11 @@
 </template>
 
 <script>
+import IconElementUi from '@/components/Ui/IconElementUi.vue';
 
-export default{
+export default {
     name: "NavItemUi",
-    components: {},
+    components: { IconElementUi },
 
     props: {
         item: {
@@ -74,7 +89,7 @@ export default{
         },
 
         subitems() {
-            if(this.item.subnav)
+            if (this.item.subnav)
                 return this.item.subnav;
 
             return null;
