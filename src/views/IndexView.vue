@@ -3,8 +3,26 @@
 	<SectionUi>
 		<RowUi basis="basis-full sm:basis-1/2 lg:basis-1/3">
 			<ColumnUi>
-				<CardUi>
-					OPA
+				<CardUi icon-name="users" title="Usuários">
+					<ButtonUi button-style="info" icon-name="list" text="Ver lista"
+						size="sm" rounded outlined class="mr-1 my-1" />
+					<ButtonUi button-style="success" icon-name="plusLg"
+						text="Cadastrar novo" size="sm" rounded class="mr-1 my-1" />
+				</CardUi>
+			</ColumnUi>
+			<ColumnUi>
+				<CardUi icon-name="layoutWtf" title="Card #2">
+					<ButtonUi button-style="dark" text="Only text" size="sm" rounded class="mr-1 my-1" />
+					<ButtonUi button-style="danger" icon-name="trash"
+						text="Delete something" size="sm" rounded class="mr-1 my-1" />
+				</CardUi>
+			</ColumnUi>
+			<ColumnUi>
+				<CardUi icon-name="app" title="Card #3">
+					<ButtonUi button-style="info" icon-name="pencilSquare" text="Button text"
+						size="sm" rounded class="mr-1 my-1" />
+					<ButtonUi button-style="warning" icon-name="alertDiamond" text="Some text"
+						size="sm" rounded outlined class="mr-1 my-1" />
 				</CardUi>
 			</ColumnUi>
 		</RowUi>
