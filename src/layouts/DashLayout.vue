@@ -142,6 +142,13 @@ export default {
                         icon: 'layoutWtf',
                         subnav: [
                             {
+                                id: 4,
+                                text: 'Alertas',
+                                title: '',
+                                to: { name: 'panel.components.alerts' },
+                                target: '_self',
+                            },
+                            {
                                 id: 1,
                                 text: 'Cards',
                                 title: '',

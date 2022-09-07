@@ -3,6 +3,7 @@ import DashLayout from '../layouts/DashLayout'
 import AuthLayout from '../layouts/AuthLayout'
 
 import IndexView from '../views/IndexView.vue'
+import AlertsView from '../views/Components/AlertsView.vue'
 import CardsView from '../views/Components/CardsView.vue'
 import ButtonsView from '../views/Components/ButtonsView.vue'
 import FormsView from '../views/Components/FormsView.vue'
@@ -33,6 +34,11 @@ const routes = [
 				path: '',
 				name: 'panel.index',
 				component: IndexView
+			},
+			{
+				path: '/componentes/alerts',
+				name: 'panel.components.alerts',
+				component: AlertsView
 			},
 			{
 				path: '/componentes/cards',
