@@ -154,6 +154,13 @@ export default {
                                 title: '',
                                 to: { name: 'panel.components.buttons' },
                                 target: '_self',
+                            },
+                            {
+                                id: 3,
+                                text: 'Formulários',
+                                title: '',
+                                to: { name: 'panel.components.forms' },
+                                target: '_self',
                             }
                         ]
                     }

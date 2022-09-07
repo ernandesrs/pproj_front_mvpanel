@@ -5,6 +5,7 @@ import AuthLayout from '../layouts/AuthLayout'
 import IndexView from '../views/IndexView.vue'
 import CardsView from '../views/Components/CardsView.vue'
 import ButtonsView from '../views/Components/ButtonsView.vue'
+import FormsView from '../views/Components/FormsView.vue'
 
 import LoginView from '../views/Auth/LoginView'
 import RegisterView from '../views/Auth/RegisterView'
@@ -42,6 +43,11 @@ const routes = [
 				path: '/componentes/botoes',
 				name: 'panel.components.buttons',
 				component: ButtonsView
+			},
+			{
+				path: '/componentes/formularios',
+				name: 'panel.components.forms',
+				component: FormsView
 			}
 		]
 	}
