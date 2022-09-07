@@ -13,7 +13,7 @@
                 <!-- /default icon -->
 
                 <!-- custom icon -->
-                <IconElementUi v-else :iconName="item.icon" />
+                <IconUi v-else :iconName="item.icon" />
                 <!-- /custom icon -->
 
                 <span class="pl-2">{{ item.text }}</span>
@@ -42,7 +42,7 @@
                 <!-- /default icon -->
 
                 <!-- custom icon -->
-                <IconElementUi v-else :iconName="item.icon" />
+                <IconUi v-else :iconName="item.icon" />
                 <!-- /custom icon -->
 
                 <span class="pl-2">{{ item.text }}</span>
@@ -58,11 +58,11 @@
 </template>
 
 <script>
-import IconElementUi from '@/components/Ui/IconElementUi.vue';
+import IconUi from '@/components/Ui/IconUi.vue';
 
 export default {
     name: "NavItemUi",
-    components: { IconElementUi },
+    components: { IconUi },
 
     props: {
         item: {

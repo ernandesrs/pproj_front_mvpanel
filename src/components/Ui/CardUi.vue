@@ -5,7 +5,7 @@
         <div v-if="(iconName || title)" class="-mt-9 flex items-center">
             <div v-if="iconName"
                 class="flex justify-center items-center w-16 h-16 bg-gradient-to-r from-gray-600 to-gray-700 rounded text-gray-200 text-xl">
-                <IconElementUi :icon-name="iconName" />
+                <IconUi :icon-name="iconName" />
             </div>
             <div class="font-semibold text-lg text-gray-500 ml-2">
                 {{title}}
@@ -21,11 +21,11 @@
 
 <script>
 
-import IconElementUi from './IconElementUi.vue';
+import IconUi from './IconUi.vue';
 
 export default {
     name: "CardUi",
-    components: { IconElementUi },
+    components: { IconUi },
 
     data() {
         return {};

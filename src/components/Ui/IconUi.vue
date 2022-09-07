@@ -7,7 +7,7 @@
 import icon from './../../utils/icons';
 
 export default {
-    name: 'IconElementUi',
+    name: 'IconUi',
 
     props: {
         iconName: {

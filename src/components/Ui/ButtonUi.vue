@@ -1,7 +1,7 @@
 <template>
     <Component @click="buttonClicked" :is="tag" :type="buttonType" :class="styleClass"
         :href="href" :to="to" :title="title" :target="target">
-        <IconElementUi v-if="iconName" :icon-name="iconName" />
+        <IconUi v-if="iconName" :icon-name="iconName" />
         <span :class="{ 'ml-2': iconName }">
             {{ text }}
         </span>
@@ -10,11 +10,11 @@
 
 <script>
 
-import IconElementUi from './IconElementUi.vue';
+import IconUi from './IconUi.vue';
 
 export default {
     name: "ButtonUi",
-    components: { IconElementUi },
+    components: { IconUi },
 
     data() {
         return {

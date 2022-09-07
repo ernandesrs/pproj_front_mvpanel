@@ -13,7 +13,6 @@ export default {
 
     computed: {
         basisClass() {
-            console.log(this.$parent.$props.basis);
             return this.$parent.$props.basis;
         },
     },
