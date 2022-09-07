@@ -13,7 +13,11 @@
         </ColumnUi>
 
         <ColumnUi>
-            <InputUi label="Gênero:" name="gender" type="text" :value="gender" />
+            <SelectUi label="Gênero:" name="gender" :value="0" :options="[
+            {value:0, text:'Selecione'},
+            {value:1, text:'Masculino'},
+            {value:2, text:'Feminino'}
+            ]" />
         </ColumnUi>
 
         <ColumnUi basis="basis-full">
@@ -25,12 +29,14 @@
         </ColumnUi>
 
         <ColumnUi>
-            <InputUi label="Confirmar senha:" name="password_confirmation" type="text" :value="password_confirmation" />
+            <InputUi label="Confirmar senha:" name="password_confirmation" type="text"
+                :value="password_confirmation" />
         </ColumnUi>
 
         <ColumnUi basis="basis-full">
             <div class="flex justify-center pt-2">
-                <ButtonUi text="Cadastrar" icon-name="checkLg" button-style="dark" rounded />
+                <ButtonUi text="Cadastrar" icon-name="checkLg" button-style="dark"
+                    rounded />
             </div>
         </ColumnUi>
     </RowUi>
@@ -41,10 +47,11 @@ import InputUi from '@/components/Ui/Form/InputUi.vue';
 import ButtonUi from '@/components/Ui/ButtonUi.vue';
 import RowUi from '@/components/Ui/Grid/RowUi.vue';
 import ColumnUi from '@/components/Ui/Grid/ColumnUi.vue';
+import SelectUi from '@/components/Ui/Form/SelectUi.vue';
 
 export default {
     name: "RegisterView",
-    components: { InputUi, ButtonUi, RowUi, ColumnUi },
+    components: { InputUi, ButtonUi, RowUi, ColumnUi, SelectUi },
 
     data() {
         return {
