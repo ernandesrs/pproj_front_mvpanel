@@ -1,10 +1,11 @@
 <template>
-    <button @click="buttonClicked" :type="type" :class="styleClass">
+    <Component @click="buttonClicked" :is="tag" :type="buttonType" :class="styleClass"
+        :href="href" :to="to" :title="title" :target="target">
         <IconElementUi v-if="iconName" :icon-name="iconName" />
         <span :class="{ 'ml-2': iconName }">
             {{ text }}
         </span>
-    </button>
+    </Component>
 </template>
 
 <script>
@@ -55,6 +56,22 @@ export default {
         size: {
             type: String,
             default: null
+        },
+        to: {
+            type: Object,
+            default: null
+        },
+        href: {
+            type: String,
+            default: null
+        },
+        target: {
+            type: String,
+            default: null
+        },
+        title: {
+            type: String,
+            default: null
         }
     },
     methods: {
@@ -63,13 +80,26 @@ export default {
         },
     },
     computed: {
+        tag() {
+            if (this.to) {
+                return "RouterLink";
+            } else if (this.href) {
+                return "a";
+            }
+            return "button";
+        },
+        buttonType() {
+            if (this.tag !== "button")
+                return null;
+            return this.type;
+        },
         styleClass() {
             let block = this.block ? 'block w-full' : '';
             let size = this.size ? 'button-' + this.size : 'button';
             let style = this.outlined ? this.buttonStyle + '-outline' : ((this.border ? this.buttonStyle + '-border ' : '') + this.buttonStyle);
             let round = this.rounded ? 'rounded-lg' : '';
 
-            return `${block} ${size} ${style} ${round} opacity-100 hover:opacity-70 transition duration-400`;
+            return `${block} ${size} ${style} ${round} opacity-100 hover:opacity-70 transition duration-300 cursor-pointer`;
         }
     },
 };

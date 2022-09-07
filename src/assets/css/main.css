@@ -65,6 +65,10 @@ a:hover {
     @apply overflow-y-auto col-span-12;
 }
 
+a.button-sm{
+    @apply py-1 px-4 text-sm;
+}
+
 .button-sm {
     @apply py-1 px-4 text-sm;
 }
@@ -150,7 +154,7 @@ a:hover {
 /* dark */
 
 .dark {
-    @apply bg-gray-700 text-gray-200; 
+    @apply bg-gray-700 !text-gray-200; 
 }
 
 .dark-border {

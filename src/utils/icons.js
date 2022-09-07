@@ -5,6 +5,8 @@ const icons = {
 
     layoutWtf: 'bi bi-layout-wtf',
     list: 'bi bi-list',
+    link: 'bi bi-link-45deg',
+    linkExternal: 'bi bi-box-arrow-up-right',
     login: 'bi bi-box-arrow-in-right',
 
     pencilSquare: 'bi bi-pencil-square',

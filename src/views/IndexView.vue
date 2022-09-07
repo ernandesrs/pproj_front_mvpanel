@@ -12,17 +12,19 @@
 			</ColumnUi>
 			<ColumnUi>
 				<CardUi icon-name="layoutWtf" title="Card #2">
-					<ButtonUi button-style="dark" text="Only text" size="sm" rounded class="mr-1 my-1" />
-					<ButtonUi button-style="danger" icon-name="trash"
-						text="Delete something" size="sm" rounded class="mr-1 my-1" />
+					<ButtonUi button-style="dark" text="Html link" icon-name="linkExternal" size="sm" rounded
+						class="mr-1 my-1" href="https://github.com/ernandesrs" target="_blank"
+						title="Abrir Google em outra aba" />
+					<ButtonUi button-style="danger" text="Router link" icon-name="link"
+						size="sm" rounded outlined class="mr-1 my-1" :to="{name: 'panel.index'}" />
 				</CardUi>
 			</ColumnUi>
 			<ColumnUi>
 				<CardUi icon-name="app" title="Card #3">
-					<ButtonUi button-style="info" icon-name="pencilSquare" text="Button text"
-						size="sm" rounded class="mr-1 my-1" />
-					<ButtonUi button-style="warning" icon-name="alertDiamond" text="Some text"
-						size="sm" rounded outlined class="mr-1 my-1" />
+					<ButtonUi button-style="info" icon-name="pencilSquare"
+						text="Button text" size="sm" rounded class="mr-1 my-1" />
+					<ButtonUi button-style="warning" icon-name="alertDiamond"
+						text="Some text" size="sm" rounded outlined class="mr-1 my-1" />
 				</CardUi>
 			</ColumnUi>
 		</RowUi>
