@@ -38,41 +38,6 @@
 
             <ColumnUi>
                 <div class="mb-2">
-                    <InputUi label="Label password:" name="input#2"
-                        placeholder="Input password with label" type="password" />
-                </div>
-                <div class="mb-2">
-                    <InputUi placeholder="Input password disabled" type="password" disabled />
-                </div>
-                <div class="mb-2">
-                    <InputUi placeholder="Input password readonly" type="password" readonly />
-                </div>
-                <div class="mb-2">
-                    <InputUi placeholder="Input password without label" type="password" />
-                </div>
-                <div class="mb-2">
-                    <InputUi placeholder="Input password rounded" rounded
-                        type="password" />
-                </div>
-                <div class="mb-2">
-                    <InputUi placeholder="Input password with value"
-                        value="Some password here" rounded type="password" />
-                </div>
-                <div class="mb-2">
-                    <InputUi placeholder="Input password invalid" invalid
-                        type="password" />
-                </div>
-                <div class="mb-2">
-                    <InputUi placeholder="Input password valid" valid type="password" />
-                </div>
-                <div class="mb-2">
-                    <InputUi placeholder="Input password borderless" borderless
-                        type="password" />
-                </div>
-            </ColumnUi>
-
-            <ColumnUi>
-                <div class="mb-2">
                     <InputUi label="Select this radio #1" name="input#3" type="radio" />
                 </div>
                 <div class="mb-2">
@@ -89,6 +54,68 @@
                     <InputUi label="Input number:" name="input#7" type="number" />
                 </div>
             </ColumnUi>
+
+            <ColumnUi>
+                <div class="mb-2">
+                    <SelectUi :options="[
+                        {value: 1, text: 'Opção 1'},
+                        {value: 2, text: 'Opção 2'},
+                        {value: 3, text: 'Opção 3'},
+                        {value: 4, text: 'Opção 4'},
+                    ]" label="Select a option:">
+                    </SelectUi>
+                </div>
+
+                <div class="mb-2">
+                    <SelectUi :options="[
+                        {value: 1, text: 'Opção 1'},
+                        {value: 2, text: 'Opção 2'},
+                        {value: 3, text: 'Opção 3'},
+                        {value: 4, text: 'Opção 4'},
+                    ]" value="3" label="Some item selected:">
+                    </SelectUi>
+                </div>
+
+                <div class="mb-2">
+                    <SelectUi :options="[
+                        {value: 1, text: 'Opção 1'},
+                        {value: 2, text: 'Opção 2'},
+                        {value: 3, text: 'Opção 3'},
+                        {value: 4, text: 'Opção 4'},
+                    ]" value="3" label="Rounded input:" rounded>
+                    </SelectUi>
+                </div>
+
+                <div class="mb-2">
+                    <SelectUi :options="[
+                        {value: 1, text: 'Opção 1'},
+                        {value: 2, text: 'Opção 2'},
+                        {value: 3, text: 'Opção 3'},
+                        {value: 4, text: 'Opção 4'},
+                    ]" value="2" label="Invalid example:" invalid>
+                    </SelectUi>
+                </div>
+
+                <div class="mb-2">
+                    <SelectUi :options="[
+                        {value: 1, text: 'Opção 1'},
+                        {value: 2, text: 'Opção 2'},
+                        {value: 3, text: 'Opção 3'},
+                        {value: 4, text: 'Opção 4'},
+                    ]" value="4" label="Readonly select:" readonly>
+                    </SelectUi>
+                </div>
+
+                <div class="mb-2">
+                    <SelectUi :options="[
+                        {value: 1, text: 'Opção 1'},
+                        {value: 2, text: 'Opção 2'},
+                        {value: 3, text: 'Opção 3'},
+                        {value: 4, text: 'Opção 4'},
+                    ]" value="4" label="Disabled select:" disabled>
+                    </SelectUi>
+                </div>
+            </ColumnUi>
         </RowUi>
     </div>
 </template>
@@ -97,10 +124,11 @@
 import RowUi from '@/components/Ui/Grid/RowUi.vue';
 import ColumnUi from '@/components/Ui/Grid/ColumnUi.vue';
 import InputUi from '@/components/Ui/Form/InputUi.vue';
+import SelectUi from '@/components/Ui/Form/SelectUi.vue';
 
 export default {
     name: "FormsView",
-    components: { RowUi, ColumnUi, InputUi }
+    components: { RowUi, ColumnUi, InputUi, SelectUi }
 };
 
 </script>
