@@ -2,8 +2,8 @@
 
     <div :class="containerClass">
         <label v-if="label" class="mb-2 font-normal" :for="name">{{label}}</label>
-        <select :class="selectClass" :name="name" :id="name" v-model="selected_value"
-            :readonly="readonly" :disabled="disabled">
+        <select @change="hasChange" :class="selectClass" :name="name" :id="name"
+            v-model="selected_value" :readonly="readonly" :disabled="disabled">
             <option v-for="option in options" v-bind:key="option" :value="option.value">
                 {{ option.text }}
             </option>
@@ -63,6 +63,17 @@ export default {
             let disabled = this.disabled ? 'disabled:bg-gray-200' : '';
             return `w-full bg-gray-50 px-3 py-1 text-gray-500 ${disabled} ${readonly} ${rounded} ${border}`;
         },
+    },
+
+    methods: {
+        hasChange(event) {
+            let data = {
+                event: event,
+                input_value: this.selected_value,
+                input_name: this.name,
+            };
+            this.$emit('selectChange', data);
+        }
     },
 };
 
