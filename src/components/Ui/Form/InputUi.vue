@@ -3,8 +3,9 @@
         <label v-if="labelPosition == 'top'" class="mb-2 font-normal"
             :for="name">{{label}}</label>
 
-        <input :class="inputClass" :type="type" :placeholder="placeholder" :value="value"
-            :name="name" :id="name" :readonly="readonly" :disabled="disabled" />
+        <input @keyup="hasChange" :class="inputClass" :type="type"
+            :placeholder="placeholder" v-model="inputValue" :name="name" :id="name"
+            :readonly="readonly" :disabled="disabled" />
 
         <label v-if="labelPosition == 'side'" class="ml-2" :for="name">{{label}}</label>
     </div>
@@ -14,6 +15,12 @@
 
 export default {
     name: 'InputUi',
+
+    data() {
+        return {
+            inputValue: null,
+        };
+    },
 
     props: {
         type: { type: String, default: 'text' },
@@ -48,6 +55,27 @@ export default {
             let border = this.borderless ? '' : 'border ' + (this.invalid ? 'border-red-500' : this.valid ? 'border-green-500' : '');
 
             return `${width} px-3 py-1 text-gray-500 disabled:bg-gray-100 read-only:bg-gray-100 ${rounded} ${border}`;
+        },
+    },
+
+    watch: {
+        value: {
+            immediate: true,
+            handler(v) {
+                this.inputValue = v;
+            },
+            deep: true
+        },
+    },
+
+    methods: {
+        hasChange(event) {
+            let data = {
+                event: event,
+                input_value: this.inputValue,
+                input_name: event.target.name ?? null,
+            };
+            this.$emit("inputChange", data);
         },
     },
 };
