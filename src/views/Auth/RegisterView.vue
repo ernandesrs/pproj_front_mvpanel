@@ -1,48 +1,56 @@
 <template>
     <RowUi basis="basis-full sm:basis-1/2">
         <ColumnUi>
-            <InputUi label="Nome:" name="fist_name" type="text" :value="first_name" />
+            <InputUi @inputChange="setChanges" label="Nome:" name="first_name" type="text"
+                :value="first_name" />
         </ColumnUi>
 
         <ColumnUi>
-            <InputUi label="Sobrenome:" name="last_name" type="text" :value="last_name" />
+            <InputUi @inputChange="setChanges" label="Sobrenome:" name="last_name"
+                type="text" :value="last_name" />
         </ColumnUi>
 
         <ColumnUi>
-            <InputUi label="Usuário:" name="username" type="text" :value="username" />
+            <InputUi @inputChange="setChanges" label="Usuário:" name="username"
+                type="text" :value="username" />
         </ColumnUi>
 
         <ColumnUi>
-            <SelectUi label="Gênero:" name="gender" :value="0" :options="[
-            {value:0, text:'Selecione'},
-            {value:1, text:'Masculino'},
-            {value:2, text:'Feminino'}
-            ]" />
+            <SelectUi @selectChange="setChanges" label="Gênero:" name="gender" :value="0"
+                :options="[
+                {value:0, text:'Selecione'},
+                {value:1, text:'Masculino'},
+                {value:2, text:'Feminino'}
+                ]" />
         </ColumnUi>
 
         <ColumnUi basis="basis-full">
-            <InputUi label="Email:" name="email" type="text" :value="email" />
+            <InputUi @inputChange="setChanges" label="Email:" name="email" type="email"
+                :value="email" />
         </ColumnUi>
 
         <ColumnUi>
-            <InputUi label="Senha:" name="password" type="text" :value="password" />
+            <InputUi @inputChange="setChanges" label="Senha:" name="password"
+                type="password" :value="password" />
         </ColumnUi>
 
         <ColumnUi>
-            <InputUi label="Confirmar senha:" name="password_confirmation" type="text"
+            <InputUi @inputChange="setChanges" label="Confirmar senha:"
+                name="password_confirmation" type="password"
                 :value="password_confirmation" />
         </ColumnUi>
 
         <ColumnUi basis="basis-full">
             <div class="flex justify-center pt-2">
-                <ButtonUi text="Cadastrar" icon-name="checkLg" button-style="dark"
-                    rounded />
+                <ButtonUi @click="submit" text="Cadastrar" icon-name="checkLg"
+                    button-style="dark" rounded />
             </div>
         </ColumnUi>
     </RowUi>
 </template>
 
 <script>
+
 import InputUi from '@/components/Ui/Form/InputUi.vue';
 import ButtonUi from '@/components/Ui/ButtonUi.vue';
 import RowUi from '@/components/Ui/Grid/RowUi.vue';
@@ -63,6 +71,27 @@ export default {
             password: null,
             password_confirmation: null,
         };
+    },
+
+    methods: {
+        setChanges(data) {
+            if (data.input_name !== '')
+                this[data.input_name] = data.input_value;
+        },
+
+        submit() {
+            let data = {
+                first_name: this.first_name,
+                last_name: this.last_name,
+                username: this.username,
+                gender: this.gender,
+                email: this.email,
+                password: this.password,
+                password_confirmation: this.password_confirmation,
+            };
+
+            console.log(data);
+        }
     },
 };
 
