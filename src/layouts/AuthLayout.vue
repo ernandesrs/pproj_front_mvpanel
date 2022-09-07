@@ -1,6 +1,6 @@
 <template>
-    <div class="w-screen h-screen flex justify-center items-center">
-        <div class="w-full sm:w-96 border">
+    <div class="w-screen h-screen flex justify-center items-center px-4 sm:px-0">
+        <div class="w-full sm:w-96 lg:w-2/5 border">
             <div class="bg-gray-800 px-5 pt-2 flex items-center">
                 <img class="h-5 mb-2" src="./../assets/logo.svg" alt="">
 
