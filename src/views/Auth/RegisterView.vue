@@ -1,5 +1,9 @@
 <template>
     <RowUi basis="basis-full sm:basis-1/2">
+        <ColumnUi basis="basis-full">
+            <AlertUi @alertClose="alert.message = null" class="mb-5"
+                :message="alert.message" :type="alert.color" fixed notimer />
+        </ColumnUi>
         <ColumnUi>
             <InputUi @inputChange="setChanges" label="Nome:" name="first_name" type="text"
                 :value="first_name" />
@@ -56,10 +60,11 @@ import ButtonUi from '@/components/Ui/ButtonUi.vue';
 import RowUi from '@/components/Ui/Grid/RowUi.vue';
 import ColumnUi from '@/components/Ui/Grid/ColumnUi.vue';
 import SelectUi from '@/components/Ui/Form/SelectUi.vue';
+import AlertUi from '@/components/Ui/AlertUi.vue';
 
 export default {
     name: "RegisterView",
-    components: { InputUi, ButtonUi, RowUi, ColumnUi, SelectUi },
+    components: { InputUi, ButtonUi, RowUi, ColumnUi, SelectUi, AlertUi },
 
     data() {
         return {
@@ -70,6 +75,10 @@ export default {
             email: null,
             password: null,
             password_confirmation: null,
+            alert: {
+                message: null,
+                color: null,
+            }
         };
     },
 
@@ -89,6 +98,9 @@ export default {
                 password: this.password,
                 password_confirmation: this.password_confirmation,
             };
+
+            this.alert.message = "Submissão do formulário de cadastro ainda não foi implementado!";
+            this.alert.color = 'warning';
 
             console.log(data);
         }
