@@ -4,15 +4,12 @@
     <div class="py-4">
         <RowUi basis="basis-full md:basis-1/2">
             <ColumnUi>
-                <template v-if="alert.message">
-                    <AlertUi v-if="alert.fixedAlert" :type="alert.colorStyle"
-                        :message="alert.message" fixed :show="alert.showAlert"
-                        @alertShow="alertShowed" @alertClose="alertClosed" notimer />
+                <AlertUi v-if="alert.fixedAlert" :type="alert.colorStyle"
+                    :message="alert.message" @alertShow="alertShowed"
+                    @alertClose="alertClosed" fixed notimer />
 
-                    <AlertUi v-else :type="alert.colorStyle" :message="alert.message"
-                        :show="alert.showAlert" @alertShow="alertShowed"
-                        @alertClose="alertClosed" />
-                </template>
+                <AlertUi v-else :type="alert.colorStyle" :message="alert.message"
+                    @alertShow="alertShowed" @alertClose="alertClosed" />
             </ColumnUi>
         </RowUi>
 
@@ -27,6 +24,7 @@
                         {value: 'info', text: 'Informativo'},
                     ]" value="default" name="colorStyle" />
                 </ColumnUi>
+
                 <ColumnUi basis="basis-full sm:basis-1/2 lg:basis-1/4 mb-4 px-10 py-5">
                     <SelectUi @selectChange="optionChanged" :options="[
                         {value: 'float', text: 'Flutuante'},
@@ -36,8 +34,8 @@
 
                 <ColumnUi basis="basis-full text-center">
                     <ButtonUi @buttonClicked="exampleDispatchAlert"
-                        text="Disparar o alerta de teste" :button-style="alert.colorStyle" id="default"
-                        size="sm" />
+                        text="Disparar o alerta de teste" :button-style="alert.colorStyle"
+                        id="default" size="sm" />
                 </ColumnUi>
             </RowUi>
         </div>
@@ -60,10 +58,10 @@ export default {
     data() {
         return {
             alert: {
-                showAlert: false,
+                message: null,
                 colorStyle: 'default',
+                msg: 'This is a message example for some user action on panel.',
                 fixedAlert: false,
-                message: 'This is a message example for some user action on panel.'
             },
         };
     },
@@ -71,29 +69,29 @@ export default {
     methods: {
         // show alert
         exampleDispatchAlert() {
-            if (this.alert.showAlert) return;
-            this.alert.showAlert = !this.alert.showAlert;
+            if (this.alert.message) return;
+            this.alert.message = this.alert.msg;
         },
 
         // alert configuration
         optionChanged(data) {
             if (data.input_name == 'positionStyle') {
                 this.alert.fixedAlert = data.input_value === 'fixed' ? true : false;
-            } else {
-                this.alert[data.input_name] = data.input_value;
+            }
+            if (data.input_name == 'colorStyle') {
+                this.alert.colorStyle = data.input_value;
             }
         },
 
         // get alert show event
         alertShowed() {
             console.log("alert has emit 'alertShow' event");
-            this.alert.showAlert = true;
         },
 
         // get alert close event
         alertClosed() {
+            this.alert.message = null;
             console.log("alert has emit 'alertClose' event");
-            this.alert.showAlert = false;
         },
     },
 };
