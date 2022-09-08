@@ -1,8 +1,8 @@
 <template>
     <RowUi basis="basis-full">
         <ColumnUi>
-            <AlertUi @alertClose="alert.message = null" v-if="alert.message" class="mb-5" :message="alert.message" :type="alert.color"
-                :show="alert.message?true:false" fixed notimer />
+            <AlertUi @alertClose="alert.message = null" class="mb-5"
+                :message="alert.message" :type="alert.color" fixed notimer />
         </ColumnUi>
 
         <ColumnUi>

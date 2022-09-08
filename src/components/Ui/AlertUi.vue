@@ -1,15 +1,16 @@
 <template>
 
-    <Transition enter-from-class="opacity-0" enter-active-class="duration-500"
-        enter-to-class="opacity-100" leave-from-class="opacity-100"
-        leave-active-class="duration-500" leave-to-class="opacity-0">
-        <div v-show="visible"
+    <Transition @after-leave="closeAlertAfter" enter-from-class="opacity-0"
+        enter-active-class="duration-500" enter-to-class="opacity-100"
+        leave-from-class="opacity-100" leave-active-class="duration-500"
+        leave-to-class="opacity-0">
+        <div v-if="alertMessage" v-show="visible"
             :class="[{'fixed z-50 top-5 right-0 px-5': !fixed, 'relative': fixed}, '']"
             :style="[{'width: 100%; max-width: 275px;': !fixed}]">
             <div class="flex items-center shadow-md text-lg lg:text-sm"
                 :class="alertStyle">
                 <div class="py-3 pl-5 pr-3 lg:py-2 lg:pl-4 lg:pr-3 w-full">
-                    <span>{{message}}</span>
+                    <span>{{ alertMessage }}</span>
                 </div>
                 <button @click="closeAlert" class="text-xl pl-2 pr-3 py-0">
                     <IconUi icon-name="x" />
@@ -41,6 +42,8 @@ export default {
             visible: null,
             timerHandler: null,
             timerTime: 10,
+            alertColorStyle: 'default',
+            alertMessage: null
         };
     },
 
@@ -48,46 +51,45 @@ export default {
         type: { type: String, default: 'default' },
         message: { type: String, default: null },
         fixed: { type: Boolean, default: false },
-        show: { type: Boolean, default: null },
         notimer: { type: Boolean, default: false }
     },
 
     computed: {
         alertStyle() {
-            return alerts[this.type] ?? alerts['default'];
+            return alerts[this.alertColorStyle] ?? alerts['default'];
         }
     },
 
     watch: {
-        show: {
+        message: {
             immediate: true,
-            handler(newValue, oldValue) {
-                if (newValue)
-                    this.showAlert();
-                else {
-                    if (typeof oldValue === 'undefined') {
-                        return;
-                    }
-                    this.closeAlert();
-                }
+            handler(nv) {
+                if (nv)
+                    this.addMessage();
             },
             deep: true,
-        }
+        },
     },
 
     methods: {
+        addMessage() {
+            this.alertColorStyle = this.type;
+            this.alertMessage = this.message;
+
+            this.showAlert();
+        },
         showAlert() {
             if (!this.visible) {
-                this.$emit("alertShow", this);
                 this.visible = true;
                 this.timerHandler = this.timerAlert();
+                this.$emit("alertShow", this);
             }
         },
         closeAlert() {
             if (this.visible) {
-                this.$emit("alertClose", this);
                 this.visible = false;
                 this.timerHandler = null;
+                this.$emit("alertClose", this);
             }
         },
         timerAlert() {
@@ -97,6 +99,10 @@ export default {
                 this.closeAlert();
             }, this.timerTime * 1000);
         },
+        closeAlertAfter() {
+            this.alertMessage = null;
+            this.$emit('alertCloseAfter', this);
+        }
     },
 };
 
