@@ -7,7 +7,7 @@
                 <template v-if="alert.message">
                     <AlertUi v-if="alert.fixedAlert" :type="alert.colorStyle"
                         :message="alert.message" fixed :show="alert.showAlert"
-                        @alertShow="alertShowed" @alertClose="alertClosed" />
+                        @alertShow="alertShowed" @alertClose="alertClosed" notimer />
 
                     <AlertUi v-else :type="alert.colorStyle" :message="alert.message"
                         :show="alert.showAlert" @alertShow="alertShowed"

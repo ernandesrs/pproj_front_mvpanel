@@ -6,7 +6,8 @@
         <div v-show="visible"
             :class="[{'fixed': !fixed, 'relative': fixed}, 'z-50 top-5 right-0 px-5']"
             :style="[{'width: 100%; max-width: 275px;': !fixed}]">
-            <div class="flex items-center shadow-md text-lg lg:text-sm" :class="alertStyle">
+            <div class="flex items-center shadow-md text-lg lg:text-sm"
+                :class="alertStyle">
                 <div class="py-3 pl-5 pr-3 lg:py-2 lg:pl-4 lg:pr-3 w-full">
                     <span>{{message}}</span>
                 </div>
@@ -37,7 +38,9 @@ export default {
 
     data() {
         return {
-            visible: null
+            visible: null,
+            timerHandler: null,
+            timerTime: 10,
         };
     },
 
@@ -46,6 +49,7 @@ export default {
         message: { type: String, default: null },
         fixed: { type: Boolean, default: false },
         show: { type: Boolean, default: null },
+        notimer: { type: Boolean, default: false }
     },
 
     computed: {
@@ -58,7 +62,8 @@ export default {
         show: {
             immediate: true,
             handler(newValue, oldValue) {
-                if (newValue) this.showAlert();
+                if (newValue)
+                    this.showAlert();
                 else {
                     if (typeof oldValue === 'undefined') {
                         return;
@@ -67,7 +72,7 @@ export default {
                 }
             },
             deep: true,
-        },
+        }
     },
 
     methods: {
@@ -75,13 +80,22 @@ export default {
             if (!this.visible) {
                 this.$emit("alertShow", this);
                 this.visible = true;
+                this.timerHandler = this.timerAlert();
             }
         },
         closeAlert() {
             if (this.visible) {
                 this.$emit("alertClose", this);
                 this.visible = false;
+                this.timerHandler = null;
             }
+        },
+        timerAlert() {
+            if (this.notimer) return null;
+
+            return setTimeout(() => {
+                this.closeAlert();
+            }, this.timerTime * 1000);
         },
     },
 };
