@@ -1,6 +1,6 @@
 <template>
     <Component @click="buttonClicked" :is="tag" :type="buttonType" :class="styleClass"
-        :href="href" :to="to" :title="title" :target="target">
+        :href="href" :to="to" :title="title" :target="target" :id="id">
         <IconUi v-if="iconName" :icon-name="iconName" />
         <span v-if="text" :class="{ 'ml-2': iconName }">
             {{ text }}
@@ -72,7 +72,8 @@ export default {
         title: {
             type: String,
             default: null
-        }
+        },
+        id: { type: String, default: null }
     },
     methods: {
         buttonClicked(event) {
