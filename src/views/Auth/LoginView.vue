@@ -1,6 +1,11 @@
 <template>
     <RowUi basis="basis-full">
         <ColumnUi>
+            <AlertUi @alertClose="alert.message = null" v-if="alert.message" class="mb-5" :message="alert.message" :type="alert.color"
+                :show="alert.message?true:false" fixed notimer />
+        </ColumnUi>
+
+        <ColumnUi>
             <InputUi @inputChange="setChanges" label="Email" type="email" name="email"
                 :value="email" />
         </ColumnUi>
@@ -28,16 +33,21 @@ import InputUi from '@/components/Ui/Form/InputUi.vue';
 import ButtonUi from '@/components/Ui/ButtonUi.vue';
 import RowUi from '@/components/Ui/Grid/RowUi.vue';
 import ColumnUi from '@/components/Ui/Grid/ColumnUi.vue';
+import AlertUi from '@/components/Ui/AlertUi.vue';
 
 export default {
     name: "LoginView",
-    components: { InputUi, ButtonUi, RowUi, ColumnUi },
+    components: { InputUi, ButtonUi, RowUi, ColumnUi, AlertUi },
 
     data() {
         return {
             email: null,
             password: null,
-            remember_me: false
+            remember_me: false,
+            alert: {
+                message: null,
+                color: null,
+            }
         };
     },
 
@@ -53,6 +63,9 @@ export default {
                 password: this.password,
                 remember_me: this.remember_me,
             };
+
+            this.alert.message = "Submissão de formulário ainda não foi implementado!";
+            this.alert.color = 'warning';
 
             console.log(data);
         }

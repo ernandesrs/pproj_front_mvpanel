@@ -4,7 +4,7 @@
         enter-to-class="opacity-100" leave-from-class="opacity-100"
         leave-active-class="duration-500" leave-to-class="opacity-0">
         <div v-show="visible"
-            :class="[{'fixed': !fixed, 'relative': fixed}, 'z-50 top-5 right-0 px-5']"
+            :class="[{'fixed z-50 top-5 right-0 px-5': !fixed, 'relative': fixed}, '']"
             :style="[{'width: 100%; max-width: 275px;': !fixed}]">
             <div class="flex items-center shadow-md text-lg lg:text-sm"
                 :class="alertStyle">
