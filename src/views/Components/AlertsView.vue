@@ -3,6 +3,7 @@
     <div class="py-4">
         <RowUi basis="basis-full md:basis-1/2">
             <ColumnUi>
+                <AlertUi type="success" text="This is a success message for some user action." fixed />
             </ColumnUi>
         </RowUi>
     </div>
@@ -13,10 +14,11 @@
 
 import RowUi from '@/components/Ui/Grid/RowUi.vue';
 import ColumnUi from '@/components/Ui/Grid/ColumnUi.vue';
+import AlertUi from '@/components/Ui/AlertUi.vue';
 
 export default {
     name: "AlertsView",
-    components: { RowUi, ColumnUi },
+    components: { RowUi, ColumnUi, AlertUi },
 
     methods: {
         method() {

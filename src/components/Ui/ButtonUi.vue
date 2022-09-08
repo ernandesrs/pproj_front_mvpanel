@@ -2,7 +2,7 @@
     <Component @click="buttonClicked" :is="tag" :type="buttonType" :class="styleClass"
         :href="href" :to="to" :title="title" :target="target">
         <IconUi v-if="iconName" :icon-name="iconName" />
-        <span :class="{ 'ml-2': iconName }">
+        <span v-if="text" :class="{ 'ml-2': iconName }">
             {{ text }}
         </span>
     </Component>
@@ -27,7 +27,7 @@ export default {
         },
         text: {
             type: String,
-            default: "Button text"
+            default: null
         },
         iconName: {
             type: String,

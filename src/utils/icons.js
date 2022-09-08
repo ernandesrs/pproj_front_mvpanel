@@ -17,6 +17,9 @@ const icons = {
     trash: 'bi bi-trash',
 
     users: 'bi bi-people',
+
+    x: 'bi bi-x',
+    xLg: 'bi bi-x-lg',
 };
 
 const getClass = (name) => {
