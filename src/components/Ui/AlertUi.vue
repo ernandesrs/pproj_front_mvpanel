@@ -1,16 +1,25 @@
 <template>
 
-    <div :class="[{'fixed': !fixed, 'relative': fixed}, 'z-50 top-5 right-0 px-5']"
-        :style="[{'width: 100%; max-width: 325px;': !fixed}]">
-        <div class="flex items-center shadow-md text-sm" :class="alertStyle">
-            <div class="py-2 pl-4 pr-3 w-full">
-                <span>{{text}}</span>
+    <Transition
+        enter-from-class="opacity-0"
+        enter-active-class="duration-500"
+        enter-to-class="opacity-100"
+
+        leave-from-class="opacity-100"
+        leave-active-class="duration-500"
+        leave-to-class="opacity-0">
+        <div :class="[{'fixed': !fixed, 'relative': fixed}, 'z-50 top-5 right-0 px-5']"
+            :style="[{'width: 100%; max-width: 325px;': !fixed}]">
+            <div class="flex items-center shadow-md text-sm" :class="alertStyle">
+                <div class="py-2 pl-4 pr-3 w-full">
+                    <span>{{text}}</span>
+                </div>
+                <button class="text-xl pl-2 pr-3 py-0">
+                    <IconUi icon-name="x" />
+                </button>
             </div>
-            <button class="text-xl pl-2 pr-3 py-0">
-                <IconUi icon-name="x" />
-            </button>
         </div>
-    </div>
+    </Transition>
 
 </template>
 
