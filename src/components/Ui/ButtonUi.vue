@@ -1,4 +1,5 @@
 <template>
+
     <Component @click="buttonClicked" :is="tag" :type="buttonType" :class="styleClass"
         :href="href" :to="to" :title="title" :target="target" :id="id">
         <IconUi v-if="iconName" :icon-name="iconName" />
@@ -6,6 +7,7 @@
             {{ text }}
         </span>
     </Component>
+
 </template>
 
 <script>
@@ -95,7 +97,7 @@ export default {
             return this.type;
         },
         styleClass() {
-            let block = this.block ? 'block w-full' : '';
+            let block = this.block ? 'block w-full' : 'inline-block';
             let size = this.size ? 'button-' + this.size : 'button';
             let style = this.outlined ? this.buttonStyle + '-outline' : ((this.border ? this.buttonStyle + '-border ' : '') + this.buttonStyle);
             let round = this.rounded ? 'rounded-lg' : '';
