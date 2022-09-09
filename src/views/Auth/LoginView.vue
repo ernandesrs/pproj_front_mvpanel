@@ -1,6 +1,6 @@
 <template>
     <RowUi basis="basis-full">
-        <ColumnUi>
+        <ColumnUi class="p-0">
             <AlertUi @alertClose="alert.message = null" class="mb-5"
                 :message="alert.message" :type="alert.color" fixed notimer />
         </ColumnUi>
