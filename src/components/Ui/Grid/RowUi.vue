@@ -1,5 +1,5 @@
 <template>
-    <div class="row flex flex-wrap justify-center py-1">
+    <div class="row flex flex-wrap justify-center">
         <slot />
     </div>
 </template>

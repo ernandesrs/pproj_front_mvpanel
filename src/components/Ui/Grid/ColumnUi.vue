@@ -1,8 +1,6 @@
 <template>
-    <div class="column" :class="basisClass">
-        <div class="my-2 mr-1 ml-1">
-            <slot />
-        </div>
+    <div :class="[basisClass, 'p-2']">
+        <slot />
     </div>
 </template>
 
