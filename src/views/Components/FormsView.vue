@@ -121,8 +121,8 @@
 </template>
 
 <script>
-import RowUi from '@/components/Ui/Grid/RowUi.vue';
-import ColumnUi from '@/components/Ui/Grid/ColumnUi.vue';
+import RowUi from '@/components/Layout/Grid/RowUi.vue';
+import ColumnUi from '@/components/Layout/Grid/ColumnUi.vue';
 import InputUi from '@/components/Ui/Form/InputUi.vue';
 import SelectUi from '@/components/Ui/Form/SelectUi.vue';
 

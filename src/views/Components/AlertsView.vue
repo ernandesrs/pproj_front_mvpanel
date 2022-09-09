@@ -45,8 +45,8 @@
 
 <script>
 
-import RowUi from '@/components/Ui/Grid/RowUi.vue';
-import ColumnUi from '@/components/Ui/Grid/ColumnUi.vue';
+import RowUi from '@/components/Layout/Grid/RowUi.vue';
+import ColumnUi from '@/components/Layout/Grid/ColumnUi.vue';
 import AlertUi from '@/components/Ui/AlertUi.vue';
 import ButtonUi from '@/components/Ui/ButtonUi.vue';
 import SelectUi from '@/components/Ui/Form/SelectUi.vue';

@@ -62,8 +62,8 @@
 
 <script>
 
-import RowUi from '@/components/Ui/Grid/RowUi.vue';
-import ColumnUi from '@/components/Ui/Grid/ColumnUi.vue';
+import RowUi from '@/components/Layout/Grid/RowUi.vue';
+import ColumnUi from '@/components/Layout/Grid/ColumnUi.vue';
 import ButtonUi from '@/components/Ui/ButtonUi.vue';
 import CardUi from '@/components/Ui/CardUi.vue';
 
