@@ -88,12 +88,19 @@ export default {
         closeAlert() {
             if (this.visible) {
                 this.visible = false;
-                this.timerHandler = null;
+
+                if (this.timerHandler) {
+                    clearTimeout(this.timerHandler);
+                    this.timerHandler = null;
+                }
+
                 this.$emit("alertClose", this);
             }
         },
         timerAlert() {
-            if (this.notimer) return null;
+            if (this.notimer) {
+                return null;
+            }
 
             return setTimeout(() => {
                 this.closeAlert();
