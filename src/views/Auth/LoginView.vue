@@ -35,6 +35,7 @@ import RowUi from '@/components/Layout/Grid/RowUi.vue';
 import ColumnUi from '@/components/Layout/Grid/ColumnUi.vue';
 import AlertUi from '@/components/Ui/AlertUi.vue';
 
+import cookie from '@/services/cookie';
 import axios from 'axios';
 import messages from '@/utils/messages';
 
@@ -72,7 +73,9 @@ export default {
             this.alertResetMessage();
 
             axios.post("http://127.0.0.1:8000/api/v1/auth/login", data).then((response) => {
-                console.log(response.data);
+                let token = `${response.data.access.token_type} ${response.data.access.access_token}`;
+
+                cookie.setToken(token);
 
                 this.alertAddMessage("Autenticação efetuada com sucesso, você será redirecionado.", "success");
             }).catch((response) => {
