@@ -36,6 +36,7 @@ import ColumnUi from '@/components/Layout/Grid/ColumnUi.vue';
 import AlertUi from '@/components/Ui/AlertUi.vue';
 
 import axios from 'axios';
+import messages from '@/utils/messages';
 
 export default {
     name: "LoginView",
@@ -68,15 +69,29 @@ export default {
             };
 
             this.disabled = true;
+            this.alertResetMessage();
+
             axios.post("http://127.0.0.1:8000/api/v1/auth/login", data).then((response) => {
-                console.log("Sucesso", response.data);
+                console.log(response.data);
+
+                this.alertAddMessage("Autenticação efetuada com sucesso, você será redirecionado.", "success");
             }).catch((response) => {
-                console.log("Erro!", response);
+                let errorCode = response?.response?.data?.error;
+
+                this.alertAddMessage(errorCode ? messages[errorCode] : messages["DefaultMessage"], "danger");
             }).finally(() => {
                 this.disabled = false;
             });
+        },
 
-            console.log(data);
+        alertAddMessage(message, style) {
+            this.alert.message = message;
+            this.alert.color = style;
+        },
+
+        alertResetMessage() {
+            this.alert.message = null;
+            this.alert.color = null;
         }
     },
 
