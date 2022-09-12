@@ -70,29 +70,34 @@ export default {
             };
 
             this.disabled = true;
-            this.alertResetMessage();
+            this.resetMessage();
 
             axios.post("http://127.0.0.1:8000/api/v1/auth/login", data).then((response) => {
                 let token = `${response.data.access.token_type} ${response.data.access.access_token}`;
 
                 cookie.setToken(token);
+                this.$store.state.user = response.data.user;
 
-                this.alertAddMessage("Autenticação efetuada com sucesso, você será redirecionado.", "success");
+                this.addMessage("Autenticação efetuada com sucesso, você será redirecionado.", "success");
             }).catch((response) => {
-                let errorCode = response?.response?.data?.error;
-
-                this.alertAddMessage(errorCode ? messages[errorCode] : messages["DefaultMessage"], "danger");
+                if (!response.response.data.errors) {
+                    let errorCode = response?.response?.data?.error;
+                    this.addMessage(errorCode ? messages[errorCode] : messages["DefaultMessage"], "danger");
+                } else {
+                    let errors = Object.values(response?.response?.data?.errors ?? {});
+                    this.addMessage((errors.map((item) => item[0])).join(" "), "danger");
+                }
             }).finally(() => {
                 this.disabled = false;
             });
         },
 
-        alertAddMessage(message, style) {
+        addMessage(message, style) {
             this.alert.message = message;
             this.alert.color = style;
         },
 
-        alertResetMessage() {
+        resetMessage() {
             this.alert.message = null;
             this.alert.color = null;
         }
