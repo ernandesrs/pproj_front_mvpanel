@@ -21,7 +21,7 @@
                     type="checkbox" name="remember_me" :value="remember_me" />
 
                 <ButtonUi @click="submit" text="Login" icon-name="login"
-                    button-style="dark" rounded />
+                    button-style="dark" rounded :disabled="disabled" />
             </div>
         </ColumnUi>
     </RowUi>
@@ -35,6 +35,8 @@ import RowUi from '@/components/Layout/Grid/RowUi.vue';
 import ColumnUi from '@/components/Layout/Grid/ColumnUi.vue';
 import AlertUi from '@/components/Ui/AlertUi.vue';
 
+import axios from 'axios';
+
 export default {
     name: "LoginView",
     components: { InputUi, ButtonUi, RowUi, ColumnUi, AlertUi },
@@ -44,6 +46,7 @@ export default {
             email: null,
             password: null,
             remember_me: false,
+            disabled: false,
             alert: {
                 message: null,
                 color: null,
@@ -64,8 +67,14 @@ export default {
                 remember_me: this.remember_me,
             };
 
-            this.alert.message = "Submissão de formulário ainda não foi implementado!";
-            this.alert.color = 'warning';
+            this.disabled = true;
+            axios.post("http://127.0.0.1:8000/api/v1/auth/login", data).then((response) => {
+                console.log("Sucesso", response.data);
+            }).catch((response) => {
+                console.log("Erro!", response);
+            }).finally(() => {
+                this.disabled = false;
+            });
 
             console.log(data);
         }
