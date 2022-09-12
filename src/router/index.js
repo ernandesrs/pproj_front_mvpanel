@@ -11,9 +11,11 @@ import FormsView from '../views/Components/FormsView.vue'
 import LoginView from '../views/Auth/LoginView'
 import RegisterView from '../views/Auth/RegisterView'
 
+import Guard from '@/services/middleware';
+
 const routes = [
 	{
-		path: '/auth', name: '', component: AuthLayout,
+		path: '/auth', name: '', component: AuthLayout, beforeEnter: Guard.redirectIfAuthenticated,
 		children: [
 			{
 				path: 'login',
@@ -28,7 +30,7 @@ const routes = [
 		]
 	},
 	{
-		path: '/', name: '', component: DashLayout,
+		path: '/', name: '', component: DashLayout, beforeEnter: Guard.redirectIfUnnauthenticated,
 		children: [
 			{
 				path: '',
