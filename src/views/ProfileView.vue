@@ -9,7 +9,7 @@
                         PHOTO
                     </div>
                     <img v-else class="w-40 h-40 lg:w-64 lg:h-64 border-4 rounded-full"
-                        :src="this.$store.state.user.photo"
+                        :src="this.$store.state.user.thumb_normal"
                         :alt="this.$store.state.user.full_name">
                 </div>
             </ColumnUi>
