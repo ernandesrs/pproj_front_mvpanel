@@ -3,6 +3,9 @@ const icons = {
 
     alertDiamond: 'bi bi-exclamation-diamond',
 
+    check: 'bi bi-check',
+    checkLg: 'bi bi-check-lg',
+
     layoutWtf: 'bi bi-layout-wtf',
     list: 'bi bi-list',
     link: 'bi bi-link-45deg',

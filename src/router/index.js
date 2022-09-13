@@ -3,6 +3,7 @@ import DashLayout from '../layouts/DashLayout'
 import AuthLayout from '../layouts/AuthLayout'
 
 import IndexView from '../views/IndexView.vue'
+import ProfileView from '../views/ProfileView.vue'
 import AlertsView from '../views/Components/AlertsView.vue'
 import CardsView from '../views/Components/CardsView.vue'
 import ButtonsView from '../views/Components/ButtonsView.vue'
@@ -56,7 +57,12 @@ const routes = [
 				path: '/componentes/formularios',
 				name: 'panel.components.forms',
 				component: FormsView
-			}
+			},
+			{
+				path: '/perfil',
+				name: 'panel.profile',
+				component: ProfileView
+			},
 		]
 	}
 ]

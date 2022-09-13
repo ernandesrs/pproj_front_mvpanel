@@ -42,10 +42,11 @@
 
                         <template v-slot:content>
                             <div class="flex justify-between px-3 py-3">
-                                <a class="px-4 py-1 hover:underline hover:text-blue-900 duration-300"
-                                    href="">
+                                <RouterLink
+                                    class="px-4 py-1 hover:underline hover:text-blue-900 duration-300"
+                                    :to="{name: 'panel.profile'}">
                                     Perfil
-                                </a>
+                                </RouterLink>
                                 <button
                                     class="border border-red-400 hover:bg-red-400 text-red-400 hover:text-gray-200 duration-300 px-4 py-1 rounded-sm">
                                     Logout
