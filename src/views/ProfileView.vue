@@ -17,6 +17,7 @@
                 <h2 class="font-semibold text-lg mb-4">Meu perfil</h2>
                 <form @submit.stop.prevent="submit">
                     <RowUi basis="basis-full lg:basis-1/2">
+                        <LoadingUi v-if="loading" />
                         <ColumnUi class="p-0" basis="basis-full">
                             <AlertUi @alertClose="alert.message = null" class="mb-5"
                                 :message="alert.message" :type="alert.color" />
@@ -83,13 +84,15 @@ import ButtonUi from "@/components/Ui/ButtonUi.vue";
 import axios from "@/services/axios";
 import AlertUi from "@/components/Ui/AlertUi.vue";
 import messages from "@/utils/messages";
+import LoadingUi from "@/components/Ui/LoadingUi.vue";
 
 export default {
     name: "ProfileView",
-    components: { SectionUi, RowUi, ColumnUi, InputUi, SelectUi, ButtonUi, AlertUi },
+    components: { SectionUi, RowUi, ColumnUi, InputUi, SelectUi, ButtonUi, AlertUi, LoadingUi },
 
     data() {
         return {
+            loading: false,
             alert: {
                 message: null,
                 color: null,
@@ -101,6 +104,7 @@ export default {
         submit(evt) {
             let data = new FormData(evt.target);
 
+            this.loading = true;
             this.resetMessage();
 
             axios.axios.post("/me", data).then((response) => {
@@ -114,6 +118,8 @@ export default {
                     let errors = Object.values(response?.response?.data?.errors ?? {});
                     this.addMessage((errors.map((item) => item[0])).join(" "), "danger");
                 }
+            }).finally(() => {
+                this.loading = false;
             });
         },
 

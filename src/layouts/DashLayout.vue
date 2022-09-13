@@ -124,6 +124,7 @@ export default {
             inMobile: true,
             sidebarClass: sidebarMobileClass,
             contentClass: contentMobileClass,
+            loadingMode: true,
 
             nav: {
                 dashboard: [
@@ -175,6 +176,10 @@ export default {
                 ],
             }
         };
+    },
+
+    beforeCreate() {
+        console.log("opa");
     },
 
     mounted() {

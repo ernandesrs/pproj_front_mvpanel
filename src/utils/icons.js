@@ -17,6 +17,9 @@ const icons = {
     plus: 'bi bi-plus',
     plusLg: 'bi bi-plus-lg',
 
+    loading: 'bi bi-arrow-clockwise animate-spin',
+    spinner: 'bi bi-arrow-clockwise',
+
     trash: 'bi bi-trash',
 
     users: 'bi bi-people',

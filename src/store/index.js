@@ -1,14 +1,14 @@
-import { createStore } from 'vuex'
+import { createStore } from "vuex";
 
 export default createStore({
   state: {
-    user: null,
+    user: {}
   },
   getters: {
   },
   mutations: {
-    storeUser(state, data) {
-      state.user = data;
+    storeUser(state, user) {
+      state.user = user;
     }
   },
   actions: {

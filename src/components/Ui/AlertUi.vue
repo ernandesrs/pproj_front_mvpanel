@@ -7,12 +7,12 @@
         <div v-if="alertMessage" v-show="visible"
             :class="[{'fixed z-50 top-5 right-0 px-5': !fixed, 'relative': fixed}, '']"
             :style="[{'width: 100%; max-width: 275px;': !fixed}]">
-            <div class="flex items-center shadow-md text-lg lg:text-sm"
+            <div class="flex items-center shadow-md text-sm"
                 :class="alertStyle">
                 <div class="py-3 pl-5 pr-3 lg:py-2 lg:pl-4 lg:pr-3 w-full">
                     <span>{{ alertMessage }}</span>
                 </div>
-                <button @click="closeAlert" class="text-xl pl-2 pr-3 py-0">
+                <button @click="closeAlert" class="text-xl pl-2 pr-3 py-0" type="button">
                     <IconUi icon-name="x" />
                 </button>
             </div>
