@@ -96,7 +96,7 @@
 
             <!-- main -->
             <main class="bg-gray-50 py-3">
-                <div class="my-container">
+                <div class="my-container relative">
                     <RouterView />
                 </div>
             </main>
