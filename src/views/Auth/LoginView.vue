@@ -72,7 +72,7 @@ export default {
             this.disabled = true;
             this.resetMessage();
 
-            axios.axios.post("/auth/login", data, axios.config).then((response) => {
+            axios.axios.post("/auth/login", data).then((response) => {
                 let token = `${response.data.access.token_type} ${response.data.access.access_token}`;
 
                 cookie.setToken(token);

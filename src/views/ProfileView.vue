@@ -4,58 +4,68 @@
         <RowUi>
             <ColumnUi basis="basis-full sm:basis-1/3">
                 <div class="flex justify-center">
-                    <div v-if="!user.photo"
+                    <div v-if="!this.$store.state.user.photo"
                         class="w-40 h-40 lg:w-64 lg:h-64 flex justify-center items-center bg-gray-100 border-4 rounded-full">
                         PHOTO
                     </div>
                     <img v-else class="w-40 h-40 lg:w-64 lg:h-64 border-4 rounded-full"
-                        :src="user.photo" :alt="user.full_name">
+                        :src="this.$store.state.user.photo"
+                        :alt="this.$store.state.user.full_name">
                 </div>
             </ColumnUi>
             <ColumnUi basis="basis-full sm:basis-2/3">
                 <h2 class="font-semibold text-lg mb-4">Meu perfil</h2>
-                <div>
+                <form @submit.stop.prevent="submit">
                     <RowUi basis="basis-full lg:basis-1/2">
-                        <ColumnUi>
-                            <InputUi @inputChange="setChanges" label="Nome:"
-                                :value="user.first_name" name="first_name" />
+                        <ColumnUi class="p-0" basis="basis-full">
+                            <AlertUi @alertClose="alert.message = null" class="mb-5"
+                                :message="alert.message" :type="alert.color" />
                         </ColumnUi>
                         <ColumnUi>
-                            <InputUi @inputChange="setChanges" label="Sobrenome:"
-                                :value="user.last_name" name="last_name" />
+                            <InputUi label="Nome:"
+                                :value="this.$store.state.user.first_name"
+                                name="first_name" />
                         </ColumnUi>
                         <ColumnUi>
-                            <InputUi @inputChange="setChanges" label="Usuário:"
-                                :value="user.username" name="username" />
+                            <InputUi label="Sobrenome:"
+                                :value="this.$store.state.user.last_name"
+                                name="last_name" />
                         </ColumnUi>
                         <ColumnUi>
-                            <SelectUi label="Gênero:" :value="user.gender" :options="[
-                                {value: 0, text: 'Não definido'},
-                                {value: 1, text: 'Masculino'},
-                                {value: 2, text: 'Feminino'},
-                            ]" name="gender" />
+                            <InputUi label="Usuário:"
+                                :value="this.$store.state.user.username"
+                                name="username" />
+                        </ColumnUi>
+                        <ColumnUi>
+                            <SelectUi label="Gênero:"
+                                :value="this.$store.state.user.gender" :options="[
+                                    {value: 0, text: 'Não definido'},
+                                    {value: 1, text: 'Masculino'},
+                                    {value: 2, text: 'Feminino'},
+                                ]" name="gender" />
                         </ColumnUi>
                         <ColumnUi basis="basis-full">
-                            <InputUi @inputChange="setChanges" label="Email:"
-                                :value="user.email" type="email" name="email"
-                                :disabled="true" />
+                            <InputUi label="Email:" :value="this.$store.state.user.email"
+                                type="email" name="email" :disabled="true" />
+                        </ColumnUi>
+                        <ColumnUi basis="basis-full">
+                            <InputUi label="Foto:" type="file" name="photo" />
                         </ColumnUi>
                         <ColumnUi>
-                            <InputUi @inputChange="setChanges" label="Senha:"
-                                type="password" name="password" />
+                            <InputUi label="Senha:" type="password" name="password" />
                         </ColumnUi>
                         <ColumnUi>
-                            <InputUi @inputChange="setChanges" label="Confirmar senha:"
-                                type="password" name="password_confirmation" />
+                            <InputUi label="Confirmar senha:" type="password"
+                                name="password_confirmation" />
                         </ColumnUi>
                         <ColumnUi basis="basis-full">
                             <div class="text-center">
-                                <ButtonUi @click="submit" text="Atualizar dados"
-                                    button-style="dark" icon-name="checkLg" rounded />
+                                <ButtonUi text="Atualizar dados" button-style="dark"
+                                    icon-name="checkLg" type="submit" rounded />
                             </div>
                         </ColumnUi>
                     </RowUi>
-                </div>
+                </form>
             </ColumnUi>
         </RowUi>
     </SectionUi>
@@ -70,33 +80,51 @@ import ColumnUi from "@/components/Layout/Grid/ColumnUi.vue";
 import InputUi from "@/components/Ui/Form/InputUi.vue";
 import SelectUi from "@/components/Ui/Form/SelectUi.vue";
 import ButtonUi from "@/components/Ui/ButtonUi.vue";
+import axios from "@/services/axios";
+import AlertUi from "@/components/Ui/AlertUi.vue";
+import messages from "@/utils/messages";
 
 export default {
     name: "ProfileView",
-    components: { SectionUi, RowUi, ColumnUi, InputUi, SelectUi, ButtonUi },
+    components: { SectionUi, RowUi, ColumnUi, InputUi, SelectUi, ButtonUi, AlertUi },
 
     data() {
         return {
-            user: {
-                first_name: this.$store.state.user.first_name,
-                last_name: this.$store.state.user.last_name,
-                username: this.$store.state.user.username,
-                gender: this.$store.state.user.gender,
-                email: this.$store.state.user.email,
-                password: null,
-                password_confirmation: null,
-            },
+            alert: {
+                message: null,
+                color: null,
+            }
         };
     },
 
     methods: {
-        setChanges(data) {
-            if (data.input_name !== '')
-                this.user[data.input_name] = data.input_value;
+        submit(evt) {
+            let data = new FormData(evt.target);
+
+            this.resetMessage();
+
+            axios.axios.post("/me", data).then((response) => {
+                this.$store.state.user = response.data.data;
+                this.addMessage("Seus dados foram atualizados com sucesso!", "success");
+            }).catch((response) => {
+                if (!response.response.data.errors) {
+                    let errorCode = response?.response?.data?.error;
+                    this.addMessage(errorCode ? messages[errorCode] : messages["DefaultMessage"], "danger");
+                } else {
+                    let errors = Object.values(response?.response?.data?.errors ?? {});
+                    this.addMessage((errors.map((item) => item[0])).join(" "), "danger");
+                }
+            });
         },
 
-        submit() {
-            console.log(this.user);
+        addMessage(message, style) {
+            this.alert.message = message;
+            this.alert.color = style;
+        },
+
+        resetMessage() {
+            this.alert.message = null;
+            this.alert.color = null;
         }
     },
 };
