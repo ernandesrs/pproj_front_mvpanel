@@ -8,6 +8,7 @@ import AlertsView from '../views/Components/AlertsView.vue'
 import CardsView from '../views/Components/CardsView.vue'
 import ButtonsView from '../views/Components/ButtonsView.vue'
 import FormsView from '../views/Components/FormsView.vue'
+import UsersList from '../views/UsersList.vue'
 
 import LoginView from '../views/Auth/LoginView'
 import RegisterView from '../views/Auth/RegisterView'
@@ -63,6 +64,11 @@ const routes = [
 				name: 'panel.profile',
 				component: ProfileView
 			},
+			{
+				path: '/usuarios',
+				name: 'panel.users.index',
+				component: UsersList
+			}
 		]
 	}
 ]

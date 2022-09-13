@@ -43,9 +43,11 @@
                         <template v-slot:content>
                             <div
                                 class="flex flex-col items-center justify-center px-3 py-3">
-                                <img class="rounded-full border-5 border-white" :src="$store.state.user.thumb_small"
+                                <img class="rounded-full border-5 border-white"
+                                    :src="$store.state.user.thumb_small"
                                     :alt="$store.state.user.full_name">
-                                <p class="font-semibold text-center text-gray-500 text-lg pt-2">
+                                <p
+                                    class="font-semibold text-center text-gray-500 text-lg pt-2">
                                     {{$store.state.user.full_name}}
                                 </p>
                             </div>
@@ -145,6 +147,13 @@ export default {
                         to: { name: 'panel.index' },
                         target: '_self',
                         icon: 'pieChart',
+                    },
+                    {
+                        text: 'Usuários',
+                        title: 'Listar usuários',
+                        to: { name: 'panel.users.index' },
+                        target: '_self',
+                        icon: 'users',
                     },
                     {
                         id: 3,
