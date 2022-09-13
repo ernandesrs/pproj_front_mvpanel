@@ -41,16 +41,23 @@
                         </template>
 
                         <template v-slot:content>
+                            <div
+                                class="flex flex-col items-center justify-center px-3 py-3">
+                                <img class="rounded-full border-5 border-white" :src="$store.state.user.thumb_small"
+                                    :alt="$store.state.user.full_name">
+                                <p class="font-semibold text-center text-gray-500 text-lg pt-2">
+                                    {{$store.state.user.full_name}}
+                                </p>
+                            </div>
+                            <DropdownSeparatorUi />
                             <div class="flex justify-between px-3 py-3">
                                 <RouterLink
                                     class="px-4 py-1 hover:underline hover:text-blue-900 duration-300"
                                     :to="{name: 'panel.profile'}">
                                     Perfil
                                 </RouterLink>
-                                <button
-                                    class="border border-red-400 hover:bg-red-400 text-red-400 hover:text-gray-200 duration-300 px-4 py-1 rounded-sm">
-                                    Logout
-                                </button>
+                                <ButtonUi @click="logout" text="Logout"
+                                    button-style="danger" size="small" outlined />
                             </div>
                         </template>
                     </DropdownUi>
@@ -103,6 +110,9 @@ import BackdropUi from '@/components/Ui/BackdropUi.vue';
 import SidebarElemUi from '@/components/Layout/Sidebar/SidebarElemUi.vue';
 import SidebarHeaderUi from '@/components/Layout/Sidebar/SidebarHeaderUi.vue';
 import DropdownUi from '@/components/Ui/Dropdown/DropdownUi.vue';
+import ButtonUi from '@/components/Ui/ButtonUi.vue';
+import axios from '@/services/axios';
+import DropdownSeparatorUi from '@/components/Ui/Dropdown/DropdownSeparatorUi.vue';
 
 let sidebarMobileClass = "sidebar-mobile";
 let contentMobileClass = "content-mobile";
@@ -116,7 +126,7 @@ let MIN_WIDTH = 768;
 
 export default {
     name: 'DashLayout',
-    components: { BackdropUi, SidebarElemUi, SidebarHeaderUi, DropdownUi },
+    components: { BackdropUi, SidebarElemUi, SidebarHeaderUi, DropdownUi, ButtonUi, DropdownSeparatorUi },
 
     data() {
         return {
@@ -227,6 +237,14 @@ export default {
         backdropClicked() {
             this.toggler();
         },
+
+        logout() {
+            axios.axios.post("/auth/logout").then(() => {
+                this.$router.push({ name: "auth.login" });
+            }).catch(() => {
+
+            });
+        }
     },
 
     computed: {

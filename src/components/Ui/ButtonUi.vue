@@ -103,7 +103,7 @@ export default {
             let style = this.outlined ? this.buttonStyle + '-outline' : ((this.border ? this.buttonStyle + '-border ' : '') + this.buttonStyle);
             let round = this.rounded ? 'rounded-lg' : '';
 
-            return `${block} ${size} ${style} ${round} opacity-100 hover:opacity-70 transition duration-300 cursor-pointer`;
+            return `${block} px-5 ${size} ${style} ${round} opacity-100 hover:opacity-70 transition duration-300 cursor-pointer`;
         }
     },
 };
