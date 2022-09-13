@@ -35,8 +35,8 @@ import RowUi from '@/components/Layout/Grid/RowUi.vue';
 import ColumnUi from '@/components/Layout/Grid/ColumnUi.vue';
 import AlertUi from '@/components/Ui/AlertUi.vue';
 
+import axios from '@/services/axios';
 import cookie from '@/services/cookie';
-import axios from 'axios';
 import messages from '@/utils/messages';
 
 export default {
@@ -72,13 +72,16 @@ export default {
             this.disabled = true;
             this.resetMessage();
 
-            axios.post("http://127.0.0.1:8000/api/v1/auth/login", data).then((response) => {
+            axios.axios.post("/auth/login", data, axios.config).then((response) => {
                 let token = `${response.data.access.token_type} ${response.data.access.access_token}`;
 
                 cookie.setToken(token);
                 this.$store.state.user = response.data.user;
 
                 this.addMessage("Autenticação efetuada com sucesso, você será redirecionado.", "success");
+                setTimeout(() => {
+                    this.$router.push({ name: "panel.index" });
+                }, 3000);
             }).catch((response) => {
                 if (!response.response.data.errors) {
                     let errorCode = response?.response?.data?.error;
