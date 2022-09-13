@@ -1,5 +1,7 @@
 <template>
     <RowUi basis="basis-full">
+        <LoadingUi v-if="loading" />
+
         <ColumnUi class="p-0">
             <AlertUi @alertClose="alert.message = null" class="mb-5"
                 :message="alert.message" :type="alert.color" fixed notimer />
@@ -21,7 +23,7 @@
                     type="checkbox" name="remember_me" :value="remember_me" />
 
                 <ButtonUi @click="submit" text="Login" icon-name="login"
-                    button-style="dark" rounded :disabled="disabled" />
+                    button-style="dark" rounded />
             </div>
         </ColumnUi>
     </RowUi>
@@ -38,17 +40,18 @@ import AlertUi from '@/components/Ui/AlertUi.vue';
 import axios from '@/services/axios';
 import cookie from '@/services/cookie';
 import messages from '@/utils/messages';
+import LoadingUi from '@/components/Ui/LoadingUi.vue';
 
 export default {
     name: "LoginView",
-    components: { InputUi, ButtonUi, RowUi, ColumnUi, AlertUi },
+    components: { InputUi, ButtonUi, RowUi, ColumnUi, AlertUi, LoadingUi },
 
     data() {
         return {
             email: null,
             password: null,
             remember_me: false,
-            disabled: false,
+            loading: false,
             alert: {
                 message: null,
                 color: null,
@@ -69,7 +72,7 @@ export default {
                 remember_me: this.remember_me,
             };
 
-            this.disabled = true;
+            this.loading = true;
             this.resetMessage();
 
             axios.axios.post("/auth/login", data).then((response) => {
@@ -91,7 +94,7 @@ export default {
                     this.addMessage((errors.map((item) => item[0])).join(" "), "danger");
                 }
             }).finally(() => {
-                this.disabled = false;
+                this.loading = false;
             });
         },
 

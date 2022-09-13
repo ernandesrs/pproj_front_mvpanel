@@ -12,6 +12,26 @@
                         :src="this.$store.state.user.thumb_normal"
                         :alt="this.$store.state.user.full_name">
                 </div>
+                <div class="py-4">
+                    <hr>
+                </div>
+                <div class="text-center">
+                    <p class="mb-2">
+                        <span class="text-sm px-4 bg-blue-900 text-gray-200 rounded">
+                            <span>
+                                {{this.$store.state.user.level == 9?
+                                "Super":(this.$store.state.user.level ==
+                                8?"Administrador":(this.$store.state.user.level ==
+                                5?"Membro":"Usuário"))}}
+                            </span>
+                        </span>
+                    </p>
+                    <p>
+                        Registrado em: {{ (new
+                        Date(this.$store.state.user.created_at)).toLocaleDateString("pt-BR")
+                        }}
+                    </p>
+                </div>
             </ColumnUi>
             <ColumnUi basis="basis-full sm:basis-2/3">
                 <h2 class="font-semibold text-lg mb-4">Meu perfil</h2>
