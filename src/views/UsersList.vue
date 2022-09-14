@@ -2,8 +2,8 @@
     <div class="flex items-center">
         <h1 class="pb-2 font-bold text-2xl">Listagem de usuários</h1>
         <div class="ml-2">
-            <ButtonUi href="#" text="Novo usuário" button-style="success" rounded outlined
-                icon-name="plusLg" />
+            <ButtonUi href="#" text="Novo usuário" variant="success" rounded outlined
+                icon="plusLg" />
         </div>
     </div>
     <div class="relative py-5">
