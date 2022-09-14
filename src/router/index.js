@@ -8,7 +8,8 @@ import AlertsView from '../views/Components/AlertsView.vue'
 import CardsView from '../views/Components/CardsView.vue'
 import ButtonsView from '../views/Components/ButtonsView.vue'
 import FormsView from '../views/Components/FormsView.vue'
-import UsersList from '../views/UsersList.vue'
+import UsersListView from '../views/UsersListView.vue'
+import UserEditView from '../views/UserEditView.vue'
 
 import LoginView from '../views/Auth/LoginView'
 import RegisterView from '../views/Auth/RegisterView'
@@ -67,7 +68,12 @@ const routes = [
 			{
 				path: '/usuarios',
 				name: 'panel.users.index',
-				component: UsersList
+				component: UsersListView
+			},
+			{
+				path: '/usuario/:user_id',
+				name: 'panel.users.edit',
+				component: UserEditView
 			}
 		]
 	}

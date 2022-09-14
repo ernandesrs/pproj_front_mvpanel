@@ -194,10 +194,6 @@ export default {
         };
     },
 
-    beforeCreate() {
-        console.log("opa");
-    },
-
     mounted() {
         this.windowResized();
         window.addEventListener("resize", this.windowResized);

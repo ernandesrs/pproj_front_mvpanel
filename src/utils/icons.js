@@ -1,5 +1,9 @@
 const icons = {
     app: 'bi bi-app',
+    arrowLeft: 'bi bi-arrow-left',
+    arrowLeftShort: 'bi bi-arrow-left-short',
+    arrowRight: 'bi bi-arrow-right',
+    arrowRightShort: 'bi bi-arrow-right-short',
 
     alertDiamond: 'bi bi-exclamation-diamond',
 

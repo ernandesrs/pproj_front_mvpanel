@@ -30,11 +30,12 @@
 
             <!-- list item actions -->
             <template v-slot:actions>
-                <ButtonUi variant="info" href="#" icon="pencilSquare"
-                    size="sm" rounded />
+                <ButtonUi variant="info"
+                    :to="{name: 'panel.users.edit', params: {'user_id': user.id}}"
+                    icon="pencilSquare" size="sm" rounded />
                 <span class="mx-1"></span>
-                <ButtonUi variant="danger" href="#" icon="trash" size="sm"
-                    outlined rounded />
+                <ButtonUi variant="danger" href="#" icon="trash" size="sm" outlined
+                    rounded />
             </template>
             <!-- /list item actions -->
 
@@ -53,7 +54,7 @@ import ButtonUi from "@/components/Ui/ButtonUi.vue";
 import BadgeUi from "@/components/Ui/BadgeUi.vue";
 
 export default {
-    name: 'UsersList',
+    name: 'UsersListView',
     components: { LoadingUi, ListItemUi, ButtonUi, BadgeUi },
 
     data() {
