@@ -81,8 +81,8 @@
                         </ColumnUi>
                         <ColumnUi basis="basis-full">
                             <div class="text-center">
-                                <ButtonUi text="Atualizar dados" button-style="dark"
-                                    icon-name="checkLg" type="submit" rounded />
+                                <ButtonUi text="Atualizar dados" variant="dark"
+                                    icon="checkLg" type="submit" rounded />
                             </div>
                         </ColumnUi>
                     </RowUi>

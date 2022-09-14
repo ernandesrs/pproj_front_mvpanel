@@ -5,7 +5,7 @@
             <ColumnUi basis="basis-full">
                 <div class="flex justify-center">
                     <SelectUi @selectChange="variantChange"
-                        :options="[{value: 'default', text: 'Padrão'}, {value: 'success', text: 'Sucesso'}, {value: 'danger', text: 'Perigo'}, {value: 'warning', text: 'Alerta'}, {value: 'info', text: 'Informativo'}]"
+                        :options="[{value: 'default', text: 'Padrão'}, {value: 'success', text: 'Sucesso'}, {value: 'danger', text: 'Perigo'}, {value: 'warning', text: 'Alerta'}, {value: 'info', text: 'Informativo'}, {value: 'dark', text: 'Escuro'}]"
                         value="default" />
                 </div>
             </ColumnUi>

@@ -46,8 +46,8 @@
 
         <ColumnUi basis="basis-full">
             <div class="flex justify-center pt-2">
-                <ButtonUi @click="submit" text="Cadastrar" icon-name="checkLg"
-                    button-style="dark" rounded />
+                <ButtonUi @click="submit" text="Cadastrar" icon="checkLg"
+                    variant="dark" rounded />
             </div>
         </ColumnUi>
     </RowUi>

@@ -4,27 +4,28 @@
 		<RowUi basis="basis-full sm:basis-1/2 lg:basis-1/3">
 			<ColumnUi>
 				<CardUi icon-name="users" title="Usuários">
-					<ButtonUi button-style="info" icon-name="list" text="Ver lista"
-						size="sm" rounded outlined class="mr-1 my-1" />
-					<ButtonUi button-style="success" icon-name="plusLg"
-						text="Cadastrar novo" size="sm" rounded class="mr-1 my-1" />
+					<ButtonUi variant="info" icon="list" text="Ver lista" size="sm"
+						rounded outlined class="mr-1 my-1" />
+					<ButtonUi variant="success" icon="plusLg" text="Cadastrar novo"
+						size="sm" rounded class="mr-1 my-1" />
 				</CardUi>
 			</ColumnUi>
 			<ColumnUi>
 				<CardUi icon-name="layoutWtf" title="Card #2">
-					<ButtonUi button-style="dark" text="Html link" icon-name="linkExternal" size="sm" rounded
-						class="mr-1 my-1" href="https://github.com/ernandesrs" target="_blank"
+					<ButtonUi variant="dark" text="Html link" icon="linkExternal"
+						size="sm" rounded class="mr-1 my-1"
+						href="https://github.com/ernandesrs" target="_blank"
 						title="Abrir Google em outra aba" />
-					<ButtonUi button-style="danger" text="Router link" icon-name="link"
-						size="sm" rounded outlined class="mr-1 my-1" :to="{name: 'panel.index'}" />
+					<ButtonUi variant="danger" text="Router link" icon="link" size="sm"
+						rounded outlined class="mr-1 my-1" :to="{name: 'panel.index'}" />
 				</CardUi>
 			</ColumnUi>
 			<ColumnUi>
 				<CardUi icon-name="app" title="Card #3">
-					<ButtonUi button-style="info" icon-name="pencilSquare"
-						text="Button text" size="sm" rounded class="mr-1 my-1" />
-					<ButtonUi button-style="warning" icon-name="alertDiamond"
-						text="Some text" size="sm" rounded outlined class="mr-1 my-1" />
+					<ButtonUi variant="info" icon="pencilSquare" text="Button text"
+						size="sm" rounded class="mr-1 my-1" />
+					<ButtonUi variant="warning" icon="alertDiamond" text="Some text"
+						size="sm" rounded outlined class="mr-1 my-1" />
 				</CardUi>
 			</ColumnUi>
 		</RowUi>
@@ -41,9 +42,9 @@
 					molestias, soluta odit numquam doloremque dolorum blanditiis adipisci
 					vitae amet quam.
 				</p>
-				<ButtonUi button-style="dark" text="Large button #1" size="lg" rounded />
+				<ButtonUi variant="dark" text="Large button #1" size="lg" rounded />
 				<span class="mx-1"></span>
-				<ButtonUi button-style="info" text="Large button #2" size="lg" rounded />
+				<ButtonUi variant="info" text="Large button #2" size="lg" rounded />
 			</ColumnUi>
 
 			<ColumnUi>
@@ -55,10 +56,9 @@
 					molestias, soluta odit numquam doloremque dolorum blanditiis adipisci
 					vitae amet quam.
 				</p>
-				<ButtonUi button-style="warning" text="Large button #1" size="lg"
-					rounded />
+				<ButtonUi variant="warning" text="Large button #1" size="lg" rounded />
 				<span class="mx-1"></span>
-				<ButtonUi button-style="default" text="Large button #2" size="lg" rounded
+				<ButtonUi text="Large button #2" size="lg" rounded
 					outlined />
 			</ColumnUi>
 		</RowUi>

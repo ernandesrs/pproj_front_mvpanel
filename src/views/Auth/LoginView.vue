@@ -18,12 +18,9 @@
         </ColumnUi>
 
         <ColumnUi>
-            <div class="pt-2 flex justify-between">
-                <InputUi @inputChange="setChanges" label="Lembre-se de mim"
-                    type="checkbox" name="remember_me" :value="remember_me" />
-
-                <ButtonUi @click="submit" text="Login" icon-name="login"
-                    button-style="dark" rounded />
+            <div class="pt-2 flex justify-center">
+                <ButtonUi @click="submit" text="Login" icon="login"
+                    variant="dark" rounded />
             </div>
         </ColumnUi>
     </RowUi>

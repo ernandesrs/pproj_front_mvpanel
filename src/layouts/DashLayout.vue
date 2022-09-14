@@ -53,13 +53,10 @@
                             </div>
                             <DropdownSeparatorUi />
                             <div class="flex justify-between px-3 py-3">
-                                <RouterLink
-                                    class="px-4 py-1 hover:underline hover:text-blue-900 duration-300"
-                                    :to="{name: 'panel.profile'}">
-                                    Perfil
-                                </RouterLink>
-                                <ButtonUi @click="logout" text="Logout"
-                                    button-style="danger" size="small" outlined />
+                                <ButtonUi text="Perfil" :to="{name: 'panel.profile'}"
+                                    variant="info" size="sm" icon="user" link />
+                                <ButtonUi @click="logout" text="Logout" icon="logout"
+                                    variant="danger" size="sm" outlined />
                             </div>
                         </template>
                     </DropdownUi>

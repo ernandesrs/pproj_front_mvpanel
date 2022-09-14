@@ -11,6 +11,7 @@ const icons = {
     link: 'bi bi-link-45deg',
     linkExternal: 'bi bi-box-arrow-up-right',
     login: 'bi bi-box-arrow-in-right',
+    logout: 'bi bi-box-arrow-left',
 
     pencilSquare: 'bi bi-pencil-square',
     pieChart: 'bi bi-pie-chart',
@@ -23,6 +24,8 @@ const icons = {
     trash: 'bi bi-trash',
 
     users: 'bi bi-people',
+    user: 'bi bi-person',
+    profile: 'bi bi-person-circle',
 
     x: 'bi bi-x',
     xLg: 'bi bi-x-lg',

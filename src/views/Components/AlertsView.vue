@@ -33,9 +33,9 @@
                 </ColumnUi>
 
                 <ColumnUi basis="basis-full text-center">
-                    <ButtonUi @buttonClicked="exampleDispatchAlert"
-                        text="Disparar o alerta de teste" :button-style="alert.colorStyle"
-                        id="default" size="sm" />
+                    <ButtonUi @click="exampleDispatchAlert"
+                        text="Disparar o alerta de teste" :variant="alert.colorStyle"
+                        id="default" />
                 </ColumnUi>
             </RowUi>
         </div>

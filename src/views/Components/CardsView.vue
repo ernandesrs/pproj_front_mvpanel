@@ -29,11 +29,11 @@
             <ColumnUi>
                 <CardUi icon-name="pieChart" title="Título #1">
                     <div class="flex flex-wrap pt-3">
-                        <ButtonUi button-style="dark" text="Botão #1" icon-name="app"
-                            size="sm" rounded />
+                        <ButtonUi variant="dark" text="Botão #1" icon="app" size="sm"
+                            rounded />
                         <span class="mx-2"></span>
-                        <ButtonUi button-style="danger" text="Botão #2" icon-name="app"
-                            size="sm" outlined rounded />
+                        <ButtonUi variant="danger" text="Botão #2" icon="app" size="sm"
+                            outlined rounded />
                     </div>
                 </CardUi>
             </ColumnUi>
