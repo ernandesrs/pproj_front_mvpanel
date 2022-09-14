@@ -30,10 +30,10 @@
 
             <!-- list item actions -->
             <template v-slot:actions>
-                <ButtonUi button-style="info" href="" icon-name="pencilSquare"
-                    size="small" rounded />
+                <ButtonUi variant="info" href="#" icon="pencilSquare"
+                    size="sm" rounded />
                 <span class="mx-1"></span>
-                <ButtonUi button-style="danger" href="" icon-name="trash" size="small"
+                <ButtonUi variant="danger" href="#" icon="trash" size="sm"
                     outlined rounded />
             </template>
             <!-- /list item actions -->
