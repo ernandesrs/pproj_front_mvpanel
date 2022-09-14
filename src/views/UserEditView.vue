@@ -40,55 +40,8 @@
             </ColumnUi>
 
             <ColumnUi basis="basis-full sm:basis-2/3">
-                <form @submit.stop.prevent="udpateUser">
-                    <RowUi basis="basis-full lg:basis-1/2">
-                        <LoadingUi v-if="loading" />
-                        <ColumnUi class="p-0" basis="basis-full">
-                            <AlertUi @alertClose="alert.message = null" class="mb-5"
-                                :message="alert.message" :type="alert.color" fixed
-                                notimer />
-                        </ColumnUi>
-                        <ColumnUi>
-                            <InputUi label="Nome:" :value="this.user.first_name"
-                                name="first_name" />
-                        </ColumnUi>
-                        <ColumnUi>
-                            <InputUi label="Sobrenome:" :value="this.user.last_name"
-                                name="last_name" />
-                        </ColumnUi>
-                        <ColumnUi>
-                            <InputUi label="Usuário:" :value="this.user.username"
-                                name="username" />
-                        </ColumnUi>
-                        <ColumnUi>
-                            <SelectUi label="Gênero:" :value="this.user.gender" :options="[
-                                {value: 0, text: 'Não definido'},
-                                {value: 1, text: 'Masculino'},
-                                {value: 2, text: 'Feminino'},
-                            ]" name="gender" />
-                        </ColumnUi>
-                        <ColumnUi basis="basis-full">
-                            <InputUi label="Email:" :value="this.user.email" type="email"
-                                name="email" :disabled="true" />
-                        </ColumnUi>
-                        <ColumnUi basis="basis-full">
-                            <InputUi label="Foto:" type="file" name="photo" />
-                        </ColumnUi>
-                        <ColumnUi>
-                            <InputUi label="Senha:" type="password" name="password" />
-                        </ColumnUi>
-                        <ColumnUi>
-                            <InputUi label="Confirmar senha:" type="password"
-                                name="password_confirmation" />
-                        </ColumnUi>
-                        <ColumnUi basis="basis-full">
-                            <div class="text-center">
-                                <ButtonUi text="Atualizar dados" variant="dark"
-                                    icon="checkLg" type="submit" rounded />
-                            </div>
-                        </ColumnUi>
-                    </RowUi>
-                </form>
+                <UserForm :url-action="urlAction" :success-message="successMessage"
+                    :user-data="user" />
             </ColumnUi>
         </RowUi>
     </div>
@@ -99,25 +52,17 @@
 import ButtonUi from '@/components/Ui/ButtonUi.vue';
 import axios from '@/services/axios';
 import RowUi from '@/components/Layout/Grid/RowUi.vue';
-import LoadingUi from '@/components/Ui/LoadingUi.vue';
 import ColumnUi from '@/components/Layout/Grid/ColumnUi.vue';
-import AlertUi from '@/components/Ui/AlertUi.vue';
-import InputUi from '@/components/Ui/Form/InputUi.vue';
-import SelectUi from '@/components/Ui/Form/SelectUi.vue';
 import messages from '@/utils/messages';
+import UserForm from '@/components/UserForm.vue';
 
 export default {
     name: "UserEditView",
-    components: { ButtonUi, RowUi, LoadingUi, ColumnUi, AlertUi, InputUi, SelectUi },
+    components: { ButtonUi, RowUi, ColumnUi, UserForm },
 
     data() {
         return {
-            loading: true,
             user: {},
-            alert: {
-                color: null,
-                message: null,
-            },
         };
     },
 
@@ -140,37 +85,16 @@ export default {
                 this.loading = false;
             });
         },
+    },
 
-        udpateUser(e) {
-            let data = new FormData(e.target);
+    computed: {
+        urlAction() {
+            return `/admin/user/update/${this.user.id}`;
+        },
 
-            this.loading = true;
-
-            axios.axios.post("/admin/user/update/" + this.user.id, data).then((resp) => {
-                this.user = resp.data.user;
-
-                this.alert.message = `Os dados de ${this.user.full_name} foram atualizados com sucesso!`;
-                this.alert.color = "info";
-            }).catch((resp) => {
-                let errors = resp?.response?.data?.errors;
-
-                if (errors) {
-                    // backend retornou erros ocorridos no formulário: listar os erros
-                    let arrErrors = (Object.values(errors)).map(error => error[0]);
-
-                    this.alert.message = arrErrors.join(" ");
-                    this.alert.color = "warning";
-                } else {
-                    // houve outros tipo de erros
-                    let errorCode = resp?.response?.data?.error ?? "DefaultMessage";
-
-                    this.alert.message = messages[errorCode] ?? messages["DefaultMessage"];
-                    this.alert.color = "danger";
-                }
-            }).finally(() => {
-                this.loading = false;
-            });
-        }
+        successMessage() {
+            return `Os dados de ${this.user.full_name} foram atualizados com sucesso!`;
+        },
     },
 };
 
