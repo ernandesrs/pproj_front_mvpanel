@@ -1,6 +1,10 @@
 <template>
-    <div>
+    <div class="flex items-center">
         <h1 class="pb-2 font-bold text-2xl">Listagem de usuários</h1>
+        <div class="ml-2">
+            <ButtonUi href="#" text="Novo usuário" button-style="success" rounded outlined
+                icon-name="plusLg" />
+        </div>
     </div>
     <div class="relative py-5">
         <LoadingUi v-if="loading" />
@@ -30,6 +34,8 @@
             </template>
         </ListItemUi>
     </div>
+    <div v-html="pagination">
+    </div>
 </template>
 
 <script>
@@ -47,20 +53,21 @@ export default {
     data() {
         return {
             loading: true,
-            users: []
+            users: [],
+            pagination: null
         };
     },
 
     mounted() {
         this.getUsers();
-        console.log(this.users)
         this.loading = false;
     },
 
     methods: {
         async getUsers() {
-            await axios.axios.get("/admin/users?limit=32&order=asc").then((resp) => {
+            await axios.axios.get("/admin/users").then((resp) => {
                 this.users = resp.data.users;
+                this.pagination = resp.data.pagination;
             }).catch((resp) => {
                 console.log(resp);
             });
@@ -81,3 +88,16 @@ export default {
 };
 
 </script>
+
+<style>
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination>.page-item .page-link {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    margin: 2px;
+}
+</style>

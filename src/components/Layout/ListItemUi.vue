@@ -1,16 +1,16 @@
 <template>
-    <RowUi>
-        <ColumnUi basis="basis-full md:basis-3/4">
+    <RowUi class="mb-2">
+        <ColumnUi basis="basis-full sm:basis-3/4">
             <div class="flex items-center">
-                <img v-if="imageThumb" class="hidden md:block w-12 h-12 rounded-full"
+                <img v-if="imageThumb" class="hidden sm:block w-12 h-12 rounded-full"
                     :src="imageThumb" :alt="imageName">
                 <div class="ml-2">
                     <slot name="content" />
                 </div>
             </div>
         </ColumnUi>
-        <ColumnUi basis="basis-full md:basis-1/4">
-            <div class="text-right">
+        <ColumnUi basis="basis-full sm:basis-1/4">
+            <div class="h-full flex items-center justify-center sm:justify-end">
                 <slot name="actions" />
             </div>
         </ColumnUi>
