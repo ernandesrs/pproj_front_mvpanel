@@ -1,10 +1,9 @@
 <template>
 
-    <Component @click="buttonClicked" :is="tag" :type="buttonType" :class="styleClass"
-        :href="href" :to="to" :title="title" :target="target" :id="id"
-        :disabled="disabled">
-        <IconUi v-if="iconName" :icon-name="iconName" />
-        <span v-if="text" :class="{ 'ml-2': iconName }">
+    <Component :is="buttonTag" :type="buttonType" :class="buttonStyle" :href="href"
+        :to="to" :title="title" :target="target" :id="id" :disabled="disabled">
+        <IconUi v-if="icon" :icon-name="icon" />
+        <span v-if="text" :class="{ 'ml-2': icon }">
             {{ text }}
         </span>
     </Component>
@@ -13,7 +12,28 @@
 
 <script>
 
-import IconUi from './IconUi.vue';
+const colorPresets = {
+    default: "bg-gray-100 border border-gray-100 text-gray-500 hover:bg-gray-50",
+    success: "bg-green-600 border border-green-600 text-gray-100 hover:bg-green-500 hover:border-green-500",
+    danger: "bg-red-600 border border-red-600 text-gray-100 hover:bg-red-500 hover:border-red-500",
+    warning: "bg-yellow-600 border border-yellow-600 text-gray-100 hover:bg-yellow-500 hover:border-yellow-500",
+    info: "bg-blue-600 border border-blue-600 text-gray-100 hover:bg-blue-500 hover:border-blue-500",
+
+    outlined_default: "border border-gray-100 text-gray-500 hover:bg-gray-100",
+    outlined_success: "border border-green-600 text-green-600 hover:bg-green-600 hover:text-gray-100",
+    outlined_danger: "border border-red-600 text-red-600 hover:bg-red-600 hover:text-gray-100",
+    outlined_warning: "border border-yellow-600 text-yellow-600 hover:bg-yellow-600 hover:text-gray-100",
+    outlined_info: "border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-gray-100",
+};
+
+const sizesPresets = {
+    default: "text-base",
+    sm: "text-sm",
+    md: "text-md",
+    lg: "text-lg",
+};
+
+import IconUi from "./IconUi.vue";
 
 export default {
     name: "ButtonUi",
@@ -24,68 +44,25 @@ export default {
         };
     },
     props: {
-        type: {
-            type: String,
-            default: "button"
-        },
-        text: {
-            type: String,
-            default: null
-        },
-        iconName: {
-            type: String,
-            default: null
-        },
-        buttonStyle: {
-            type: String,
-            default: 'default',
-        },
-        border: {
-            type: Boolean,
-            default: false
-        },
-        rounded: {
-            type: Boolean,
-            default: false
-        },
-        block: {
-            type: Boolean,
-            default: false
-        },
-        outlined: {
-            type: Boolean,
-            default: false
-        },
-        size: {
-            type: String,
-            default: null
-        },
-        to: {
-            type: Object,
-            default: null
-        },
-        href: {
-            type: String,
-            default: null
-        },
-        target: {
-            type: String,
-            default: null
-        },
-        title: {
-            type: String,
-            default: null
-        },
+        type: { type: String, default: "button" },
+        variant: { type: String, default: "default" },
+        rounded: { type: Boolean, default: false },
+        block: { type: Boolean, default: false },
+        outlined: { type: Boolean, default: false },
+        size: { type: String, default: null },
+        link: { type: Boolean, default: false },
+
+        icon: { type: String, default: null },
+        text: { type: String, default: null },
+        to: { type: Object, default: null },
+        href: { type: String, default: null },
+        target: { type: String, default: null },
+        title: { type: String, default: null },
         id: { type: String, default: null },
-        disabled: { type: Boolean, default: false }
-    },
-    methods: {
-        buttonClicked(event) {
-            this.$emit("buttonClicked", event);
-        },
+        disabled: { type: Boolean, default: false },
     },
     computed: {
-        tag() {
+        buttonTag() {
             if (this.to) {
                 return "RouterLink";
             } else if (this.href) {
@@ -94,17 +71,16 @@ export default {
             return "button";
         },
         buttonType() {
-            if (this.tag !== "button")
+            if (this.buttonTag !== "button")
                 return null;
             return this.type;
         },
-        styleClass() {
-            let block = this.block ? 'block w-full' : 'inline-block';
-            let size = this.size ? 'button-' + this.size : 'button';
-            let style = this.outlined ? this.buttonStyle + '-outline' : ((this.border ? this.buttonStyle + '-border ' : '') + this.buttonStyle);
-            let round = this.rounded ? 'rounded-lg' : '';
+        buttonStyle() {
+            let block = this.block ? "block w-full" : "inline-block";
+            let round = this.rounded ? "rounded-md" : "";
+            let padding = this.text ? (this.size == "sm" ? "px-3 py-1" : "px-5 py-2") : "py-2 px-4";
 
-            return `${block} ${this.text ? "px-5" : "py-1 px-2"} ${size} ${style} ${round} opacity-100 hover:opacity-70 transition duration-300 cursor-pointer`;
+            return `${block} ${colorPresets[(this.outlined ? "outlined_" + this.variant : this.variant)]} ${sizesPresets[this.size]} ${round} ${padding} ${this.link ? "hover:underline" : ""} transition duration-300 cursor-pointer`;
         }
     },
 };

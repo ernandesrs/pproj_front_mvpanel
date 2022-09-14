@@ -2,202 +2,52 @@
     <h1 class="pb-2 font-bold text-2xl">BOTÕES</h1>
     <div class="py-4">
         <RowUi basis="basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
-            <ColumnUi>
-                <h2 class="mb-2 pb-2 border-b">Padrão</h2>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="With icon" icon-name="pieChart" />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Without icon" />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Border" border />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Outlined" outlined />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Rounded" rounded />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Display block" block />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Large button" size="lg" />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Small button" size="sm" />
+            <ColumnUi basis="basis-full">
+                <div class="flex justify-center">
+                    <SelectUi @selectChange="variantChange"
+                        :options="[{value: 'default', text: 'Padrão'}, {value: 'success', text: 'Sucesso'}, {value: 'danger', text: 'Perigo'}, {value: 'warning', text: 'Alerta'}, {value: 'info', text: 'Informativo'}]"
+                        value="default" />
                 </div>
             </ColumnUi>
-
             <ColumnUi>
-                <h2 class="mb-2 pb-2 border-b">Sucesso</h2>
                 <div class="text-center py-2">
-                    <ButtonUi type="button" text="With icon" button-style="success"
-                        icon-name="pieChart" />
+                    <ButtonUi type="button" icon="pieChart" :variant="buttonVariant" />
                 </div>
                 <div class="text-center py-2">
-                    <ButtonUi type="button" text="Without icon" button-style="success" />
+                    <ButtonUi type="button" text="With icon" icon="pieChart"
+                        :variant="buttonVariant" />
                 </div>
                 <div class="text-center py-2">
-                    <ButtonUi type="button" text="Border" button-style="success" border
-                        rounded />
+                    <ButtonUi type="button" text="Without icon"
+                        :variant="buttonVariant" />
                 </div>
                 <div class="text-center py-2">
-                    <ButtonUi type="button" text="Outlined" button-style="success"
+                    <ButtonUi type="button" text="Outlined" :variant="buttonVariant"
                         outlined />
                 </div>
                 <div class="text-center py-2">
-                    <ButtonUi type="button" text="Rounded" button-style="success"
+                    <ButtonUi type="button" text="Rounded" :variant="buttonVariant"
                         rounded />
                 </div>
                 <div class="text-center py-2">
-                    <ButtonUi type="button" text="Display block" button-style="success"
+                    <ButtonUi type="button" text="Display block" :variant="buttonVariant"
                         block />
                 </div>
                 <div class="text-center py-2">
-                    <ButtonUi type="button" text="Large button" button-style="success" size="lg" />
+                    <ButtonUi type="button" text="Large button" :variant="buttonVariant"
+                        size="lg" />
                 </div>
                 <div class="text-center py-2">
-                    <ButtonUi type="button" text="Small button" button-style="success" size="sm" />
-                </div>
-            </ColumnUi>
-
-            <ColumnUi>
-                <h2 class="mb-2 pb-2 border-b">Perigo</h2>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="With icon" button-style="danger"
-                        icon-name="pieChart" />
+                    <ButtonUi type="button" text="Small button" :variant="buttonVariant"
+                        size="sm" />
                 </div>
                 <div class="text-center py-2">
-                    <ButtonUi type="button" text="Without icon" button-style="danger" />
+                    <ButtonUi type="button" text="Router Link" :variant="buttonVariant"
+                        :to="{name: 'panel.components.buttons'}" />
                 </div>
                 <div class="text-center py-2">
-                    <ButtonUi type="button" text="Border" button-style="danger" border
-                        rounded />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Outlined" button-style="danger"
-                        outlined />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Rounded" button-style="danger"
-                        rounded />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Display block" button-style="danger"
-                        block />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Large button" button-style="danger" size="lg" />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Small button" button-style="danger" size="sm" />
-                </div>
-            </ColumnUi>
-
-            <ColumnUi>
-                <h2 class="mb-2 pb-2 border-b">Alerta</h2>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="With icon" button-style="warning"
-                        icon-name="pieChart" />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Without icon" button-style="warning" />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Border" button-style="warning" border
-                        rounded />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Outlined" button-style="warning"
-                        outlined />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Rounded" button-style="warning"
-                        rounded />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Display block" button-style="warning"
-                        block />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Large button" button-style="warning" size="lg" />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Small button" button-style="warning" size="sm" />
-                </div>
-            </ColumnUi>
-
-            <ColumnUi>
-                <h2 class="mb-2 pb-2 border-b">Informação</h2>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="With icon" button-style="info"
-                        icon-name="pieChart" />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Without icon" button-style="info" />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Border" button-style="info" border
-                        rounded />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Outlined" button-style="info"
-                        outlined />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Rounded" button-style="info" rounded />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Display block" button-style="info"
-                        block />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Large button" button-style="info" size="lg" />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Small button" button-style="info" size="sm" />
-                </div>
-            </ColumnUi>
-
-            <ColumnUi>
-                <h2 class="mb-2 pb-2 border-b">Escuro</h2>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="With icon" button-style="dark"
-                        icon-name="pieChart" />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Without icon" button-style="dark" />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Border" button-style="dark" border
-                        rounded />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Outlined" button-style="dark"
-                        outlined />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Rounded" button-style="dark" rounded />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Display block" button-style="dark"
-                        block />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Large button" button-style="dark" size="lg" />
-                </div>
-                <div class="text-center py-2">
-                    <ButtonUi type="button" text="Small button" button-style="dark" size="sm" />
-                </div>
-            </ColumnUi>
-
-            <ColumnUi>
-                <h2 class="mb-2 pb-2 border-b">Evento</h2>
-                <div class="text-center py-2">
-                    <ButtonUi @buttonClicked="method" type="button" text="Click event"
-                        button-style="dark" icon-name="app" />
+                    <ButtonUi type="button" text="Html Link" :variant="buttonVariant"
+                        href="https://www.google.com" target="_blank" title="HTML Link width title" outlined link />
                 </div>
             </ColumnUi>
         </RowUi>
@@ -210,15 +60,25 @@
 import RowUi from '@/components/Layout/Grid/RowUi.vue';
 import ColumnUi from '@/components/Layout/Grid/ColumnUi.vue';
 import ButtonUi from '@/components/Ui/ButtonUi.vue';
+import SelectUi from '@/components/Ui/Form/SelectUi.vue';
 
 export default {
     name: "ButtonsView",
-    components: { RowUi, ColumnUi, ButtonUi },
+    components: { RowUi, ColumnUi, ButtonUi, SelectUi },
+
+    data() {
+        return {
+            buttonVariant: 'default'
+        };
+    },
 
     methods: {
         method() {
             alert("O botão foi clicado!");
         },
+        variantChange(ev) {
+            this.buttonVariant = ev.input_value;
+        }
     },
 };
 
