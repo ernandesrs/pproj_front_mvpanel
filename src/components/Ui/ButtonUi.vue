@@ -1,7 +1,8 @@
 <template>
 
     <Component @click="buttonClicked" :is="tag" :type="buttonType" :class="styleClass"
-        :href="href" :to="to" :title="title" :target="target" :id="id" :disabled="disabled">
+        :href="href" :to="to" :title="title" :target="target" :id="id"
+        :disabled="disabled">
         <IconUi v-if="iconName" :icon-name="iconName" />
         <span v-if="text" :class="{ 'ml-2': iconName }">
             {{ text }}
@@ -103,7 +104,7 @@ export default {
             let style = this.outlined ? this.buttonStyle + '-outline' : ((this.border ? this.buttonStyle + '-border ' : '') + this.buttonStyle);
             let round = this.rounded ? 'rounded-lg' : '';
 
-            return `${block} px-5 ${size} ${style} ${round} opacity-100 hover:opacity-70 transition duration-300 cursor-pointer`;
+            return `${block} ${this.text ? "px-5" : "py-1 px-2"} ${size} ${style} ${round} opacity-100 hover:opacity-70 transition duration-300 cursor-pointer`;
         }
     },
 };
