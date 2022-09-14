@@ -11,20 +11,24 @@
 
         <ListItemUi v-for="user in users" v-bind:key="user"
             :image-thumb="user.thumb_small">
+
+            <!-- list item content -->
             <template v-slot:content>
                 <div class="">
-                    <p class="font-semibold text-gray-500">
+                    <div class="font-semibold text-gray-500">
                         {{ user.full_name }}
-                    </p>
-                    <p class="text-sm">
+                    </div>
+                    <div class="text-sm pb-1">
                         {{ user.email }}
-                    </p>
-                    <p class="flex">
-                        <BadgeUi variant="info" :text="userLevel[user.level]" size="xs" />
-                    </p>
+                    </div>
+                    <div class="flex">
+                        <BadgeUi variant="info" :text="userLevel[user.level]" size="sm" />
+                    </div>
                 </div>
             </template>
+            <!-- /list item content -->
 
+            <!-- list item actions -->
             <template v-slot:actions>
                 <ButtonUi button-style="info" href="" icon-name="pencilSquare"
                     size="small" rounded />
@@ -32,6 +36,8 @@
                 <ButtonUi button-style="danger" href="" icon-name="trash" size="small"
                     outlined rounded />
             </template>
+            <!-- /list item actions -->
+
         </ListItemUi>
     </div>
     <div v-html="pagination">
