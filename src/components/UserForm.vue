@@ -25,7 +25,7 @@
             </ColumnUi>
             <ColumnUi basis="basis-full">
                 <InputUi label="Email:" :value="this.user.email" type="email" name="email"
-                    :disabled="true" />
+                    :disabled="this.user.email?true:false" />
             </ColumnUi>
             <ColumnUi basis="basis-full">
                 <InputUi label="Foto:" type="file" name="photo" />

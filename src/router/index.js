@@ -10,6 +10,7 @@ import ButtonsView from '../views/Components/ButtonsView.vue'
 import FormsView from '../views/Components/FormsView.vue'
 import UsersListView from '../views/UsersListView.vue'
 import UserEditView from '../views/UserEditView.vue'
+import UserCreateView from '../views/UserCreateView.vue'
 
 import LoginView from '../views/Auth/LoginView'
 import RegisterView from '../views/Auth/RegisterView'
@@ -69,6 +70,11 @@ const routes = [
 				path: '/usuarios',
 				name: 'panel.users.index',
 				component: UsersListView
+			},
+			{
+				path: '/usuario/cadastrar',
+				name: 'panel.users.create',
+				component: UserCreateView
 			},
 			{
 				path: '/usuario/:user_id',

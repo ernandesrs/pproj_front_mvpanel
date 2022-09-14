@@ -3,7 +3,10 @@
         <h1 class="pb-2 font-bold text-2xl">Editar usuário</h1>
         <div class="ml-2">
             <ButtonUi :to="{name: 'panel.users.index'}" text="Voltar" icon="arrowLeft"
-                variant="info" rounded outlined />
+                variant="info" rounded />
+            <span class="mx-1"></span>
+            <ButtonUi :to="{name: 'panel.users.create'}" text="Novo usuário"
+                variant="success" rounded outlined icon="plusLg" />
         </div>
     </div>
     <div class="border my-5 py-4 px-5">
