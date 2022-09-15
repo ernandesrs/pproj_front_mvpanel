@@ -27,7 +27,7 @@
                 <InputUi label="Email:" :value="this.user.email" type="email" name="email"
                     :disabled="this.user.email?true:false" />
             </ColumnUi>
-            <ColumnUi basis="basis-full">
+            <ColumnUi v-if="this.user.id" basis="basis-full">
                 <InputUi label="Foto:" type="file" name="photo" />
             </ColumnUi>
             <ColumnUi>
