@@ -1,4 +1,5 @@
 <template>
+
     <div class="flex items-center">
         <TitleUi title="Usuários" icon="users" tag="h2" size="h3" />
         <div class="ml-2">
@@ -34,8 +35,8 @@
                     :to="{name: 'panel.users.edit', params: {'user_id': user.id}}"
                     icon="pencilSquare" size="sm" rounded />
                 <span class="mx-1"></span>
-                <ButtonUi variant="danger" href="#" icon="trash" size="sm" outlined
-                    rounded />
+                <ButtonUi variant="danger" href="#" icon="trash"
+                    size="sm" outlined rounded />
             </template>
             <!-- /list item actions -->
 
@@ -62,7 +63,8 @@ export default {
         return {
             loading: true,
             users: [],
-            pagination: null
+            pagination: null,
+            showConfirmationModal: false
         };
     },
 

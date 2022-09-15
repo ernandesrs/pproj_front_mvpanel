@@ -12,7 +12,7 @@
             </div>
         </div>
 
-        <div class="pt-3">
+        <div :class="{'pt-3': title}">
             <slot />
         </div>
     </div>

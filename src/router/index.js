@@ -11,6 +11,7 @@ import FormsView from '../views/Components/FormsView.vue'
 import UsersListView from '../views/UsersListView.vue'
 import UserEditView from '../views/UserEditView.vue'
 import UserCreateView from '../views/UserCreateView.vue'
+import AllView from '../views/Components/AllView.vue'
 
 import LoginView from '../views/Auth/LoginView'
 import RegisterView from '../views/Auth/RegisterView'
@@ -60,6 +61,11 @@ const routes = [
 				path: '/componentes/formularios',
 				name: 'panel.components.forms',
 				component: FormsView
+			},
+			{
+				path: '/componentes',
+				name: 'panel.components.index',
+				component: AllView
 			},
 			{
 				path: '/perfil',

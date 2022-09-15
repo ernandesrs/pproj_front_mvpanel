@@ -160,6 +160,13 @@ export default {
                         icon: 'layoutWtf',
                         subnav: [
                             {
+                                id: 40,
+                                text: 'Início',
+                                title: '',
+                                to: { name: 'panel.components.index' },
+                                target: '_self',
+                            },
+                            {
                                 id: 4,
                                 text: 'Alertas',
                                 title: '',
