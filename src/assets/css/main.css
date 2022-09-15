@@ -27,7 +27,7 @@ body {
     @apply text-gray-600;
 }
 
-button span {
+button span, a span {
     pointer-events: none;
 }
 
