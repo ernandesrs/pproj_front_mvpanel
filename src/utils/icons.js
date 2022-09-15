@@ -29,7 +29,9 @@ const icons = {
 
     users: 'bi bi-people',
     user: 'bi bi-person',
-    profile: 'bi bi-person-circle',
+    userPlus: 'bi bi-person-plus',
+    userCheck: 'bi bi-person-check',
+    userProfile: 'bi bi-person-circle',
 
     x: 'bi bi-x',
     xLg: 'bi bi-x-lg',

@@ -1,6 +1,6 @@
 <template>
     <div class="flex items-center">
-        <h1 class="pb-2 font-bold text-2xl">Listagem de usuários</h1>
+        <TitleUi title="Usuários" icon="users" tag="h2" size="h3" />
         <div class="ml-2">
             <ButtonUi :to="{name: 'panel.users.create'}" text="Novo usuário"
                 variant="success" rounded outlined icon="plusLg" />
@@ -52,10 +52,11 @@ import axios from "@/services/axios";
 import ListItemUi from "@/components/Layout/ListItemUi.vue";
 import ButtonUi from "@/components/Ui/ButtonUi.vue";
 import BadgeUi from "@/components/Ui/BadgeUi.vue";
+import TitleUi from "@/components/Ui/TitleUi.vue";
 
 export default {
     name: 'UsersListView',
-    components: { LoadingUi, ListItemUi, ButtonUi, BadgeUi },
+    components: { LoadingUi, ListItemUi, ButtonUi, BadgeUi, TitleUi },
 
     data() {
         return {

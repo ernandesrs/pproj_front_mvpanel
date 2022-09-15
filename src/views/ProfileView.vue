@@ -34,7 +34,7 @@
                 </div>
             </ColumnUi>
             <ColumnUi basis="basis-full sm:basis-2/3">
-                <h2 class="font-semibold text-lg mb-4">Meu perfil</h2>
+                <TitleUi title="Meu perfil" tag="h2" size="h3" />
                 <form @submit.stop.prevent="submit">
                     <RowUi basis="basis-full lg:basis-1/2">
                         <LoadingUi v-if="loading" />
@@ -105,10 +105,11 @@ import axios from "@/services/axios";
 import AlertUi from "@/components/Ui/AlertUi.vue";
 import messages from "@/utils/messages";
 import LoadingUi from "@/components/Ui/LoadingUi.vue";
+import TitleUi from "@/components/Ui/TitleUi.vue";
 
 export default {
     name: "ProfileView",
-    components: { SectionUi, RowUi, ColumnUi, InputUi, SelectUi, ButtonUi, AlertUi, LoadingUi },
+    components: { SectionUi, RowUi, ColumnUi, InputUi, SelectUi, ButtonUi, AlertUi, LoadingUi, TitleUi },
 
     data() {
         return {

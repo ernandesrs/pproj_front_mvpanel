@@ -1,6 +1,6 @@
 <template>
     <div class="flex items-center">
-        <h1 class="pb-2 font-bold text-2xl">Novo usuário</h1>
+        <TitleUi title="Novo usuário" icon="userPlus" tag="h2" size="h3" />
         <div class="ml-2">
             <ButtonUi :to="{name: 'panel.users.index'}" text="Voltar" icon="arrowLeft"
                 variant="info" rounded />
@@ -22,10 +22,11 @@ import ButtonUi from '@/components/Ui/ButtonUi.vue';
 import RowUi from '@/components/Layout/Grid/RowUi.vue';
 import ColumnUi from '@/components/Layout/Grid/ColumnUi.vue';
 import UserForm from '@/components/UserForm.vue';
+import TitleUi from '@/components/Ui/TitleUi.vue';
 
 export default {
     name: "UserCreateView",
-    components: { ButtonUi, RowUi, ColumnUi, UserForm },
+    components: { ButtonUi, RowUi, ColumnUi, UserForm, TitleUi },
 
     methods: {
     },

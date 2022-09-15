@@ -1,12 +1,7 @@
 <template>
     <section class="mb-5">
         <div v-if="title" class="border-b-1 mb-3">
-            <h1 class="flex items-center text-2xl font-semibold">
-                <IconUi v-if="iconName" :icon-name="iconName" />
-                <span :class="{'ml-3': iconName}">
-                    {{ title }}
-                </span>
-            </h1>
+            <TitleUi :icon="iconName" title="Uma seção muito top" size="h2" />
         </div>
 
         <div class="">
@@ -16,13 +11,16 @@
 </template>
 
 <script>
-import IconUi from '../Ui/IconUi.vue';
+
+import TitleUi from '../Ui/TitleUi.vue';
+
 export default {
     name: "SectionUi",
+    components: { TitleUi },
+
     props: {
         iconName: { type: String, default: null },
         title: { type: String, default: null },
     },
-    components: { IconUi }
 };
 </script>

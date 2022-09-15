@@ -1,6 +1,6 @@
 <template>
     <div class="flex items-center">
-        <h1 class="pb-2 font-bold text-2xl">Editar usuário</h1>
+        <TitleUi title="Editar usuário" icon="user" tag="h2" size="h3" />
         <div class="ml-2">
             <ButtonUi :to="{name: 'panel.users.index'}" text="Voltar" icon="arrowLeft"
                 variant="info" rounded />
@@ -58,10 +58,11 @@ import RowUi from '@/components/Layout/Grid/RowUi.vue';
 import ColumnUi from '@/components/Layout/Grid/ColumnUi.vue';
 import messages from '@/utils/messages';
 import UserForm from '@/components/UserForm.vue';
+import TitleUi from '@/components/Ui/TitleUi.vue';
 
 export default {
     name: "UserEditView",
-    components: { ButtonUi, RowUi, ColumnUi, UserForm },
+    components: { ButtonUi, RowUi, ColumnUi, UserForm, TitleUi },
 
     data() {
         return {
