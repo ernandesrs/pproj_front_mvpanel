@@ -56,8 +56,8 @@
 
     <div class="flex justify-center">
         <a @click.prevent="navigate" v-for="page in pagination.pages" v-bind:key="page"
-            class="px-4 py-2 mx-1 border rounded-md"
-            :class="[{'bg-gray-50 text-gray-700 border-gray-100': page == pagination.current},{'bg-gray-700 text-gray-200 hover:text-gray-200 border-gray-800': page != pagination.current}]"
+            class="px-4 py-2 hover:text-gray-200 mx-1 border rounded-md"
+            :class="[{'bg-gray-500 text-gray-200 border-gray-600': page == pagination.current},{'bg-gray-700 text-gray-200 border-gray-800': page != pagination.current}]"
             href="#" :data-page="page">{{ page }}</a>
     </div>
 </template>
@@ -172,16 +172,3 @@ export default {
 };
 
 </script>
-
-<style>
-.pagination {
-    display: flex;
-    justify-content: center;
-}
-
-.pagination>.page-item .page-link {
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    margin: 2px;
-}
-</style>

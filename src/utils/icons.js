@@ -30,6 +30,7 @@ const icons = {
     users: 'bi bi-people',
     user: 'bi bi-person',
     userPlus: 'bi bi-person-plus',
+    userDash: 'bi bi-person-dash',
     userCheck: 'bi bi-person-check',
     userProfile: 'bi bi-person-circle',
 
