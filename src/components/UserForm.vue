@@ -77,7 +77,8 @@ export default {
     props: {
         userData: { type: Object, default: null },
         urlAction: { type: String, default: null },
-        successMessage: { type: String, default: "Sucesso!" }
+        successMessage: { type: String, default: "Sucesso!" },
+        action: { type: String, default: 'create' }
     },
 
     watch: {
@@ -99,6 +100,10 @@ export default {
             axios.axios.post(this.urlAction, data).then((resp) => {
                 this.user = resp.data.user;
 
+                if (this.action == "create") {
+                    this.$router.push({ name: 'panel.users.edit', params: { user_id: this.user.id } });
+                    return;
+                }
                 this.alert.message = this.successMessage;
                 this.alert.color = "info";
             }).catch((resp) => {
