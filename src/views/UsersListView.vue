@@ -128,7 +128,7 @@ export default {
             let id = ev.target.getAttribute("data-user");
             this.user = this.users.find(user => user.id == id);
 
-            this.confirmationModal.variant = "info";
+            this.confirmationModal.variant = "danger";
             this.confirmationModal.text = "Tem certeza de que você deseja excluir definitivamente o usuário '<b>" + this.user.full_name + "</b>'?";
             this.confirmationModal.show = true;
         },
