@@ -19,8 +19,8 @@
 
         <ColumnUi>
             <div class="pt-2 flex justify-center">
-                <ButtonUi @click="submit" text="Login" icon="login"
-                    variant="dark" rounded />
+                <ButtonUi @click="submit" text="Login" icon="login" variant="dark"
+                    rounded />
             </div>
         </ColumnUi>
     </RowUi>
@@ -78,10 +78,7 @@ export default {
                 cookie.setToken(token);
                 this.$store.state.user = response.data.user;
 
-                this.addMessage("Autenticação efetuada com sucesso, você será redirecionado.", "success");
-                setTimeout(() => {
-                    this.$router.push({ name: "panel.index" });
-                }, 3000);
+                this.$router.push({ name: "panel.index" });
             }).catch((response) => {
                 if (!response.response.data.errors) {
                     let errorCode = response?.response?.data?.error;
