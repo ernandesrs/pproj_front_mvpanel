@@ -44,11 +44,11 @@
                             <div
                                 class="flex flex-col items-center justify-center px-3 py-3">
                                 <img class="rounded-full border-5 border-white"
-                                    :src="$store.state.user.thumb_small"
-                                    :alt="$store.state.user.full_name">
+                                    :src="this.$store.state.user_module.authUser.thumb_small"
+                                    :alt="this.$store.state.user_module.authUser.full_name">
                                 <p
                                     class="font-semibold text-center text-gray-500 text-lg pt-2">
-                                    {{$store.state.user.full_name}}
+                                    {{this.$store.state.user_module.authUser.full_name}}
                                 </p>
                             </div>
                             <DropdownSeparatorUi />
@@ -260,7 +260,7 @@ export default {
 
     computed: {
         userName() {
-            let name = this.$store.state.user.full_name;
+            let name = this.$store.state.user_module.authUser.full_name;
             return `${name.substr(0, 10)}${name.length > 10 ? "..." : ""}`;
         }
     }
