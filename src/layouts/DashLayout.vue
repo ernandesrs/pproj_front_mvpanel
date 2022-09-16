@@ -112,6 +112,7 @@ import DropdownUi from '@/components/Ui/Dropdown/DropdownUi.vue';
 import ButtonUi from '@/components/Ui/ButtonUi.vue';
 import axios from '@/services/axios';
 import DropdownSeparatorUi from '@/components/Ui/Dropdown/DropdownSeparatorUi.vue';
+import cookie from '@/services/cookie';
 
 let sidebarMobileClass = "sidebar-mobile";
 let contentMobileClass = "content-mobile";
@@ -247,8 +248,9 @@ export default {
             this.toggler();
         },
 
-        logout() {
-            axios.axios.post("/auth/logout").then(() => {
+        async logout() {
+            await axios.axios.post("/auth/logout").then(() => {
+                cookie.deleteToken();
                 this.$router.push({ name: "auth.login" });
             }).catch(() => {
 
