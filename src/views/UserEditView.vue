@@ -51,7 +51,7 @@
                         Date(user.created_at)).toLocaleDateString("pt-BR")
                         }}
                     </p>
-                    <div v-if="$store.state.user.level == 9" class="flex justify-center">
+                    <div v-if="$store.state.user_module.authUser.level == 9" class="flex justify-center">
                         <ButtonUi v-if="user.level > 1" @click="demoteConfirmation"
                             text="Rebaixar" icon="userDash" variant="danger" size="sm"
                             rounded />

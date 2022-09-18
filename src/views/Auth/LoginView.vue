@@ -78,7 +78,7 @@ export default {
                 let token = `${response.data.access.token_type} ${response.data.access.access_token}`;
 
                 cookie.setToken(token);
-                this.$store.state.user = response.data.user;
+                this.$store.commit("user_module/storeAuthUser", response.data.user);
 
                 this.$router.push({ name: "panel.index" });
             }).catch((response) => {

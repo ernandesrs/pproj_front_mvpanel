@@ -4,13 +4,13 @@
         <RowUi>
             <ColumnUi basis="basis-full sm:basis-1/3">
                 <div class="flex justify-center">
-                    <div v-if="!this.$store.state.user.photo"
+                    <div v-if="!this.$store.state.user_module.authUser.photo"
                         class="w-40 h-40 lg:w-64 lg:h-64 flex justify-center items-center bg-gray-100 border-4 rounded-full">
                         PHOTO
                     </div>
                     <img v-else class="w-40 h-40 lg:w-64 lg:h-64 border-4 rounded-full"
-                        :src="this.$store.state.user.thumb_normal"
-                        :alt="this.$store.state.user.full_name">
+                        :src="this.$store.state.user_module.authUser.thumb_normal"
+                        :alt="this.$store.state.user_module.authUser.full_name">
                 </div>
                 <div class="py-4">
                     <hr>
@@ -19,16 +19,16 @@
                     <p class="mb-2">
                         <span class="text-sm px-4 bg-blue-900 text-gray-200 rounded">
                             <span>
-                                {{this.$store.state.user.level == 9?
-                                "Super":(this.$store.state.user.level ==
-                                8?"Administrador":(this.$store.state.user.level ==
+                                {{this.$store.state.user_module.authUser.level == 9?
+                                "Super":(this.$store.state.user_module.authUser.level ==
+                                8?"Administrador":(this.$store.state.user_module.authUser.level ==
                                 5?"Membro":"Usuário"))}}
                             </span>
                         </span>
                     </p>
                     <p>
                         Registrado em: {{ (new
-                        Date(this.$store.state.user.created_at)).toLocaleDateString("pt-BR")
+                        Date(this.$store.state.user_module.authUser.created_at)).toLocaleDateString("pt-BR")
                         }}
                     </p>
                 </div>
@@ -44,40 +44,42 @@
                         </ColumnUi>
                         <ColumnUi>
                             <InputUi ref="first_name" label="Nome:"
-                                :value="this.$store.state.user.first_name"
+                                :value="this.$store.state.user_module.authUser.first_name"
                                 name="first_name" />
                         </ColumnUi>
                         <ColumnUi>
                             <InputUi ref="last_name" label="Sobrenome:"
-                                :value="this.$store.state.user.last_name"
+                                :value="this.$store.state.user_module.authUser.last_name"
                                 name="last_name" />
                         </ColumnUi>
                         <ColumnUi>
                             <InputUi ref="username" label="Usuário:"
-                                :value="this.$store.state.user.username"
+                                :value="this.$store.state.user_module.authUser.username"
                                 name="username" />
                         </ColumnUi>
                         <ColumnUi>
                             <SelectUi ref="gender" label="Gênero:"
-                                :value="this.$store.state.user.gender" :options="[
+                                :value="this.$store.state.user_module.authUser.gender" :options="[
                                     {value: 0, text: 'Não definido'},
                                     {value: 1, text: 'Masculino'},
                                     {value: 2, text: 'Feminino'},
                                 ]" name="gender" />
                         </ColumnUi>
                         <ColumnUi basis="basis-full">
-                            <InputUi ref="email" label="Email:" :value="this.$store.state.user.email"
-                                type="email" name="email" :disabled="true" />
+                            <InputUi ref="email" label="Email:"
+                                :value="this.$store.state.user_module.authUser.email" type="email"
+                                name="email" :disabled="true" />
                         </ColumnUi>
                         <ColumnUi basis="basis-full">
                             <InputUi ref="photo" label="Foto:" type="file" name="photo" />
                         </ColumnUi>
                         <ColumnUi>
-                            <InputUi ref="password" label="Senha:" type="password" name="password" />
+                            <InputUi ref="password" label="Senha:" type="password"
+                                name="password" />
                         </ColumnUi>
                         <ColumnUi>
-                            <InputUi ref="password_confirmation" label="Confirmar senha:" type="password"
-                                name="password_confirmation" />
+                            <InputUi ref="password_confirmation" label="Confirmar senha:"
+                                type="password" name="password_confirmation" />
                         </ColumnUi>
                         <ColumnUi basis="basis-full">
                             <div class="text-center">
@@ -131,7 +133,7 @@ export default {
             FormErrors.clearErrors(this);
 
             axios.axios.post("/me", data).then((response) => {
-                this.$store.state.user = response.data.data;
+                this.$store.commit("user_module/storeAuthUser", response.data.data);
                 this.addMessage("Seus dados foram atualizados com sucesso!", "success");
             }).catch((response) => {
                 let errors = response?.response?.data?.errors;

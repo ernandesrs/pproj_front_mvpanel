@@ -12,10 +12,8 @@ export default {
 
         // check/validate token
         await axios.axios.get("/me").then((response) => {
-            if (!store?.state?.user?.id) {
+            if (!store?.state?.user_module?.authUser?.id) {
                 store.commit("user_module/storeAuthUser", response.data.data);
-
-                store.commit("storeUser", response.data.data);
             }
         }).catch(() => {
             Cookie.deleteToken();
