@@ -39,8 +39,9 @@
             </ColumnUi>
             <ColumnUi basis="basis-full">
                 <div class="text-center">
-                    <ButtonUi text="Atualizar dados" variant="dark" icon="checkLg"
-                        type="submit" rounded />
+                    <ButtonUi
+                        :text="action=='create'?'Salvar usuário':'Atualizar dados'"
+                        variant="dark" icon="checkLg" type="submit" rounded />
                 </div>
             </ColumnUi>
         </RowUi>
