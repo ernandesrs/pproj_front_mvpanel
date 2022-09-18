@@ -3,7 +3,7 @@
     <div :class="containerClass">
         <label v-if="label" class="mb-2 font-normal" :for="name">{{label}}</label>
         <select @change="hasChange" :class="selectClass" :name="name" :id="name"
-            v-model="selected_value" :readonly="readonly" :disabled="disabled">
+            v-model="selectedValue" :readonly="readonly" :disabled="disabled">
             <option v-for="option in options" v-bind:key="option" :value="option.value">
                 {{ option.text }}
             </option>
@@ -19,7 +19,9 @@ export default {
 
     data() {
         return {
-            selected_value: null
+            selectedValue: null,
+            inputInvalid: null,
+            inputValid: null,
         };
     },
 
@@ -41,13 +43,27 @@ export default {
         value: {
             immediate: true,
             handler() {
-                this.selected_value = this.value;
+                this.selectedValue = this.value;
             },
             deep: true
         },
-        selected_value(v) {
+        valid: {
+            immediate: true,
+            handler(nv) {
+                this.inputValid = nv;
+            },
+            deep: true
+        },
+        invalid: {
+            immediate: true,
+            handler(nv) {
+                this.inputInvalid = nv;
+            },
+            deep: true
+        },
+        selectedValue(v) {
             if (!this.readonly) {
-                this.selected_value = v;
+                this.selectedValue = v;
             }
         },
     },
@@ -58,7 +74,7 @@ export default {
         },
         selectClass() {
             let rounded = this.rounded ? 'rounded' : '';
-            let border = this.borderless ? '' : 'border ' + (this.invalid ? 'border-red-500' : this.valid ? 'border-green-500' : '');
+            let border = this.borderless ? '' : 'border ' + (this.inputInvalid ? 'border-red-500' : this.inputValid ? 'border-green-500' : '');
             let readonly = this.readonly ? 'read-only:bg-gray-100' : '';
             let disabled = this.disabled ? 'disabled:bg-gray-200' : '';
             return `w-full bg-gray-50 px-3 py-1 text-gray-500 ${disabled} ${readonly} ${rounded} ${border}`;
@@ -69,7 +85,7 @@ export default {
         hasChange(event) {
             let data = {
                 event: event,
-                input_value: this.selected_value,
+                input_value: this.selectedValue,
                 input_name: this.name,
             };
             this.$emit('selectChange', data);

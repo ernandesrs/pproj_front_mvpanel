@@ -19,7 +19,7 @@
                     name="username" />
             </ColumnUi>
             <ColumnUi>
-                <SelectUi ref="gender" label="Gênero:" :value="this.user.gender" :options="[
+                <SelectUi ref="gender" label="Gênero:" :value="this.user.gender ?? 0" :options="[
                     {value: 0, text: 'Não definido'},
                     {value: 1, text: 'Masculino'},
                     {value: 2, text: 'Feminino'},
