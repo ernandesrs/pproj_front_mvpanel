@@ -18,7 +18,8 @@ export default {
 
     data() {
         return {
-            inputValue: null
+            inputValue: null,
+            inputInvalid: null,
         };
     },
 
@@ -52,7 +53,7 @@ export default {
         inputClass() {
             let width = (this.type != 'checkbox' && this.type != 'radio') ? 'w-full' : (this.type == 'checkbox' || this.type == 'radio') ? 'w-4 h-4' : '';
             let rounded = this.rounded ? 'rounded' : '';
-            let border = this.borderless ? '' : 'border ' + (this.invalid ? 'border-red-500' : this.valid ? 'border-green-500' : '');
+            let border = this.borderless ? '' : 'border ' + (this.inputInvalid ? 'border-red-500' : this.valid ? 'border-green-500' : '');
 
             return `${width} px-3 py-1 text-gray-500 disabled:bg-gray-100 read-only:bg-gray-100 ${rounded} ${border}`;
         },
@@ -69,6 +70,13 @@ export default {
             immediate: true,
             handler(v) {
                 this.inputValue = v;
+            },
+            deep: true
+        },
+        invalid: {
+            immediate: true,
+            handler(v) {
+                this.inputInvalid = v;
             },
             deep: true
         },

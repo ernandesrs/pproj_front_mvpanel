@@ -43,22 +43,22 @@
                                 :message="alert.message" :type="alert.color" />
                         </ColumnUi>
                         <ColumnUi>
-                            <InputUi label="Nome:"
+                            <InputUi ref="first_name" label="Nome:"
                                 :value="this.$store.state.user.first_name"
                                 name="first_name" />
                         </ColumnUi>
                         <ColumnUi>
-                            <InputUi label="Sobrenome:"
+                            <InputUi ref="last_name" label="Sobrenome:"
                                 :value="this.$store.state.user.last_name"
                                 name="last_name" />
                         </ColumnUi>
                         <ColumnUi>
-                            <InputUi label="Usuário:"
+                            <InputUi ref="username" label="Usuário:"
                                 :value="this.$store.state.user.username"
                                 name="username" />
                         </ColumnUi>
                         <ColumnUi>
-                            <SelectUi label="Gênero:"
+                            <SelectUi ref="gender" label="Gênero:"
                                 :value="this.$store.state.user.gender" :options="[
                                     {value: 0, text: 'Não definido'},
                                     {value: 1, text: 'Masculino'},
@@ -66,17 +66,17 @@
                                 ]" name="gender" />
                         </ColumnUi>
                         <ColumnUi basis="basis-full">
-                            <InputUi label="Email:" :value="this.$store.state.user.email"
+                            <InputUi ref="email" label="Email:" :value="this.$store.state.user.email"
                                 type="email" name="email" :disabled="true" />
                         </ColumnUi>
                         <ColumnUi basis="basis-full">
-                            <InputUi label="Foto:" type="file" name="photo" />
+                            <InputUi ref="photo" label="Foto:" type="file" name="photo" />
                         </ColumnUi>
                         <ColumnUi>
-                            <InputUi label="Senha:" type="password" name="password" />
+                            <InputUi ref="password" label="Senha:" type="password" name="password" />
                         </ColumnUi>
                         <ColumnUi>
-                            <InputUi label="Confirmar senha:" type="password"
+                            <InputUi ref="password_confirmation" label="Confirmar senha:" type="password"
                                 name="password_confirmation" />
                         </ColumnUi>
                         <ColumnUi basis="basis-full">
@@ -106,6 +106,7 @@ import AlertUi from "@/components/Ui/AlertUi.vue";
 import messages from "@/utils/messages";
 import LoadingUi from "@/components/Ui/LoadingUi.vue";
 import TitleUi from "@/components/Ui/TitleUi.vue";
+import FormErrors from "@/utils/form-errors";
 
 export default {
     name: "ProfileView",
@@ -127,17 +128,22 @@ export default {
 
             this.loading = true;
             this.resetMessage();
+            FormErrors.clearErrors(this);
 
             axios.axios.post("/me", data).then((response) => {
                 this.$store.state.user = response.data.data;
                 this.addMessage("Seus dados foram atualizados com sucesso!", "success");
             }).catch((response) => {
-                if (!response.response.data.errors) {
+                let errors = response?.response?.data?.errors;
+
+                if (errors) {
+                    let arrErrors = Object.values(response?.response?.data?.errors ?? {});
+
+                    FormErrors.setErrors(this, errors);
+                    this.addMessage((arrErrors.map((item) => item[0])).join(" "), "danger");
+                } else {
                     let errorCode = response?.response?.data?.error;
                     this.addMessage(errorCode ? messages[errorCode] : messages["DefaultMessage"], "danger");
-                } else {
-                    let errors = Object.values(response?.response?.data?.errors ?? {});
-                    this.addMessage((errors.map((item) => item[0])).join(" "), "danger");
                 }
             }).finally(() => {
                 this.loading = false;
