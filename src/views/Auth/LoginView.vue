@@ -8,13 +8,13 @@
         </ColumnUi>
 
         <ColumnUi>
-            <InputUi @inputChange="setChanges" label="Email" type="email" name="email"
-                :value="email" />
+            <InputUi ref="email" @inputChange="setChanges" label="Email" type="email"
+                name="email" :value="email" />
         </ColumnUi>
 
         <ColumnUi>
-            <InputUi @inputChange="setChanges" label="Senha" type="password"
-                name="password" :value="password" />
+            <InputUi ref="password" @inputChange="setChanges" label="Senha"
+                type="password" name="password" :value="password" />
         </ColumnUi>
 
         <ColumnUi>
@@ -38,6 +38,7 @@ import axios from '@/services/axios';
 import cookie from '@/services/cookie';
 import messages from '@/utils/messages';
 import LoadingUi from '@/components/Ui/LoadingUi.vue';
+import formErrors from '@/utils/form-errors';
 
 export default {
     name: "LoginView",
@@ -71,6 +72,7 @@ export default {
 
             this.loading = true;
             this.resetMessage();
+            formErrors.clearErrors(this);
 
             axios.axios.post("/auth/login", data).then((response) => {
                 let token = `${response.data.access.token_type} ${response.data.access.access_token}`;
@@ -80,12 +82,15 @@ export default {
 
                 this.$router.push({ name: "panel.index" });
             }).catch((response) => {
-                if (!response.response.data.errors) {
+                let errors = response?.response?.data?.errors;
+
+                if (errors) {
+                    let arrErrors = Object.values(errors);
+                    this.addMessage((arrErrors.map((item) => item[0])).join(" "), "danger");
+                    formErrors.setErrors(this, errors);
+                } else {
                     let errorCode = response?.response?.data?.error;
                     this.addMessage(errorCode ? messages[errorCode] : messages["DefaultMessage"], "danger");
-                } else {
-                    let errors = Object.values(response?.response?.data?.errors ?? {});
-                    this.addMessage((errors.map((item) => item[0])).join(" "), "danger");
                 }
             }).finally(() => {
                 this.loading = false;

@@ -5,22 +5,22 @@
                 :message="alert.message" :type="alert.color" fixed notimer />
         </ColumnUi>
         <ColumnUi>
-            <InputUi @inputChange="setChanges" label="Nome:" name="first_name" type="text"
+            <InputUi ref="first_name" @inputChange="setChanges" label="Nome:" name="first_name" type="text"
                 :value="first_name" />
         </ColumnUi>
 
         <ColumnUi>
-            <InputUi @inputChange="setChanges" label="Sobrenome:" name="last_name"
+            <InputUi ref="last_name" @inputChange="setChanges" label="Sobrenome:" name="last_name"
                 type="text" :value="last_name" />
         </ColumnUi>
 
         <ColumnUi>
-            <InputUi @inputChange="setChanges" label="Usuário:" name="username"
+            <InputUi ref="username" @inputChange="setChanges" label="Usuário:" name="username"
                 type="text" :value="username" />
         </ColumnUi>
 
         <ColumnUi>
-            <SelectUi @selectChange="setChanges" label="Gênero:" name="gender" :value="0"
+            <SelectUi ref="gender" @selectChange="setChanges" label="Gênero:" name="gender" :value="0"
                 :options="[
                 {value:0, text:'Selecione'},
                 {value:1, text:'Masculino'},
@@ -29,17 +29,17 @@
         </ColumnUi>
 
         <ColumnUi basis="basis-full">
-            <InputUi @inputChange="setChanges" label="Email:" name="email" type="email"
+            <InputUi ref="email" @inputChange="setChanges" label="Email:" name="email" type="email"
                 :value="email" />
         </ColumnUi>
 
         <ColumnUi>
-            <InputUi @inputChange="setChanges" label="Senha:" name="password"
+            <InputUi ref="password" @inputChange="setChanges" label="Senha:" name="password"
                 type="password" :value="password" />
         </ColumnUi>
 
         <ColumnUi>
-            <InputUi @inputChange="setChanges" label="Confirmar senha:"
+            <InputUi ref="password_confirmation" @inputChange="setChanges" label="Confirmar senha:"
                 name="password_confirmation" type="password"
                 :value="password_confirmation" />
         </ColumnUi>
@@ -61,6 +61,7 @@ import RowUi from '@/components/Layout/Grid/RowUi.vue';
 import ColumnUi from '@/components/Layout/Grid/ColumnUi.vue';
 import SelectUi from '@/components/Ui/Form/SelectUi.vue';
 import AlertUi from '@/components/Ui/AlertUi.vue';
+import formErrors from '@/utils/form-errors';
 
 export default {
     name: "RegisterView",
@@ -98,6 +99,8 @@ export default {
                 password: this.password,
                 password_confirmation: this.password_confirmation,
             };
+
+            formErrors.clearErrors(this);
 
             this.alert.message = "Submissão do formulário de cadastro ainda não foi implementado!";
             this.alert.color = 'warning';
