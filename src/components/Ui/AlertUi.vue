@@ -1,18 +1,17 @@
 <template>
 
-    <Transition @after-leave="closeAlertAfter" enter-from-class="opacity-0"
+    <Transition @after-leave="closeAfter" enter-from-class="opacity-0"
         enter-active-class="duration-500" enter-to-class="opacity-100"
         leave-from-class="opacity-100" leave-active-class="duration-500"
         leave-to-class="opacity-0">
         <div v-if="alertMessage" v-show="visible"
             :class="[{'fixed z-50 top-5 right-0 px-5': !fixed, 'relative': fixed}, '']"
             :style="[{'width: 100%; max-width: 275px;': !fixed}]">
-            <div class="flex items-center shadow-md text-sm"
-                :class="alertStyle">
+            <div class="flex items-center shadow-md text-sm" :class="alertStyle">
                 <div class="py-3 pl-5 pr-3 lg:py-2 lg:pl-4 lg:pr-3 w-full">
                     <span>{{ alertMessage }}</span>
                 </div>
-                <button @click="closeAlert" class="text-xl pl-2 pr-3 py-0" type="button">
+                <button @click="close" class="text-xl pl-2 pr-3 py-0" type="button">
                     <IconUi icon-name="x" />
                 </button>
             </div>
@@ -23,7 +22,7 @@
 
 <script>
 
-let alerts = {
+let variants = {
     default: 'bg-gray-300 border border-gray-400 text-gray-600',
     success: 'bg-green-50 border border-green-300 text-green-900',
     danger: 'bg-red-50 border border-red-300 text-red-900',
@@ -42,13 +41,17 @@ export default {
             visible: null,
             timerHandler: null,
             timerTime: 10,
-            alertColorStyle: 'default',
+            alertVariant: 'default',
             alertMessage: null
         };
     },
 
+    mounted() {
+        this.showFlash();
+    },
+
     props: {
-        type: { type: String, default: 'default' },
+        variant: { type: String, default: 'default' },
         message: { type: String, default: null },
         fixed: { type: Boolean, default: false },
         notimer: { type: Boolean, default: false }
@@ -56,7 +59,7 @@ export default {
 
     computed: {
         alertStyle() {
-            return alerts[this.alertColorStyle] ?? alerts['default'];
+            return variants[this.alertVariant] ?? variants['default'];
         }
     },
 
@@ -64,28 +67,46 @@ export default {
         message: {
             immediate: true,
             handler(nv) {
-                if (nv)
-                    this.addMessage();
+                if (nv) this.add(nv, this.variant);
             },
             deep: true,
         },
     },
 
     methods: {
-        addMessage() {
-            this.alertColorStyle = this.type;
-            this.alertMessage = this.message;
-
-            this.showAlert();
+        flash(message, variant) {
+            this.add(message, variant, true);
         },
-        showAlert() {
+        add(message, variant, flash = false) {
+            if (!flash) {
+                this.alertMessage = message;
+                this.alertVariant = variant;
+                this.show();
+            } else {
+                sessionStorage.setItem("alert_flash", JSON.stringify({
+                    alertMessage: message,
+                    alertVariant: variant
+                }));
+            }
+
+        },
+        show() {
             if (!this.visible) {
                 this.visible = true;
-                this.timerHandler = this.timerAlert();
+                this.timerHandler = this.timer();
                 this.$emit("alertShow", this);
             }
         },
-        closeAlert() {
+        showFlash() {
+            let flash = sessionStorage.getItem("alert_flash");
+
+            if (flash) {
+                flash = JSON.parse(flash);
+                this.add(flash.alertMessage, flash.alertVariant);
+                sessionStorage.removeItem("alert_flash");
+            }
+        },
+        close() {
             if (this.visible) {
                 this.visible = false;
 
@@ -97,16 +118,16 @@ export default {
                 this.$emit("alertClose", this);
             }
         },
-        timerAlert() {
+        timer() {
             if (this.notimer) {
                 return null;
             }
 
             return setTimeout(() => {
-                this.closeAlert();
+                this.close();
             }, this.timerTime * 1000);
         },
-        closeAlertAfter() {
+        closeAfter() {
             this.alertMessage = null;
             this.$emit('alertCloseAfter', this);
         }
