@@ -123,7 +123,7 @@ export default {
 
 .sidebar-nav-item:hover,
 .sidebar-nav-item-active,
-.router-link-exact-active {
+.sidebar-nav-item.router-link-exact-active {
     @apply bg-gray-800 text-gray-200 pl-4;
 }
 </style>
