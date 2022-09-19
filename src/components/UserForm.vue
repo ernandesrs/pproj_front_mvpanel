@@ -6,19 +6,19 @@
                 <AlertUi ref="alert" class="mb-5" fixed notimer />
             </ColumnUi>
             <ColumnUi>
-                <InputUi ref="first_name" label="Nome:" :value="this.user.first_name"
+                <InputUi ref="first_name" label="Nome:" :value="this.user?.first_name"
                     name="first_name" />
             </ColumnUi>
             <ColumnUi>
-                <InputUi ref="last_name" label="Sobrenome:" :value="this.user.last_name"
+                <InputUi ref="last_name" label="Sobrenome:" :value="this.user?.last_name"
                     name="last_name" />
             </ColumnUi>
             <ColumnUi>
-                <InputUi ref="username" label="Usuário:" :value="this.user.username"
+                <InputUi ref="username" label="Usuário:" :value="this.user?.username"
                     name="username" />
             </ColumnUi>
             <ColumnUi>
-                <SelectUi ref="gender" label="Gênero:" :value="this.user.gender ?? 0"
+                <SelectUi ref="gender" label="Gênero:" :value="this.user?.gender ?? 0"
                     :options="[
                         {value: 0, text: 'Não definido'},
                         {value: 1, text: 'Masculino'},
@@ -26,10 +26,10 @@
                     ]" name="gender" />
             </ColumnUi>
             <ColumnUi basis="basis-full">
-                <InputUi ref="email" label="Email:" :value="this.user.email" type="email"
-                    name="email" :disabled="this.user.email?true:false" />
+                <InputUi ref="email" label="Email:" :value="this.user?.email" type="email"
+                    name="email" :disabled="this.user?.email?true:false" />
             </ColumnUi>
-            <ColumnUi v-if="this.user.id" basis="basis-full">
+            <ColumnUi v-if="this.user?.id" basis="basis-full">
                 <InputUi ref="photo" label="Foto:" type="file" name="photo" />
             </ColumnUi>
             <ColumnUi>
@@ -41,8 +41,7 @@
             </ColumnUi>
             <ColumnUi basis="basis-full">
                 <div class="text-center">
-                    <ButtonUi
-                        :text="actionType=='create'?'Salvar usuário':'Atualizar dados'"
+                    <ButtonUi :text="this.user?'Atualizar dados':'Salvar usuário'"
                         variant="dark" icon="checkLg" type="submit" rounded />
                 </div>
             </ColumnUi>
@@ -70,7 +69,7 @@ export default {
     data() {
         return {
             loading: false,
-            user: {},
+            user: null,
             alert: {}
         };
     },
@@ -78,15 +77,14 @@ export default {
     props: {
         userData: { type: Object, default: null },
         urlAction: { type: String, default: null },
-        successMessage: { type: String, default: "Sucesso!" },
-        actionType: { type: String, default: 'create' }
+        successMessage: { type: String, default: "Sucesso!" }
     },
 
     watch: {
         userData: {
             immediate: true,
             handler(nv) {
-                this.user = nv ?? {};
+                this.user = nv ?? null;
             },
             deep: true
         }
@@ -100,14 +98,16 @@ export default {
             FormErrors.clearErrors(this);
 
             axios.axios.post(this.urlAction, data).then((resp) => {
-                this.user = resp.data.user;
 
-                if (this.actionType == "create") {
+                if (!this.user) {
                     this.$refs.alert.flash(this.successMessage, "success");
-                    this.$router.push({ name: 'panel.users.edit', params: { user_id: this.user.id } });
+                    this.$router.push({ name: 'panel.users.edit', params: { user_id: resp.data.user.id } });
                     return;
                 }
 
+                if (resp.data.user.id == this.$store.state.user_module.authUser.id)
+                    this.$store.commit("user_module/storeAuthUser", resp.data.user);
+                else this.user = resp.data.user;
                 this.$refs.alert.add(this.successMessage, "success");
             }).catch((resp) => {
                 let errors = resp?.response?.data?.errors;
