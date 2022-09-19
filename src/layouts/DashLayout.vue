@@ -206,7 +206,6 @@ export default {
     mounted() {
         this.windowResized();
         window.addEventListener("resize", this.windowResized);
-        console.log(this.$route);
     },
 
     watch: {
