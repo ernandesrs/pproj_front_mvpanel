@@ -65,7 +65,7 @@
 
             <ColumnUi basis="basis-full sm:basis-2/3">
                 <UserForm :url-action="urlAction" :success-message="successMessage"
-                    :user-data="user" action="update" />
+                    :user-data="user" action-type="update" />
             </ColumnUi>
         </RowUi>
     </div>

@@ -8,7 +8,7 @@
             </ColumnUi>
             <ColumnUi>
                 <InputUi ref="first_name" label="Nome:" :value="this.user.first_name"
-                    name="first_name" :invalid="errors.first_name" />
+                    name="first_name" />
             </ColumnUi>
             <ColumnUi>
                 <InputUi ref="last_name" label="Sobrenome:" :value="this.user.last_name"
@@ -19,11 +19,12 @@
                     name="username" />
             </ColumnUi>
             <ColumnUi>
-                <SelectUi ref="gender" label="Gênero:" :value="this.user.gender ?? 0" :options="[
-                    {value: 0, text: 'Não definido'},
-                    {value: 1, text: 'Masculino'},
-                    {value: 2, text: 'Feminino'},
-                ]" name="gender" />
+                <SelectUi ref="gender" label="Gênero:" :value="this.user.gender ?? 0"
+                    :options="[
+                        {value: 0, text: 'Não definido'},
+                        {value: 1, text: 'Masculino'},
+                        {value: 2, text: 'Feminino'},
+                    ]" name="gender" />
             </ColumnUi>
             <ColumnUi basis="basis-full">
                 <InputUi ref="email" label="Email:" :value="this.user.email" type="email"
@@ -73,14 +74,6 @@ export default {
             alert: {
                 color: null,
                 message: null,
-            },
-            errors: {
-                first_name: false,
-                last_name: false,
-                username: false,
-                email: false,
-                password: false,
-                password_confirmation: false,
             }
         };
     },
@@ -89,7 +82,7 @@ export default {
         userData: { type: Object, default: null },
         urlAction: { type: String, default: null },
         successMessage: { type: String, default: "Sucesso!" },
-        action: { type: String, default: 'create' }
+        actionType: { type: String, default: 'create' }
     },
 
     watch: {
@@ -112,7 +105,7 @@ export default {
             axios.axios.post(this.urlAction, data).then((resp) => {
                 this.user = resp.data.user;
 
-                if (this.action == "create") {
+                if (this.actionType == "create") {
                     this.$router.push({ name: 'panel.users.edit', params: { user_id: this.user.id } });
                     return;
                 }
