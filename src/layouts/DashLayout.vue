@@ -159,6 +159,7 @@ export default {
                         title: 'Mais componentes',
                         href: '#',
                         icon: 'layoutWtf',
+                        activeIn: ['panel.components.alerts', 'panel.components.cards', 'panel.components.buttons', 'panel.components.forms', 'index'],
                         subnav: [
                             {
                                 id: 40,
@@ -205,6 +206,7 @@ export default {
     mounted() {
         this.windowResized();
         window.addEventListener("resize", this.windowResized);
+        console.log(this.$route);
     },
 
     watch: {

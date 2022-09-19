@@ -64,19 +64,24 @@ export default {
     name: "NavItemUi",
     components: { IconUi },
 
-    props: {
-        item: {
-            type: Object,
-            default: null
-        },
-    },
-
     data() {
         return {
             visible: false,
             navItemClass: 'w-full hover:bg-gray-800 text-gray-400 hover:text-gray-200 px-2 py-2 hover:pl-4 duration-300 mb-1 cursor-pointer',
             navItemActive: 'bg-gray-800 pl-4',
         };
+    },
+
+    created() {
+        if (this.item.activeIn && this.item.activeIn.includes(this.$route.name))
+            this.visible = true;
+    },
+
+    props: {
+        item: {
+            type: Object,
+            default: null
+        },
     },
 
     computed: {
