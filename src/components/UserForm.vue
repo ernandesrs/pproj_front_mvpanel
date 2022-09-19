@@ -41,7 +41,8 @@
             </ColumnUi>
             <ColumnUi basis="basis-full">
                 <div class="text-center">
-                    <ButtonUi :text="action=='create'?'Salvar usuário':'Atualizar dados'"
+                    <ButtonUi
+                        :text="actionType=='create'?'Salvar usuário':'Atualizar dados'"
                         variant="dark" icon="checkLg" type="submit" rounded />
                 </div>
             </ColumnUi>
@@ -50,6 +51,7 @@
 </template>
 
 <script>
+
 import RowUi from './Layout/Grid/RowUi.vue';
 import LoadingUi from './Ui/LoadingUi.vue';
 import ColumnUi from './Layout/Grid/ColumnUi.vue';
@@ -101,6 +103,7 @@ export default {
                 this.user = resp.data.user;
 
                 if (this.actionType == "create") {
+                    this.$refs.alert.flash(this.successMessage, "success");
                     this.$router.push({ name: 'panel.users.edit', params: { user_id: this.user.id } });
                     return;
                 }

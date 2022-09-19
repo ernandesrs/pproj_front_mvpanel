@@ -5,8 +5,7 @@
         leave-from-class="opacity-100" leave-active-class="duration-500"
         leave-to-class="opacity-0">
         <div v-if="alertMessage" v-show="visible"
-            :class="[{'fixed z-50 top-5 right-0 px-5': !fixed, 'relative': fixed}, '']"
-            :style="[{'width: 100%; max-width: 275px;': !fixed}]">
+            :class="[{'float-alert': !fixed, 'fixed-alert': fixed}]">
             <div class="flex items-center shadow-md text-sm" :class="alertStyle">
                 <div class="py-3 pl-5 pr-3 lg:py-2 lg:pl-4 lg:pr-3 w-full">
                     <span>{{ alertMessage }}</span>
@@ -21,14 +20,6 @@
 </template>
 
 <script>
-
-let variants = {
-    default: 'bg-gray-300 border border-gray-400 text-gray-600',
-    success: 'bg-green-50 border border-green-300 text-green-900',
-    danger: 'bg-red-50 border border-red-300 text-red-900',
-    info: 'bg-blue-50 border border-blue-300 text-blue-900',
-    warning: 'bg-yellow-50 border border-yellow-300 text-yellow-900',
-};
 
 import IconUi from './IconUi.vue';
 
@@ -59,7 +50,7 @@ export default {
 
     computed: {
         alertStyle() {
-            return variants[this.alertVariant] ?? variants['default'];
+            return `alert-${this.alertVariant}`;
         }
     },
 
@@ -135,3 +126,34 @@ export default {
 };
 
 </script>
+
+<style>
+.fixed-alert {
+    @apply relative;
+}
+
+.float-alert {
+    @apply fixed z-50 top-5 right-0 px-5 w-full;
+    max-width: 375px;
+}
+
+.alert-default {
+    @apply bg-gray-300 border border-gray-400 text-gray-600;
+}
+
+.alert-success {
+    @apply bg-green-50 border border-green-300 text-green-900;
+}
+
+.alert-danger {
+    @apply bg-red-50 border border-red-300 text-red-900;
+}
+
+.alert-info {
+    @apply bg-blue-50 border border-blue-300 text-blue-900;
+}
+
+.alert-warning {
+    @apply bg-yellow-50 border border-yellow-300 text-yellow-900;
+}
+</style>

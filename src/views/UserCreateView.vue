@@ -37,7 +37,7 @@ export default {
         },
 
         successMessage() {
-            return `Um novo usuário foi criado com sucesso! Um email de verificação foi enviado para o email informado.`;
+            return `Um novo usuário foi criado com sucesso! Um link de verificação foi enviado para o email informado.`;
         },
     },
 };
