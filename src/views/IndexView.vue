@@ -3,7 +3,7 @@
 	<SectionUi>
 		<RowUi basis="basis-full sm:basis-1/2 xl:basis-1/3">
 			<ColumnUi>
-				<CardUi icon-name="users" title="Usuários">
+				<CardUi icon-name="users" title="Usuários" shadow borderless>
 					<ButtonUi variant="success" :text="usersTotal" size="sm" rounded
 						class="mr-1 my-1" />
 					<ButtonUi variant="info" :text="usersVerified" size="sm" rounded

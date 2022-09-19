@@ -5,19 +5,19 @@
         <RowUi basis="basis-full sm:basis-1/2 lg:basis-1/3">
             <ColumnUi>
                 <CardUi>
-                    <p>OPA 1</p>
+                    <p>COM BORDA</p>
                 </CardUi>
             </ColumnUi>
 
             <ColumnUi>
-                <CardUi>
-                    <p>OPA <span class="text-red-500">2</span></p>
+                <CardUi shadow borderless>
+                    <p>SOMBREADO SEM BORDA</p>
                 </CardUi>
             </ColumnUi>
 
             <ColumnUi>
-                <CardUi>
-                    <p>OPA <span class="text-green-500 font-bold">3</span></p>
+                <CardUi borderless>
+                    <p>SEM BORDA</p>
                 </CardUi>
             </ColumnUi>
         </RowUi>
@@ -27,7 +27,7 @@
         <h2 class="pb-2 font-semibold">Cards com ícone e título</h2>
         <RowUi basis="basis-full sm:basis-1/2 lg:basis-1/3">
             <ColumnUi>
-                <CardUi icon-name="pieChart" title="Título #1">
+                <CardUi icon-name="pieChart" title="Título #1" borderless shadow>
                     <div class="flex flex-wrap pt-3">
                         <ButtonUi variant="dark" text="Botão #1" icon="app" size="sm"
                             rounded />
@@ -39,7 +39,7 @@
             </ColumnUi>
 
             <ColumnUi>
-                <CardUi icon-name="layoutWtf" title="Título #2">
+                <CardUi icon-name="layoutWtf" title="Título #2" borderless shadow>
                     <div class="flex flex-wrap pt-3">
                         <a class="mr-2" href="#">Lorem ipsum</a>
                         <a class="mr-2" href="#">Dolor lorem</a>
@@ -48,7 +48,7 @@
             </ColumnUi>
 
             <ColumnUi>
-                <CardUi icon-name="app" title="Título #3">
+                <CardUi icon-name="app" title="Título #3" borderless shadow>
                     <div class="flex flex-wrap pt-3">
                         <a class="mr-2" href="#">Lorem ipsum</a>
                         <a class="mr-2" href="#">Dolor lorem</a>
