@@ -1,8 +1,8 @@
 <template>
 
-    <Component @click.stop.prevent="subnavToggler" :is="tag" :to="item.to" :href="item.href"
-        :title="item.title" :target="item.target"
-        :class="['sidebar-nav-item', subitems && subnavVisible ? 'sidebar-nav-item-active' : null]">
+    <Component @click.stop.prevent="navItemClick" :is="tag" :to="item.to"
+        :href="item.href" :title="item.title" :target="item.target"
+        :class="['sidebar-nav-item', {'sidebar-nav-item-active': this.item.activeIn && this.item.activeIn.includes(this.$route.name)}]">
         <div class="flex items-center">
             <IconUi v-if="item.icon" :iconName="item.icon" />
 
@@ -17,7 +17,7 @@
     </Component>
 
     <nav v-if="subitems" v-show="subnavVisible" class="sidebar-subnav">
-        <NavItemUi v-for="sitem in subitems" v-bind:key="sitem.id" :item="sitem" />
+        <NavItemUi v-for="sitem in subitems" v-bind:key="sitem.text" :item="sitem" />
     </nav>
 
 </template>
@@ -34,11 +34,6 @@ export default {
         return {
             subnavVisible: false,
         };
-    },
-
-    created() {
-        if (this.item.activeIn && this.item.activeIn.includes(this.$route.name))
-            this.subnavVisible = true;
     },
 
     props: {
@@ -66,9 +61,10 @@ export default {
     },
 
     methods: {
-        subnavToggler() {
-            this.subnavVisible = !this.subnavVisible;
-        },
+        navItemClick() {
+            if (this.subitems)
+                this.subnavVisible = !this.subnavVisible;
+        }
     },
 };
 

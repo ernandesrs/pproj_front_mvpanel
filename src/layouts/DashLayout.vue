@@ -139,7 +139,6 @@ export default {
             nav: {
                 dashboard: [
                     {
-                        id: 1,
                         text: 'Visão geral',
                         title: 'Visão geral do dashboard',
                         to: { name: 'panel.index' },
@@ -152,9 +151,9 @@ export default {
                         to: { name: 'panel.users.index' },
                         target: '_self',
                         icon: 'users',
+                        activeIn: ['panel.users.index', 'panel.users.create', 'panel.users.edit'],
                     },
                     {
-                        id: 3,
                         text: 'Componentes',
                         title: 'Mais componentes',
                         href: '#',
@@ -162,35 +161,30 @@ export default {
                         activeIn: ['panel.components.alerts', 'panel.components.cards', 'panel.components.buttons', 'panel.components.forms', 'index'],
                         subnav: [
                             {
-                                id: 40,
                                 text: 'Início',
                                 title: '',
                                 to: { name: 'panel.components.index' },
                                 target: '_self',
                             },
                             {
-                                id: 4,
                                 text: 'Alertas',
                                 title: '',
                                 to: { name: 'panel.components.alerts' },
                                 target: '_self',
                             },
                             {
-                                id: 1,
                                 text: 'Cards',
                                 title: '',
                                 to: { name: 'panel.components.cards' },
                                 target: '_self',
                             },
                             {
-                                id: 2,
                                 text: 'Botões',
                                 title: '',
                                 to: { name: 'panel.components.buttons' },
                                 target: '_self',
                             },
                             {
-                                id: 3,
                                 text: 'Formulários',
                                 title: '',
                                 to: { name: 'panel.components.forms' },
