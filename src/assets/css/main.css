@@ -27,7 +27,8 @@ body {
     @apply text-gray-600;
 }
 
-button span, a span {
+button span,
+a span {
     pointer-events: none;
 }
 
@@ -43,10 +44,42 @@ a:hover {
     @apply mx-auto px-2 sm:px-3 md:px-4 xl:px-5 py-2;
 }
 
-.auth-nav > a:hover {
+.auth-nav>a:hover {
     @apply text-gray-600;
 }
 
-.auth-nav > .router-link-active {
+.auth-nav>.router-link-active {
     @apply bg-white text-gray-600 rounded-t-sm;
+}
+
+/*
+ * animações
+ */
+.animation-bounce {
+    animation: bounce 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    transform: translate3d(0, 0, 0);
+}
+
+@keyframes bounce {
+
+    10%,
+    90% {
+        transform: translate3d(0, -1px, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(0, 2px, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(0, -4px, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(0, 4px, 0);
+    }
 }

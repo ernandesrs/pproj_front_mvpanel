@@ -1,11 +1,12 @@
 <template>
 
-    <Transition @after-leave="closeAfter" enter-from-class="opacity-0"
+    <Transition @enter="onEnter" @after-enter="afterEnter" @before-leave="beforeLeave"
+        @after-leave="afterLeave" enter-from-class="opacity-0"
         enter-active-class="duration-500" enter-to-class="opacity-100"
         leave-from-class="opacity-100" leave-active-class="duration-500"
         leave-to-class="opacity-0">
         <div v-if="alertMessage" v-show="visible"
-            :class="[{'float-alert': !fixed, 'fixed-alert': fixed}]">
+            :class="[{'float-alert': !fixed, 'fixed-alert': fixed}, animation]">
             <div class="flex items-center shadow-md text-sm" :class="alertStyle">
                 <div class="py-3 pl-5 pr-3 lg:py-2 lg:pl-4 lg:pr-3 w-full">
                     <span>{{ alertMessage }}</span>
@@ -33,7 +34,8 @@ export default {
             timerHandler: null,
             timerTime: 10,
             alertVariant: 'default',
-            alertMessage: null
+            alertMessage: null,
+            animation: null
         };
     },
 
@@ -118,7 +120,23 @@ export default {
                 this.close();
             }, this.timerTime * 1000);
         },
-        closeAfter() {
+
+        // Transition hooks
+        onEnter() {
+            this.animation = "animation-bounce";
+        },
+
+        afterEnter() {
+            this.animation = null;
+        },
+
+        beforeLeave() {
+            this.animation = "animation-bounce";
+        },
+
+        afterLeave() {
+            this.animation = null;
+
             this.alertMessage = null;
             this.$emit('alertCloseAfter', this);
         }
