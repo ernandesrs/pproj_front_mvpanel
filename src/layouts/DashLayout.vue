@@ -105,14 +105,8 @@
 
 <script>
 
-import BackdropUi from '@/components/Ui/BackdropUi.vue';
-import SidebarElemUi from '@/components/Layout/Sidebar/SidebarElemUi.vue';
-import SidebarHeaderUi from '@/components/Layout/Sidebar/SidebarHeaderUi.vue';
-import DropdownUi from '@/components/Ui/Dropdown/DropdownUi.vue';
-import ButtonUi from '@/components/Ui/ButtonUi.vue';
-import axios from '@/services/axios';
-import DropdownSeparatorUi from '@/components/Ui/Dropdown/DropdownSeparatorUi.vue';
-import cookie from '@/services/cookie';
+// TAILWIND CSS MD BREAK POINT VALUE
+let MIN_WIDTH = 768;
 
 let sidebarMobileClass = "sidebar-mobile";
 let contentMobileClass = "content-mobile";
@@ -121,9 +115,14 @@ let sidebarDesktopClass = "sidebar-desktop";
 let contentDesktopClass = "content-desktop";
 let contentDesktopWoSidebarClass = "content-desktop-wosidebar";
 
-// TAILWIND CSS MD BREAK POINT VALUE
-let MIN_WIDTH = 768;
-
+import BackdropUi from '@/components/Ui/BackdropUi.vue';
+import SidebarElemUi from '@/components/Layout/Sidebar/SidebarElemUi.vue';
+import SidebarHeaderUi from '@/components/Layout/Sidebar/SidebarHeaderUi.vue';
+import DropdownUi from '@/components/Ui/Dropdown/DropdownUi.vue';
+import ButtonUi from '@/components/Ui/ButtonUi.vue';
+import axios from '@/services/axios';
+import DropdownSeparatorUi from '@/components/Ui/Dropdown/DropdownSeparatorUi.vue';
+import cookie from '@/services/cookie';
 export default {
     name: 'DashLayout',
     components: { BackdropUi, SidebarElemUi, SidebarHeaderUi, DropdownUi, ButtonUi, DropdownSeparatorUi },
@@ -158,7 +157,7 @@ export default {
                         title: 'Mais componentes',
                         href: '#',
                         icon: 'layoutWtf',
-                        activeIn: ['panel.components.alerts', 'panel.components.cards', 'panel.components.buttons', 'panel.components.forms', 'index'],
+                        activeIn: ['panel.components.alerts', 'panel.components.cards', 'panel.components.buttons', 'panel.components.forms', 'panel.components.index'],
                         subnav: [
                             {
                                 text: 'Início',
@@ -262,3 +261,30 @@ export default {
 };
 
 </script>
+
+<style>
+.sidebar {
+    @apply bg-gray-900 w-full z-40 h-screen overflow-y-auto;
+}
+
+.sidebar-mobile {
+    @apply fixed z-50 w-full;
+    max-width: 275px;
+}
+
+.content-mobile {
+    @apply col-span-12;
+}
+
+.sidebar-desktop {
+    @apply relative col-span-3 xl:col-span-2;
+}
+
+.content-desktop {
+    @apply overflow-y-auto md:col-span-9 xl:col-span-10;
+}
+
+.content-desktop-wosidebar {
+    @apply overflow-y-auto col-span-12;
+}
+</style>

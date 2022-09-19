@@ -43,32 +43,6 @@ a:hover {
     @apply mx-auto px-2 sm:px-3 md:px-4 xl:px-5 py-2;
 }
 
-.sidebar {
-    @apply bg-gray-900 w-full z-40 h-screen overflow-y-auto;
-}
-
-.sidebar-mobile {
-    @apply fixed z-50;
-    width: 100%;
-    max-width: 275px;
-}
-
-.content-mobile {
-    @apply col-span-12;
-}
-
-.sidebar-desktop {
-    @apply relative col-span-3 xl:col-span-2;
-}
-
-.content-desktop {
-    @apply overflow-y-auto md:col-span-9 xl:col-span-10;
-}
-
-.content-desktop-wosidebar {
-    @apply overflow-y-auto col-span-12;
-}
-
 .auth-nav > a:hover {
     @apply text-gray-600;
 }
