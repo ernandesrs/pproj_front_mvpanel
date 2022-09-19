@@ -3,8 +3,7 @@
         <RowUi basis="basis-full lg:basis-1/2">
             <LoadingUi v-if="loading" />
             <ColumnUi class="p-0" basis="basis-full">
-                <AlertUi @alertClose="alert.message = null" class="mb-5"
-                    :message="alert.message" :type="alert.color" fixed notimer />
+                <AlertUi ref="alert" class="mb-5" fixed notimer />
             </ColumnUi>
             <ColumnUi>
                 <InputUi ref="first_name" label="Nome:" :value="this.user.first_name"
@@ -51,7 +50,6 @@
 </template>
 
 <script>
-
 import RowUi from './Layout/Grid/RowUi.vue';
 import LoadingUi from './Ui/LoadingUi.vue';
 import ColumnUi from './Layout/Grid/ColumnUi.vue';
@@ -61,7 +59,7 @@ import SelectUi from './Ui/Form/SelectUi.vue';
 import axios from '@/services/axios';
 import messages from '@/utils/messages';
 import AlertUi from './Ui/AlertUi.vue';
-import FormErrors from "@/utils/form-errors";
+import FormErrors from '@/utils/form-errors';
 
 export default {
     name: 'UserForm',
@@ -71,10 +69,7 @@ export default {
         return {
             loading: false,
             user: {},
-            alert: {
-                color: null,
-                message: null,
-            }
+            alert: {}
         };
     },
 
@@ -110,25 +105,19 @@ export default {
                     return;
                 }
 
-                this.alert.message = this.successMessage;
-                this.alert.color = "info";
+                this.$refs.alert.add(this.successMessage, "success");
             }).catch((resp) => {
                 let errors = resp?.response?.data?.errors;
 
                 if (errors) {
-                    // backend retornou erros ocorridos no formulário: listar os erros
                     let arrErrors = (Object.values(errors)).map(error => error[0]);
 
                     FormErrors.setErrors(this, errors);
-
-                    this.alert.message = arrErrors.join(" ");
-                    this.alert.color = "warning";
+                    this.$refs.alert.add(arrErrors.join(" "), "warning");
                 } else {
-                    // houve outros tipo de erros
                     let errorCode = resp?.response?.data?.error ?? "DefaultMessage";
 
-                    this.alert.message = messages[errorCode] ?? messages["DefaultMessage"];
-                    this.alert.color = "danger";
+                    this.$refs.alert.add(messages[errorCode] ?? messages["DefaultMessage"], "danger");
                 }
             }).finally(() => {
                 this.loading = false;
