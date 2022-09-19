@@ -1,58 +1,24 @@
 <template>
 
-    <template v-if="!subitems">
-        <Component :is="tag" :to="item.to" :href="item.href" :title="item.title"
-            :target="item.target" class="sidebar-nav-item">
-            <div class="flex items-center">
-                <!-- default icon -->
-                <svg v-if="!item.icon" class="sidebar-nav-default-icon" fill="none"
-                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                </svg>
-                <!-- /default icon -->
+    <Component @click.stop.prevent="subnavToggler" :is="tag" :to="item.to" :href="item.href"
+        :title="item.title" :target="item.target"
+        :class="['sidebar-nav-item', subitems && subnavVisible ? 'sidebar-nav-item-active' : null]">
+        <div class="flex items-center">
+            <IconUi v-if="item.icon" :iconName="item.icon" />
 
-                <!-- custom icon -->
-                <IconUi v-else :iconName="item.icon" />
-                <!-- /custom icon -->
+            <svg v-else class="sidebar-nav-default-icon" fill="none" viewBox="0 0 24 24"
+                stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
 
-                <span class="pl-2">{{ item.text }}</span>
-            </div>
-        </Component>
-    </template>
+            <span class="pl-2">{{ item.text }}</span>
+        </div>
+    </Component>
 
-    <template v-else>
-        <Component @click.stop.prevent="toggler" :is="tag" :title="item.title"
-            :class="['sidebar-nav-item', visible ? 'sidebar-nav-item-active' : null]">
-            <div class="flex items-center">
-                <!-- default icon -->
-                <template v-if="!item.icon">
-                    <svg v-if="!visible" class="sidebar-nav-default-icon" fill="none"
-                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                    </svg>
-
-                    <svg v-else class="sidebar-nav-default-icon" fill="none"
-                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                    </svg>
-                </template>
-                <!-- /default icon -->
-
-                <!-- custom icon -->
-                <IconUi v-else :iconName="item.icon" />
-                <!-- /custom icon -->
-
-                <span class="pl-2">{{ item.text }}</span>
-            </div>
-        </Component>
-
-        <nav v-show="visible" class="sidebar-subnav">
-            <NavItemUi v-for="it in subitems" v-bind:key="it.id" :item="it" />
-        </nav>
-    </template>
+    <nav v-if="subitems" v-show="subnavVisible" class="sidebar-subnav">
+        <NavItemUi v-for="sitem in subitems" v-bind:key="sitem.id" :item="sitem" />
+    </nav>
 
 </template>
 
@@ -66,13 +32,13 @@ export default {
 
     data() {
         return {
-            visible: false,
+            subnavVisible: false,
         };
     },
 
     created() {
         if (this.item.activeIn && this.item.activeIn.includes(this.$route.name))
-            this.visible = true;
+            this.subnavVisible = true;
     },
 
     props: {
@@ -100,8 +66,8 @@ export default {
     },
 
     methods: {
-        toggler() {
-            this.visible = !this.visible;
+        subnavToggler() {
+            this.subnavVisible = !this.subnavVisible;
         },
     },
 };
