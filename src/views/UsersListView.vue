@@ -18,7 +18,7 @@
         <LoadingUi v-if="loading" />
 
         <AlertUi @alertClose="alert.message = null" class="mb-5" :message="alert.message"
-            :type="alert.variant" />
+            :variant="alert.variant" />
 
         <ListItemUi v-for="user in users" v-bind:key="user"
             :image-thumb="user.thumb_small">
@@ -110,8 +110,6 @@ export default {
                 this.users = resp.data.users;
                 this.pagination.pages = Array.from({ length: resp.data.pagination.last_page }, (_, i) => i + 1);
                 this.pagination.current = resp.data.pagination.current_page;
-            }).catch((resp) => {
-                console.log(resp);
             });
         },
 
