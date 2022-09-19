@@ -3,8 +3,7 @@
         <LoadingUi v-if="loading" />
 
         <ColumnUi class="p-0">
-            <AlertUi @alertClose="alert.message = null" class="mb-5"
-                :message="alert.message" :type="alert.color" fixed notimer />
+            <AlertUi ref="alert" class="mb-5" fixed notimer />
         </ColumnUi>
 
         <ColumnUi>
@@ -50,10 +49,6 @@ export default {
             password: null,
             remember_me: false,
             loading: false,
-            alert: {
-                message: null,
-                color: null,
-            }
         };
     },
 
@@ -71,7 +66,6 @@ export default {
             };
 
             this.loading = true;
-            this.resetMessage();
             formErrors.clearErrors(this);
 
             axios.axios.post("/auth/login", data).then((response) => {
@@ -79,36 +73,23 @@ export default {
 
                 cookie.setToken(token);
                 this.$store.commit("user_module/storeAuthUser", response.data.user);
-
+                this.$refs.alert.flash(`Olá ${response.data.user.first_name}, muito bem vindo(a) novamente!`, "info");
                 this.$router.push({ name: "panel.index" });
             }).catch((response) => {
                 let errors = response?.response?.data?.errors;
 
                 if (errors) {
                     let arrErrors = Object.values(errors);
-                    this.addMessage((arrErrors.map((item) => item[0])).join(" "), "danger");
+                    this.$refs.alert.add((arrErrors.map((item) => item[0])).join(" "), "danger");
                     formErrors.setErrors(this, errors);
                 } else {
                     let errorCode = response?.response?.data?.error;
-                    this.addMessage(errorCode ? messages[errorCode] : messages["DefaultMessage"], "danger");
+                    this.$refs.alert.add(errorCode ? messages[errorCode] : messages["DefaultMessage"], "danger");
                 }
             }).finally(() => {
                 this.loading = false;
             });
         },
-
-        addMessage(message, style) {
-            this.alert.message = message;
-            this.alert.color = style;
-        },
-
-        resetMessage() {
-            this.alert.message = null;
-            this.alert.color = null;
-        }
-    },
-
-    watch: {
     },
 };
 

@@ -94,6 +94,7 @@
             <!-- main -->
             <main class="bg-gray-50 py-3">
                 <div class="my-container relative">
+                    <AlertUi ref="alert" class="mb-5" />
                     <RouterView />
                 </div>
             </main>
@@ -123,9 +124,11 @@ import ButtonUi from '@/components/Ui/ButtonUi.vue';
 import axios from '@/services/axios';
 import DropdownSeparatorUi from '@/components/Ui/Dropdown/DropdownSeparatorUi.vue';
 import cookie from '@/services/cookie';
+import AlertUi from '@/components/Ui/AlertUi.vue';
+
 export default {
     name: 'DashLayout',
-    components: { BackdropUi, SidebarElemUi, SidebarHeaderUi, DropdownUi, ButtonUi, DropdownSeparatorUi },
+    components: { BackdropUi, SidebarElemUi, SidebarHeaderUi, DropdownUi, ButtonUi, DropdownSeparatorUi, AlertUi },
 
     data() {
         return {
