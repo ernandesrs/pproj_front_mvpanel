@@ -4,11 +4,11 @@
     <div class="py-4">
         <RowUi basis="basis-full md:basis-1/2">
             <ColumnUi>
-                <AlertUi v-if="alert.fixedAlert" :type="alert.colorStyle"
+                <AlertUi v-if="alert.fixedAlert" :variant="alert.colorStyle"
                     :message="alert.message" @alertShow="alertShowed"
                     @alertClose="alertClosed" fixed notimer />
 
-                <AlertUi v-else :type="alert.colorStyle" :message="alert.message"
+                <AlertUi v-else :variant="alert.colorStyle" :message="alert.message"
                     @alertShow="alertShowed" @alertClose="alertClosed" />
             </ColumnUi>
         </RowUi>
