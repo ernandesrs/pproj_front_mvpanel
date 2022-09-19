@@ -1,6 +1,6 @@
 <template>
     <nav class="flex flex-col">
-        <NavItemUi v-for="item in items" v-bind:key="item.id" :item="item" />
+        <NavItemUi v-for="item in items" v-bind:key="item.text" :item="item" />
     </nav>
 </template>
 
