@@ -1,7 +1,8 @@
 <template>
 
-    <Component :is="buttonTag" :type="buttonType" :class="buttonStyle" :href="href"
-        :to="to" :title="title" :target="target" :id="id" :disabled="disabled">
+    <Component :is="buttonTag" :type="buttonType"
+        :class="[buttonStyle, {'animate-pulse': loading}]" :href="href" :to="to"
+        :title="title" :target="target" :id="id" :disabled="disabled">
         <IconUi v-if="icon" :icon-name="icon" />
         <span v-if="text" :class="{ 'ml-1': icon }">
             {{ text }}
@@ -54,6 +55,7 @@ export default {
         size: { type: String, default: null },
         link: { type: Boolean, default: false },
 
+        loading: { type: Boolean, default: false },
         icon: { type: String, default: null },
         text: { type: String, default: null },
         to: { type: Object, default: null },
@@ -62,6 +64,8 @@ export default {
         title: { type: String, default: null },
         id: { type: String, default: null },
         disabled: { type: Boolean, default: false },
+    },
+    watch: {
     },
     computed: {
         buttonTag() {
