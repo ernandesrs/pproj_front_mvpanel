@@ -250,6 +250,7 @@ export default {
         async logout() {
             this.logoutClick = true;
             await axios.axios.post("/auth/logout").then(() => {
+                this.$refs.alert.flash("Você foi deslogado. Faça login para acessar o painel novamente.", "warning");
                 cookie.deleteToken();
                 this.$router.push({ name: "auth.login" });
             });
