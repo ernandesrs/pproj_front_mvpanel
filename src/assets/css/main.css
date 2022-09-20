@@ -53,6 +53,21 @@ a:hover {
 }
 
 /*
+ * spinner
+ */
+.spinner {
+    @apply w-8 h-8 border-4 rounded-full animate-spin;
+}
+
+.spinner-dark {
+    @apply border-gray-600 border-l-gray-200;
+}
+
+.spinner-light {
+    @apply border-l-gray-800;
+}
+
+/*
  * animações
  */
 .animation-bounce {
