@@ -15,8 +15,6 @@
     </div>
 
     <div class="relative py-5">
-        <LoadingUi v-if="loading" />
-
         <AlertUi @alertClose="alert.message = null" class="mb-5" :message="alert.message"
             :variant="alert.variant" />
 
@@ -64,7 +62,6 @@
 
 <script>
 
-import LoadingUi from "@/components/Ui/LoadingUi.vue";
 import axios from "@/services/axios";
 import ListItemUi from "@/components/Layout/ListItemUi.vue";
 import ButtonUi from "@/components/Ui/ButtonUi.vue";
@@ -76,11 +73,10 @@ import messages from "@/utils/messages";
 
 export default {
     name: 'UsersListView',
-    components: { LoadingUi, ListItemUi, ButtonUi, BadgeUi, TitleUi, ModalConfirmationUi, AlertUi },
+    components: { ListItemUi, ButtonUi, BadgeUi, TitleUi, ModalConfirmationUi, AlertUi },
 
     data() {
         return {
-            loading: true,
             users: [],
             user: null,
             pagination: {
@@ -101,7 +97,6 @@ export default {
 
     mounted() {
         this.getUsers();
-        this.loading = false;
     },
 
     methods: {

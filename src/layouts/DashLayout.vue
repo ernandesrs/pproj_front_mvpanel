@@ -1,7 +1,7 @@
 <template>
     <div class="w-full h-screen grid grid-cols-12">
         <!-- backdrop -->
-        <BackdropUi @click="backdropClicked" v-if="inMobile" v-show="visible" />
+        <BackdropUi @click="backdropClicked" v-if="inMobile" v-show="visible" fixed />
         <!-- /backdrop -->
 
         <!-- sidebar -->

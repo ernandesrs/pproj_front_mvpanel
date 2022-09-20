@@ -1,6 +1,6 @@
 <template>
     <RowUi basis="basis-full">
-        <LoadingUi v-if="loading" />
+        <BackdropUi v-show="submitting" text-loading="Validando, aguarde..." loading />
 
         <ColumnUi class="p-0">
             <AlertUi ref="alert" class="mb-5" fixed notimer />
@@ -36,19 +36,19 @@ import AlertUi from '@/components/Ui/AlertUi.vue';
 import axios from '@/services/axios';
 import cookie from '@/services/cookie';
 import messages from '@/utils/messages';
-import LoadingUi from '@/components/Ui/LoadingUi.vue';
 import formErrors from '@/utils/form-errors';
+import BackdropUi from '@/components/Ui/BackdropUi.vue';
 
 export default {
     name: "LoginView",
-    components: { InputUi, ButtonUi, RowUi, ColumnUi, AlertUi, LoadingUi },
+    components: { InputUi, ButtonUi, RowUi, ColumnUi, AlertUi, BackdropUi },
 
     data() {
         return {
             email: null,
             password: null,
             remember_me: false,
-            loading: false,
+            submitting: false,
         };
     },
 
@@ -65,7 +65,7 @@ export default {
                 remember_me: this.remember_me,
             };
 
-            this.loading = true;
+            this.submitting = true;
             formErrors.clearErrors(this);
 
             axios.axios.post("/auth/login", data).then((response) => {
@@ -87,7 +87,7 @@ export default {
                     this.$refs.alert.add(errorCode ? messages[errorCode] : messages["DefaultMessage"], "danger");
                 }
             }).finally(() => {
-                this.loading = false;
+                this.submitting = false;
             });
         },
     },

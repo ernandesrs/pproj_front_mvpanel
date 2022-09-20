@@ -1,7 +1,10 @@
 <template>
     <form @submit.stop.prevent="submitForm">
         <RowUi basis="basis-full lg:basis-1/2">
-            <LoadingUi v-if="loading" />
+
+            <BackdropUi v-show="submitting" text-loading="Enviando e validado dados..."
+                loading />
+
             <ColumnUi class="p-0" basis="basis-full">
                 <AlertUi ref="alert" class="mb-5" fixed notimer />
             </ColumnUi>
@@ -52,7 +55,6 @@
 <script>
 
 import RowUi from './Layout/Grid/RowUi.vue';
-import LoadingUi from './Ui/LoadingUi.vue';
 import ColumnUi from './Layout/Grid/ColumnUi.vue';
 import InputUi from './Ui/Form/InputUi.vue';
 import ButtonUi from './Ui/ButtonUi.vue';
@@ -61,14 +63,15 @@ import axios from '@/services/axios';
 import messages from '@/utils/messages';
 import AlertUi from './Ui/AlertUi.vue';
 import FormErrors from '@/utils/form-errors';
+import BackdropUi from './Ui/BackdropUi.vue';
 
 export default {
     name: 'UserForm',
-    components: { RowUi, LoadingUi, ColumnUi, InputUi, ButtonUi, SelectUi, AlertUi },
+    components: { RowUi, ColumnUi, InputUi, ButtonUi, SelectUi, AlertUi, BackdropUi },
 
     data() {
         return {
-            loading: false,
+            submitting: false,
             user: null,
             alert: {}
         };
@@ -94,7 +97,7 @@ export default {
         submitForm(e) {
             let data = new FormData(e.target);
 
-            this.loading = true;
+            this.submitting = true;
             FormErrors.clearErrors(this);
 
             axios.axios.post(this.urlAction, data).then((resp) => {
@@ -123,7 +126,7 @@ export default {
                     this.$refs.alert.add(messages[errorCode] ?? messages["DefaultMessage"], "danger");
                 }
             }).finally(() => {
-                this.loading = false;
+                this.submitting = false;
             });
         }
     }

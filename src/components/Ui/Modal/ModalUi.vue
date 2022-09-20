@@ -1,7 +1,7 @@
 <template>
     <div v-show="visible" :class="modalContainerStyle">
-        <div @click="closeModal"
-            class="w-full h-full bg-gray-900 opacity-75 z-30 absolute"></div>
+        <BackdropUi v-show="visible" @click="closeModal" />
+
         <div :class="modalStyle">
             <CardUi class="w-full bg-gray-50">
                 <!-- header -->
@@ -44,6 +44,7 @@
 import CardUi from './../CardUi.vue';
 import IconUi from '../IconUi.vue';
 import ButtonUi from '../ButtonUi.vue';
+import BackdropUi from '../BackdropUi.vue';
 
 const sizesPresets = {
     default: "sm:w-4/5 md:w-3/5 lg:w-2/5",
@@ -54,7 +55,7 @@ const sizesPresets = {
 
 export default {
     name: "ModalUi",
-    components: { CardUi, IconUi, ButtonUi },
+    components: { CardUi, IconUi, ButtonUi, BackdropUi },
 
     data() {
         return {
