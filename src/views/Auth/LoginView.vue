@@ -1,6 +1,6 @@
 <template>
     <RowUi basis="basis-full">
-        <BackdropUi v-show="submitting" text-loading="Validando, aguarde..." loading />
+        <BackdropUi v-show="submitting" text-loading="Autenticando, aguarde..." light loading />
 
         <ColumnUi class="p-0">
             <AlertUi ref="alert" class="mb-5" fixed notimer />

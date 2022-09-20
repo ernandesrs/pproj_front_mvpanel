@@ -2,8 +2,8 @@
     <form @submit.stop.prevent="submitForm">
         <RowUi basis="basis-full lg:basis-1/2">
 
-            <BackdropUi v-show="submitting" text-loading="Enviando e validado dados..."
-                loading />
+            <BackdropUi v-show="submitting" text-loading="Enviando e validando dados..."
+                loading light />
 
             <ColumnUi class="p-0" basis="basis-full">
                 <AlertUi ref="alert" class="mb-5" fixed notimer />
