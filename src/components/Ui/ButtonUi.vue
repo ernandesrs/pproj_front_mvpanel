@@ -86,7 +86,7 @@ export default {
             let round = this.rounded ? "rounded-md" : "";
             let padding = this.text ? (this.size == "sm" ? "px-3 py-1" : "px-5 py-2") : "py-2 px-4";
 
-            return `${block} ${colorPresets[(this.outlined ? "outlined_" + this.variant : this.variant)]} ${sizesPresets[this.size]} ${round} ${padding} ${this.link ? "hover:underline" : ""} transition duration-300 cursor-pointer`;
+            return `${block} ${colorPresets[(this.outlined ? "outlined_" + this.variant : this.variant)]} ${sizesPresets[this.size]} ${round} ${padding} ${this.link ? "hover:underline" : ""} transition duration-300 ${this.disabled ? 'cursor-default' : 'cursor-pointer'}`;
         }
     },
 };
