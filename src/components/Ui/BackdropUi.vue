@@ -5,7 +5,7 @@
         leave-active-class="duration-500" :leave-to-class="enterFromLeaveToClass">
         <div :class="['backdrop', fixed?'fixed':'absolute', showedClass]">
             <div v-if="loading"
-                class="w-full h-full flex flex-col justify-center items-center">
+                class="w-full h-full flex flex-col justify-center items-center animate-pulse">
                 <div :class="['spinner', spinner]"></div>
                 <span
                     :class="[textLoadingClass, 'font-semibold py-2']">{{textLoading}}</span>
