@@ -56,7 +56,8 @@
                                 <ButtonUi text="Perfil" :to="{name: 'panel.profile'}"
                                     variant="info" size="sm" icon="user" link />
                                 <ButtonUi @click="logout" text="Logout" icon="logout"
-                                    variant="danger" size="sm" outlined />
+                                    variant="danger" size="sm" outlined
+                                    :loading="logoutClick" :disabled="logoutClick" />
                             </div>
                         </template>
                     </DropdownUi>
@@ -137,6 +138,7 @@ export default {
             sidebarClass: sidebarMobileClass,
             contentClass: contentMobileClass,
             loadingMode: true,
+            logoutClick: false,
 
             nav: {
                 dashboard: [
@@ -246,11 +248,10 @@ export default {
         },
 
         async logout() {
+            this.logoutClick = true;
             await axios.axios.post("/auth/logout").then(() => {
                 cookie.deleteToken();
                 this.$router.push({ name: "auth.login" });
-            }).catch(() => {
-
             });
         }
     },
