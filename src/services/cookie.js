@@ -9,7 +9,7 @@ export default {
 
     setToken(token) {
         // expira em, como configurado na api
-        let exp = new Date(new Date().getTime() + 60 * 60 * 1000);
+        let exp = new Date(new Date().getTime() + (60 * 60 * 1000) * 24);
 
         Cookie.set(TOKEN_API_AUTH, token, { expires: exp })
     },
